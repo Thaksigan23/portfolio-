@@ -9,7 +9,7 @@
 }
 
 #about {
- background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
+ background-color: #0e303a; /* semi-transparent white */
 }
 
 @keyframes fadeIn {
