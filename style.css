@@ -9,7 +9,7 @@
 }
 
 #about {
-  background-color: #fff3e0; /* soft peach */
+ background-color: rgba(255, 255, 255, 0.9); /* semi-transparent white */
 }
 
 @keyframes fadeIn {
