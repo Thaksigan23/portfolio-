@@ -8,6 +8,10 @@
   animation: fadeIn 1.5s ease-in forwards;
 }
 
+#about {
+  background-color: #fff3e0; /* soft peach */
+}
+
 @keyframes fadeIn {
   to {
     opacity: 1;
