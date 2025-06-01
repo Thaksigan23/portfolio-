@@ -145,3 +145,55 @@ footer {
 .dark-mode footer {
   background-color: #111;
 }
+
+#timeline {
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+#timeline h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: auto;
+  padding: 0 1rem;
+  border-left: 3px solid #0072ff;
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  padding-left: 1rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: "";
+  position: absolute;
+  left: -10px;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  background-color: #0072ff;
+  border-radius: 50%;
+  border: 3px solid white;
+}
+
+.timeline-date {
+  font-weight: bold;
+  color: #0072ff;
+  margin-bottom: 0.3rem;
+}
+
+.timeline-content h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+
+.timeline-content p {
+  margin: 0.2rem 0 0;
+  color: #555;
+}
