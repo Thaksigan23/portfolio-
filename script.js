@@ -12,7 +12,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 document.getElementById("toggle-dark").addEventListener("click", () => {
   document.body.classList.toggle("dark-mode");
 });
-const roles = ["Web Developer", "Graphic Designer", "Problem Solver"];
+const roles = ["Web Developer", "Graphic Designer", "Problem Solver", "Web Designer"];
 let index = 0;
 let charIndex = 0;
 const typed = document.getElementById("typed");
