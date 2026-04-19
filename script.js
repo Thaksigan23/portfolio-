@@ -406,26 +406,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
             // Get form data
             const formData = new FormData(this);
             const data = Object.fromEntries(formData);
 
             // Simple validation
             if (!data.name || !data.email || !data.subject || !data.message) {
+                e.preventDefault();
                 showNotification('Please fill in all fields', 'error');
                 return;
             }
 
-            // Simulate form submission (replace with actual API call)
-            console.log('Form submitted:', data);
-
-            // Show success message
-            showNotification('Thank you for your message! I will get back to you soon.', 'success');
-
-            // Reset form
-            this.reset();
+            showNotification('Sending your message...', 'info');
         });
     }
 
