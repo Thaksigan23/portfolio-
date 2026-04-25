@@ -1,526 +1,160 @@
-// Enhanced JavaScript for Portfolio Website
-document.addEventListener('DOMContentLoaded', function() {
-    // DOM Elements
-    const header = document.querySelector('header');
-    const navbar = document.querySelector('.navbar');
-    const navLinks = document.querySelectorAll('.nav-link');
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    const heroSubtitle = document.getElementById('rotating-profession');
-    const ctaBtn = document.querySelector('.cta-btn');
-    const hireBtns = document.querySelectorAll('.hire-btn');
-    const aboutBtn = document.querySelector('.about-btn');
-    const socialIcons = document.querySelectorAll('.social-icon');
+// Premium Portfolio Script V2
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Theme Toggle Logic
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const icon = themeToggle.querySelector('i');
 
-    // Professions for typewriter effect
-    const professions = [
-        'Full-Stack Developer',
-        'Frontend Engineer', 
-        'Backend Developer',
-        'UI/UX Enthusiast',
-        'Problem Solver',
-        'Tech Innovator'
-    ];
+    // Check for saved theme
+    const savedTheme = localStorage.getItem('theme') || 'dark';
+    body.setAttribute('data-theme', savedTheme);
+    updateThemeIcon(savedTheme);
 
-    // Typewriter Effect
-    let professionIndex = 0;
-    let charIndex = 0;
-    let isDeleting = false;
-    let typingSpeed = 150;
-
-    function typeWriter() {
-        if (!heroSubtitle) return;
+    themeToggle.addEventListener('click', () => {
+        const currentTheme = body.getAttribute('data-theme');
+        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
         
-        const currentProfession = professions[professionIndex];
-        
-        if (isDeleting) {
-            heroSubtitle.innerHTML = "I'm a " + currentProfession.substring(0, charIndex - 1) + '<span class="cursor">|</span>';
-            charIndex--;
-            typingSpeed = 75;
-        } else {
-            heroSubtitle.innerHTML = "I'm a " + currentProfession.substring(0, charIndex + 1) + '<span class="cursor">|</span>';
-            charIndex++;
-            typingSpeed = 150;
-        }
-
-        if (!isDeleting && charIndex === currentProfession.length) {
-            typingSpeed = 2000; // Pause at end
-            isDeleting = true;
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            professionIndex = (professionIndex + 1) % professions.length;
-            typingSpeed = 500; // Pause before next word
-        }
-
-        setTimeout(typeWriter, typingSpeed);
-    }
-
-    // Mobile Menu Toggle
-    function toggleMobileMenu() {
-        hamburger?.classList.toggle('active');
-        navMenu?.classList.toggle('active');
-        document.body.style.overflow = navMenu?.classList.contains('active') ? 'hidden' : 'auto';
-    }
-
-    // Smooth Scroll Navigation
-    function smoothScroll(event) {
-        event.preventDefault();
-        const targetId = this.getAttribute('href');
-        
-        if (targetId && targetId.startsWith('#')) {
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const headerHeight = header?.offsetHeight || 80;
-                const offsetTop = targetElement.offsetTop - headerHeight;
-                
-                window.scrollTo({
-                    top: offsetTop,
-                    behavior: 'smooth'
-                });
-
-                // Close mobile menu
-                if (navMenu?.classList.contains('active')) {
-                    toggleMobileMenu();
-                }
-
-                // Update active state
-                updateActiveNavLink(targetId);
-            }
-        }
-    }
-
-    // Update Active Navigation Link
-    function updateActiveNavLink(activeId) {
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === activeId) {
-                link.classList.add('active');
-            }
-        });
-    }
-
-    // Scroll-based Header Effects
-    function handleScroll() {
-        const scrollY = window.scrollY;
-        
-        if (scrollY > 50) {
-            header?.classList.add('scrolled');
-        } else {
-            header?.classList.remove('scrolled');
-        }
-    }
-
-    // Scroll-based Active Navigation
-    function updateActiveNavFromScroll() {
-        const sections = document.querySelectorAll('section[id]');
-        const scrollPosition = window.scrollY + (header?.offsetHeight || 80);
-
-        let activeSection = null;
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionBottom = sectionTop + section.offsetHeight;
-            if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
-                activeSection = section;
-            }
-        });
-
-        if (activeSection) {
-            const id = '#' + activeSection.getAttribute('id');
-            updateActiveNavLink(id);
-            
-            // Update URL hash
-            if (history.pushState) {
-                history.pushState(null, null, id);
-            }
-        } else if (scrollPosition < 100) {
-            updateActiveNavLink('#home');
-        }
-    }
-
-    // Throttled scroll listener
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-        clearTimeout(scrollTimeout);
-        scrollTimeout = setTimeout(updateActiveNavFromScroll, 50);
+        body.setAttribute('data-theme', newTheme);
+        localStorage.setItem('theme', newTheme);
+        updateThemeIcon(newTheme);
     });
 
-    // Intersection Observer for Animations
-    const animationObserver = new IntersectionObserver((entries) => {
+    function updateThemeIcon(theme) {
+        icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // 2. Custom Cursor
+    const cursor = document.querySelector('.custom-cursor');
+    const follower = document.querySelector('.custom-cursor-follower');
+
+    document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        setTimeout(() => {
+            follower.style.left = e.clientX + 'px';
+            follower.style.top = e.clientY + 'px';
+        }, 80);
+    });
+
+    const interactiveElements = document.querySelectorAll('a, button, .stat, .bento-item, .project-card, .theme-toggle, .filter-btn');
+    interactiveElements.forEach(el => {
+        el.addEventListener('mouseenter', () => {
+            cursor.style.transform = 'scale(2)';
+            follower.style.transform = 'scale(2.5)';
+            follower.style.background = 'rgba(0, 212, 255, 0.1)';
+        });
+        el.addEventListener('mouseleave', () => {
+            cursor.style.transform = 'scale(1)';
+            follower.style.transform = 'scale(1)';
+            follower.style.background = 'transparent';
+        });
+    });
+
+    // 3. Counter Animation Logic
+    const counterObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-                
-                // Add stagger effect for multiple elements
-                const siblings = entry.target.parentElement?.querySelectorAll('.animate-on-scroll');
-                if (siblings && siblings.length > 1) {
-                    siblings.forEach((sibling, index) => {
-                        setTimeout(() => {
-                            sibling.style.opacity = '1';
-                            sibling.style.transform = 'translateY(0)';
-                        }, index * 100);
-                    });
-                }
+                const target = entry.target;
+                const endValue = parseInt(target.getAttribute('data-target'));
+                animateCounter(target, endValue);
+                counterObserver.unobserve(target);
             }
         });
-    }, {
-        threshold: 0.1,
-        rootMargin: '0px 0px -50px 0px'
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number').forEach(counter => {
+        counterObserver.observe(counter);
     });
 
-    // Setup animations for elements
-    function setupAnimations() {
-        const animatedElements = document.querySelectorAll(
-            '.hero-stats .stat, .about-highlights .highlight, .floating-card, .social-icon'
-        );
+    function animateCounter(el, target) {
+        let current = 0;
+        const duration = 2000;
+        const step = target / (duration / 16);
         
-        animatedElements.forEach((el, index) => {
-            el.style.opacity = '0';
-            el.style.transform = 'translateY(30px)';
-            el.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
-            el.style.transitionDelay = `${index * 0.1}s`;
-            
-            animationObserver.observe(el);
-        });
-    }
-
-    // Button Click Handlers
-    function handleButtonClick(event) {
-        const button = event.currentTarget;
-        const ripple = document.createElement('span');
-        const rect = button.getBoundingClientRect();
-        const size = Math.max(rect.width, rect.height);
-        const x = event.clientX - rect.left - size / 2;
-        const y = event.clientY - rect.top - size / 2;
-        
-        ripple.style.width = ripple.style.height = size + 'px';
-        ripple.style.left = x + 'px';
-        ripple.style.top = y + 'px';
-        ripple.classList.add('ripple');
-        
-        button.appendChild(ripple);
-        
-        setTimeout(() => {
-            ripple.remove();
-        }, 600);
-
-        // Add button-specific actions here
-        if (button.classList.contains('cta-btn') || button.textContent.includes('Hire')) {
-            // Scroll to contact section or show contact modal
-            const contactSection = document.querySelector('#contact');
-            if (contactSection) {
-                contactSection.scrollIntoView({ behavior: 'smooth' });
+        const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+                el.textContent = target;
+                clearInterval(timer);
             } else {
-                // Fallback: show alert or modal
-                showNotification('Contact section coming soon!', 'info');
+                el.textContent = Math.floor(current);
             }
-        } else if (button.textContent.includes('Download CV')) {
-            // Handle CV download
-            showNotification('CV download will be available soon!', 'info');
-        }
+        }, 16);
     }
 
-    // Notification System
-    function showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.innerHTML = `
-            <i class="fas fa-${type === 'info' ? 'info-circle' : 'check-circle'}"></i>
-            <span>${message}</span>
-        `;
-        
-        // Add notification styles
-        Object.assign(notification.style, {
-            position: 'fixed',
-            top: '20px',
-            right: '20px',
-            background: type === 'info' ? 'var(--accent-primary)' : '#10b981',
-            color: 'white',
-            padding: '1rem 1.5rem',
-            borderRadius: '12px',
-            display: 'flex',
-            alignItems: 'center',
-            gap: '0.5rem',
-            zIndex: '9999',
-            transform: 'translateX(100%)',
-            transition: 'transform 0.3s ease',
-            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)'
-        });
-        
-        document.body.appendChild(notification);
-        
-        // Animate in
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        // Auto remove
-        setTimeout(() => {
-            notification.style.transform = 'translateX(100%)';
-            setTimeout(() => {
-                notification.remove();
-            }, 300);
-        }, 3000);
-    }
+    // 4. Project Filtering Logic
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
 
-    // Keyboard Navigation
-    function handleKeyboard(event) {
-        // Close mobile menu on Escape
-        if (event.key === 'Escape' && navMenu?.classList.contains('active')) {
-            toggleMobileMenu();
-        }
-        
-        // Navigate with arrow keys when menu is open
-        if (navMenu?.classList.contains('active') && (event.key === 'ArrowDown' || event.key === 'ArrowUp')) {
-            event.preventDefault();
-            const currentActive = document.querySelector('.nav-link:focus') || document.querySelector('.nav-link.active');
-            const navLinksArray = Array.from(navLinks);
-            const currentIndex = navLinksArray.indexOf(currentActive);
-            
-            let nextIndex;
-            if (event.key === 'ArrowDown') {
-                nextIndex = (currentIndex + 1) % navLinksArray.length;
-            } else {
-                nextIndex = currentIndex <= 0 ? navLinksArray.length - 1 : currentIndex - 1;
-            }
-            
-            navLinksArray[nextIndex]?.focus();
-        }
-    }
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Update active button
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-    // Performance Optimized Scroll Handler
-    let ticking = false;
-    function optimizedScrollHandler() {
-        if (!ticking) {
-            requestAnimationFrame(() => {
-                handleScroll();
-                ticking = false;
+            const filter = btn.getAttribute('data-filter');
+
+            projectCards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.style.display = 'block';
+                    setTimeout(() => card.style.opacity = '1', 10);
+                } else {
+                    card.style.opacity = '0';
+                    setTimeout(() => card.style.display = 'none', 500);
+                }
             });
-            ticking = true;
-        }
-    }
+        });
+    });
 
-    // Debounced Resize Handler
-    let resizeTimeout;
-    function handleResize() {
-        clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(() => {
-            // Close mobile menu on resize to larger screen
-            if (window.innerWidth >= 769 && navMenu?.classList.contains('active')) {
-                toggleMobileMenu();
-            }
-        }, 250);
-    }
+    // 5. Typewriter Effect
+    const professionElement = document.getElementById('rotating-profession');
+    const professions = ['Software Developer', 'UI/UX Enthusiast', 'Full-Stack Engineer', 'Problem Solver'];
+    let profIndex = 0, charIndex = 0, isDeleting = false;
 
-    // Initialize Active Navigation from Hash
-    function initializeActiveNav() {
-        const hash = window.location.hash || '#home';
-        updateActiveNavLink(hash);
-        
-        // Smooth scroll to section if hash exists
-        if (hash !== '#home') {
-            setTimeout(() => {
-                const targetElement = document.querySelector(hash);
-                if (targetElement) {
-                    const headerHeight = header?.offsetHeight || 80;
-                    window.scrollTo({
-                        top: targetElement.offsetTop - headerHeight,
-                        behavior: 'smooth'
-                    });
-                }
-            }, 500);
-        }
-    }
+    function type() {
+        const current = professions[profIndex];
+        professionElement.textContent = isDeleting ? current.substring(0, charIndex - 1) : current.substring(0, charIndex + 1);
+        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
 
-    // Event Listeners
-    hamburger?.addEventListener('click', toggleMobileMenu);
-    navLinks.forEach(link => {
-        link.addEventListener('click', smoothScroll);
-        link.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                link.click();
+        let typeSpeed = isDeleting ? 50 : 150;
+        if (!isDeleting && charIndex === current.length) { typeSpeed = 2000; isDeleting = true; }
+        else if (isDeleting && charIndex === 0) { isDeleting = false; profIndex = (profIndex + 1) % professions.length; typeSpeed = 500; }
+        setTimeout(type, typeSpeed);
+    }
+    type();
+
+    // 6. Scroll Reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
             }
         });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.section-title, .home-text, .home-image, .about-text, .bento-item, .contact-card, .timeline-item, .testimonial-card').forEach((el, index) => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`;
+        revealObserver.observe(el);
     });
 
-    // Button event listeners
-    [ctaBtn, ...hireBtns, aboutBtn].forEach(btn => {
-        if (btn) {
-            btn.addEventListener('click', handleButtonClick);
-        }
+    // 7. Back to Top Logic
+    const backToTop = document.querySelector('.back-to-top');
+    window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 500);
     });
 
-    // Social icons hover effects
-    socialIcons.forEach(icon => {
-        icon.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-3px) scale(1.1)';
-        });
-        
-        icon.addEventListener('mouseleave', function() {
-            this.style.transform = 'translateY(0) scale(1)';
-        });
+    backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // Global event listeners
-    window.addEventListener('scroll', optimizedScrollHandler);
-    window.addEventListener('resize', handleResize);
-    window.addEventListener('hashchange', initializeActiveNav);
-    document.addEventListener('keydown', handleKeyboard);
-
-    // Handle clicks outside mobile menu
-    document.addEventListener('click', (event) => {
-        if (navMenu?.classList.contains('active') && 
-            !navMenu.contains(event.target) && 
-            !hamburger?.contains(event.target)) {
-            toggleMobileMenu();
-        }
-    });
-
-    // Initialize everything
-    function init() {
-        // Start typewriter effect
-        if (heroSubtitle) {
-            typeWriter();
-        }
-        
-        // Setup animations
-        setupAnimations();
-        
-        // Initialize navigation
-        initializeActiveNav();
-        
-        // Initial scroll check
-        handleScroll();
-        
-        // Add loaded class for CSS animations
-        setTimeout(() => {
-            document.body.classList.add('loaded');
-        }, 100);
-        
-        console.log('Portfolio website initialized successfully! 🚀');
-    }
-
-    // Contact form handling
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            // Get form data
-            const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
-
-            // Simple validation
-            if (!data.name || !data.email || !data.subject || !data.message) {
-                e.preventDefault();
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-
-            showNotification('Sending your message...', 'info');
-        });
-    }
-
-    // Initialize the application
-    init();
-
-    // Add CSS for ripple effect and notifications
+    // Dynamic Style Injection for Reveal
     const style = document.createElement('style');
-    style.textContent = `
-        .ripple {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.6);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        button {
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .loaded {
-            animation: fadeIn 0.3s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        
-        /* Focus styles for accessibility */
-        .nav-link:focus-visible,
-        .social-icon:focus-visible,
-        .hire-btn:focus-visible,
-        .cta-btn:focus-visible {
-            outline: 2px solid var(--accent-primary);
-            outline-offset: 2px;
-        }
-    `;
+    style.textContent = `.revealed { opacity: 1 !important; transform: translateY(0) !important; }`;
     document.head.appendChild(style);
+
+    console.log('Portfolio Premium V2 Loaded 🚀');
 });
-
-// Utility Functions
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    }
-}
-
-// Performance monitoring
-if ('performance' in window) {
-    window.addEventListener('load', () => {
-        setTimeout(() => {
-            const perfData = performance.timing;
-            const pageLoadTime = perfData.loadEventEnd - perfData.navigationStart;
-            console.log(`Page loaded in ${pageLoadTime}ms`);
-        }, 0);
-    });
-}
-
-// Error handling
-window.addEventListener('error', (event) => {
-    console.error('JavaScript Error:', event.error);
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-    console.error('Unhandled Promise Rejection:', event.reason);
-});
-
-// Service Worker Registration (optional)
-if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-        // Uncomment if you have a service worker
-        // navigator.serviceWorker.register('/sw.js')
-        //     .then(registration => console.log('SW registered'))
-        //     .catch(error => console.log('SW registration failed'));
-    });
-}
