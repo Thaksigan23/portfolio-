@@ -143,6 +143,60 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     display: block;
 }
 
+.about-tech-card {
+    width: 100%;
+    aspect-ratio: 4/5;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-card);
+    background: linear-gradient(145deg, rgba(0, 212, 255, 0.12), rgba(123, 92, 255, 0.12));
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.4rem;
+    padding: 1.5rem;
+}
+
+.tech-core-icon {
+    width: 96px;
+    height: 96px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.2rem;
+    color: var(--accent-primary);
+    background: rgba(0, 0, 0, 0.25);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.2);
+}
+
+.tech-orbit-icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    width: 100%;
+}
+
+.tech-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.45rem;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    padding: 0.55rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid var(--glass-border);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.tech-pill i {
+    color: var(--accent-primary);
+}
+
 .about-img {
     width: 100%;
     aspect-ratio: 4/5;
@@ -224,6 +278,7 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .project-card { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--border-radius); overflow: hidden; transition: var(--transition-smooth); }
 .project-image { position: relative; height: 250px; overflow: hidden; }
 .project-image img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.project-image img.project-cover-top { object-position: top center; }
 .project-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; justify-content: center; align-items: center; opacity: 0; transition: var(--transition-smooth); }
 .project-card:hover .project-overlay { opacity: 1; }
 .project-info { padding: 2rem; }
