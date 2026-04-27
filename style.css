@@ -285,13 +285,18 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .project-tech { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
 .project-tech span { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 0.3rem 0.8rem; border-radius: 50px; color: var(--accent-primary); }
 .project-details-btn {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-top: 1.2rem;
-    padding: 0.6rem 1rem;
-    border: 1px solid var(--glass-border);
+    padding: 0.62rem 1.05rem;
+    border: 1px solid rgba(0, 212, 255, 0.45);
     border-radius: 999px;
-    color: var(--text-primary);
-    font-weight: 600;
+    color: #ffffff;
+    background: rgba(0, 212, 255, 0.14);
+    font-weight: 700;
+    font-size: 0.9rem;
+    line-height: 1;
     transition: var(--transition-smooth);
 }
 .project-details-btn:hover {

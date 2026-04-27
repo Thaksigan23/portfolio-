@@ -182,7 +182,7 @@ document.addEventListener('DOMContentLoaded', () => {
         nexgen: {
             category: 'Web App',
             title: 'NexGen E-commerce',
-            image: 'images/Cleveroad.jpg',
+            image: 'images/profile.jpg',
             description: 'NexGen E-commerce is a scalable marketplace application built to handle product management, inventory visibility, and secure purchase flows. The project emphasizes responsive storefront design, modular backend APIs, and performance-focused architecture. It demonstrates end-to-end implementation from catalog browsing to checkout-ready user journeys.',
             points: [
                 'Scalable product and inventory management',
@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'employee-monitor': {
             category: 'Workforce Management',
             title: 'Employee Monitor Suite',
-            image: 'images/Dashboard - Social Media Analytics.jpg',
+            image: 'images/profile.jpg',
             description: 'Employee Monitor Suite is a real-time productivity and monitoring solution for teams. It combines activity insights, live tracking, and analytics dashboards to help organizations understand work patterns and improve operational efficiency. The system is designed for fast data updates, role-based visibility, and actionable reporting for managers.',
             points: [
                 'Real-time employee activity tracking',
@@ -208,7 +208,7 @@ document.addEventListener('DOMContentLoaded', () => {
         'java-task-planner': {
             category: 'Desktop App',
             title: 'Java Task Planner',
-            image: 'images/Task manager app.jpg',
+            image: 'images/profile.jpg',
             description: 'Java Task Planner is a desktop productivity application for creating, organizing, and tracking tasks efficiently. Built with Java Swing and database integration, it supports structured task records, status updates, and dependable local workflow management. This project highlights core object-oriented design, desktop UI development, and persistent data handling.',
             points: [
                 'Desktop-based task creation and status tracking',
