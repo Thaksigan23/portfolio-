@@ -284,6 +284,126 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .project-info { padding: 2rem; }
 .project-tech { display: flex; gap: 0.8rem; margin-top: 1.5rem; }
 .project-tech span { font-size: 0.75rem; background: rgba(255,255,255,0.05); padding: 0.3rem 0.8rem; border-radius: 50px; color: var(--accent-primary); }
+.project-details-btn {
+    display: inline-block;
+    margin-top: 1.2rem;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--glass-border);
+    border-radius: 999px;
+    color: var(--text-primary);
+    font-weight: 600;
+    transition: var(--transition-smooth);
+}
+.project-details-btn:hover {
+    background: var(--accent-gradient);
+    color: #fff;
+    border-color: transparent;
+}
+
+/* Project Modal */
+.project-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(5, 5, 5, 0.8);
+    backdrop-filter: blur(6px);
+    z-index: 3000;
+    padding: 1.2rem;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.28s ease, visibility 0.28s ease;
+}
+.project-modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.project-modal {
+    width: min(920px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--bg-secondary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-hover);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    transform: translateY(16px) scale(0.98);
+    opacity: 0;
+    transition: transform 0.28s ease, opacity 0.28s ease;
+}
+.project-modal-overlay.active .project-modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+.project-modal img {
+    width: 100%;
+    height: 100%;
+    min-height: 320px;
+    max-height: 90vh;
+    object-fit: contain;
+    background: #0b0b0b;
+    padding: 0.8rem;
+}
+.project-modal-content {
+    padding: 2rem;
+}
+.project-modal-cat {
+    display: inline-block;
+    margin-bottom: 0.8rem;
+    color: var(--accent-primary);
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.5px;
+}
+.project-modal-content h3 {
+    margin-bottom: 0.8rem;
+}
+.project-modal-content p {
+    color: var(--text-secondary);
+}
+.project-modal-points {
+    margin-top: 1rem;
+    margin-left: 1rem;
+    list-style: disc;
+    color: var(--text-secondary);
+}
+.project-modal-points li {
+    margin-bottom: 0.45rem;
+}
+.project-modal-close {
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid var(--glass-border);
+    background: rgba(0, 0, 0, 0.35);
+    color: #fff;
+    cursor: pointer;
+}
+.detail-actions {
+    margin-top: 1.4rem;
+}
+.project-action-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.65rem 1.2rem;
+    border-radius: 999px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-weight: 700;
+}
+.project-action-btn[aria-disabled="true"] {
+    opacity: 0.55;
+    pointer-events: none;
+}
 
 /* Testimonials */
 .testimonial-card { background: var(--glass-bg); border: 1px solid var(--glass-border); padding: 3rem; border-radius: var(--border-radius); text-align: center; max-width: 800px; margin: 0 auto; }
@@ -307,4 +427,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     .nav-menu { display: none; }
     .timeline::after { left: 31px; }
     .timeline-item { width: 100%; padding-left: 70px; text-align: left !important; }
+    .project-modal { grid-template-columns: 1fr; }
+    .project-modal img { min-height: 210px; max-height: 260px; }
 }

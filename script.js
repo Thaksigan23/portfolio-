@@ -151,6 +151,131 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // 8. Project Details Modal
+    const projectData = {
+        careerguide: {
+            category: 'Web App',
+            title: 'CareerGuide Hub',
+            image: 'images/careerguide.png',
+            description: 'CareerGuide Hub is a full-stack platform that helps students and early professionals discover the best career path based on skills, interests, and goals. It includes secure authentication, a personalized dashboard, and dynamic recommendation logic that maps user profiles to suitable careers. The system also allows users to track progress, explore learning paths, and access practical guidance resources in one place.',
+            points: [
+                'Secure login and user profile personalization',
+                'Skill-based career recommendations',
+                'Dashboard for progress and guidance resources'
+            ],
+            tech: ['React', 'Node.js', 'Express', 'MySQL'],
+            github: 'https://github.com/Thaksigan23/career-guidance-system'
+        },
+        bookstore: {
+            category: 'Web App',
+            title: 'Book Selling E-commerce',
+            image: 'images/ecombook.png',
+            description: 'Book Selling E-commerce is an online bookstore designed to provide a smooth shopping experience for readers. Users can browse books by category, search by title or author, view detailed product pages, and manage their cart before checkout. The platform focuses on a clean user interface, responsive design, and reliable order flow, making it easy for customers to discover and buy books from any device.',
+            points: [
+                'Book catalog with category and search filters',
+                'Cart and checkout flow for easy purchasing',
+                'Responsive UI optimized for mobile and desktop'
+            ],
+            tech: ['React', 'Node.js', 'Express', 'MongoDB'],
+            github: '#'
+        },
+        nexgen: {
+            category: 'Web App',
+            title: 'NexGen E-commerce',
+            image: 'images/Cleveroad.jpg',
+            description: 'NexGen E-commerce is a scalable marketplace application built to handle product management, inventory visibility, and secure purchase flows. The project emphasizes responsive storefront design, modular backend APIs, and performance-focused architecture. It demonstrates end-to-end implementation from catalog browsing to checkout-ready user journeys.',
+            points: [
+                'Scalable product and inventory management',
+                'Modular backend APIs for marketplace features',
+                'Smooth end-to-end shopping experience'
+            ],
+            tech: ['React', 'MongoDB', 'Node.js'],
+            github: '#'
+        },
+        'employee-monitor': {
+            category: 'Workforce Management',
+            title: 'Employee Monitor Suite',
+            image: 'images/Dashboard - Social Media Analytics.jpg',
+            description: 'Employee Monitor Suite is a real-time productivity and monitoring solution for teams. It combines activity insights, live tracking, and analytics dashboards to help organizations understand work patterns and improve operational efficiency. The system is designed for fast data updates, role-based visibility, and actionable reporting for managers.',
+            points: [
+                'Real-time employee activity tracking',
+                'Analytics dashboard for productivity insights',
+                'Role-based views for managers and teams'
+            ],
+            tech: ['Python', 'Node.js', 'Socket.io'],
+            github: '#'
+        },
+        'java-task-planner': {
+            category: 'Desktop App',
+            title: 'Java Task Planner',
+            image: 'images/Task manager app.jpg',
+            description: 'Java Task Planner is a desktop productivity application for creating, organizing, and tracking tasks efficiently. Built with Java Swing and database integration, it supports structured task records, status updates, and dependable local workflow management. This project highlights core object-oriented design, desktop UI development, and persistent data handling.',
+            points: [
+                'Desktop-based task creation and status tracking',
+                'Persistent local data storage with MySQL',
+                'Simple and practical workflow-focused interface'
+            ],
+            tech: ['Java', 'MySQL', 'Swing'],
+            github: '#'
+        }
+    };
+
+    const modalOverlay = document.getElementById('project-modal-overlay');
+    const modalCloseBtn = document.getElementById('project-modal-close');
+    const modalImage = document.getElementById('project-modal-image');
+    const modalCategory = document.getElementById('project-modal-category');
+    const modalTitle = document.getElementById('project-modal-title');
+    const modalDescription = document.getElementById('project-modal-description');
+    const modalPoints = document.getElementById('project-modal-points');
+    const modalTech = document.getElementById('project-modal-tech');
+    const modalGithub = document.getElementById('project-modal-github');
+    const projectTriggers = document.querySelectorAll('.js-open-project');
+
+    function openProjectModal(projectKey) {
+        const project = projectData[projectKey];
+        if (!project) return;
+
+        modalImage.src = project.image;
+        modalImage.alt = `${project.title} preview`;
+        modalCategory.textContent = project.category;
+        modalTitle.textContent = project.title;
+        modalDescription.textContent = project.description;
+        modalPoints.innerHTML = project.points.map(item => `<li>${item}</li>`).join('');
+        modalGithub.href = project.github;
+        modalGithub.setAttribute('aria-disabled', project.github === '#' ? 'true' : 'false');
+        modalGithub.textContent = project.github === '#' ? 'GitHub Link Coming Soon' : 'View GitHub';
+        modalTech.innerHTML = project.tech.map(item => `<span>${item}</span>`).join('');
+
+        modalOverlay.classList.add('active');
+        modalOverlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+        modalOverlay.classList.remove('active');
+        modalOverlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+    }
+
+    projectTriggers.forEach(trigger => {
+        trigger.addEventListener('click', (event) => {
+            event.preventDefault();
+            openProjectModal(trigger.dataset.project);
+        });
+    });
+
+    modalCloseBtn.addEventListener('click', closeProjectModal);
+    modalOverlay.addEventListener('click', (event) => {
+        if (event.target === modalOverlay) {
+            closeProjectModal();
+        }
+    });
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+            closeProjectModal();
+        }
+    });
+
     // Dynamic Style Injection for Reveal
     const style = document.createElement('style');
     style.textContent = `.revealed { opacity: 1 !important; transform: translateY(0) !important; }`;
