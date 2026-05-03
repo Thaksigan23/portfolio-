@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="1000" viewBox="0 0 800 1000">
+  <rect width="800" height="1000" fill="#0a0a0a"/>
+  <rect x="40" y="40" width="720" height="920" rx="16" fill="none" stroke="rgba(0,212,255,0.25)" stroke-width="2" stroke-dasharray="12 8"/>
+  <text x="400" y="470" fill="#00d4ff" font-family="system-ui,sans-serif" font-size="22" font-weight="600" text-anchor="middle">Poster placeholder</text>
+  <text x="400" y="510" fill="#a0a0a0" font-family="system-ui,sans-serif" font-size="15" text-anchor="middle">Replace with your image (JPG/PNG)</text>
+  <text x="400" y="540" fill="#666" font-family="system-ui,sans-serif" font-size="13" text-anchor="middle">images/posters/&lt;folder&gt;/</text>
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#050a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#g)"/>
+  <circle cx="400" cy="220" r="120" fill="none" stroke="rgba(0,212,255,0.15)" stroke-width="2"/>
+  <circle cx="400" cy="220" r="85" fill="rgba(0,212,255,0.06)" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+  <path d="M360 200 L440 200 L430 280 L370 280 Z" fill="none" stroke="#00d4ff" stroke-width="2" opacity="0.9"/>
+  <rect x="385" y="255" width="30" height="4" rx="2" fill="#00d4ff" opacity="0.6"/>
+  <text x="400" y="340" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="22" font-weight="700" text-anchor="middle">Digital Marketing</text>
+  <text x="400" y="372" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" text-anchor="middle">IEEE · AIESEC · Techloom.ai</text>
+</svg>
