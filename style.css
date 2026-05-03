@@ -415,7 +415,8 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .quote-icon { font-size: 2rem; color: var(--accent-primary); margin-bottom: 1.5rem; }
 
 /* Contact & Footer */
-.contact-lead { max-width: 640px; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; margin: -1.5rem 0 2.5rem; }
+.contact .section-title { margin-top: 0; margin-bottom: 1.25rem; line-height: 1.2; }
+.contact-lead { max-width: 640px; color: var(--text-secondary); font-size: 1.05rem; line-height: 1.65; margin: 0 0 2.5rem; }
 .contact-card { display: grid; grid-template-columns: 1fr 1.5fr; background: var(--glass-bg); border-radius: var(--border-radius); border: 1px solid var(--glass-border); overflow: hidden; }
 .contact-info { padding: 3rem; background: rgba(255,255,255,0.02); display: flex; flex-direction: column; gap: 0.25rem; }
 .contact-info-intro { font-family: 'Outfit', sans-serif; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent-primary); margin-bottom: 1rem; }
