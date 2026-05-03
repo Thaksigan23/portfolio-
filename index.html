@@ -399,45 +399,63 @@
         <section id="contact" class="section contact">
             <div class="container">
                 <h2 class="section-title">Let's Connect</h2>
+                <p class="contact-lead">Have a project, an opportunity, or a question? Send a message—I usually reply within a couple of days. You can also reach me directly using the details below.</p>
                 <div class="contact-card">
                     <div class="contact-info">
+                        <p class="contact-info-intro">Direct lines</p>
                         <div class="contact-item">
-                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <span class="contact-item-icon" aria-hidden="true"><i class="fas fa-envelope"></i></span>
                             <div>
                                 <h3>Email</h3>
                                 <p><a href="mailto:thaksithaksigan@gmail.com">thaksithaksigan@gmail.com</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-phone" aria-hidden="true"></i>
+                            <span class="contact-item-icon" aria-hidden="true"><i class="fas fa-phone"></i></span>
                             <div>
                                 <h3>Phone</h3>
                                 <p><a href="tel:+94750659944">+94 75 065 9944</a></p>
                             </div>
                         </div>
                         <div class="contact-item">
-                            <i class="fas fa-location-dot" aria-hidden="true"></i>
+                            <span class="contact-item-icon" aria-hidden="true"><i class="fas fa-location-dot"></i></span>
                             <div>
-                                <h3>Address</h3>
-                                <p><a href="https://maps.google.com/?q=Jaffna,+Northern+Province,+Sri+Lanka" target="_blank" rel="noopener noreferrer">Jaffna, Northern Province SriLanka</a></p>
+                                <h3>Location</h3>
+                                <p><a href="https://maps.google.com/?q=Jaffna,+Northern+Province,+Sri+Lanka" target="_blank" rel="noopener noreferrer">Jaffna, Northern Province, Sri Lanka</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-social">
+                            <p class="contact-social-label">Social</p>
+                            <div class="contact-social-links">
+                                <a href="https://wa.me/94750659944" aria-label="WhatsApp" class="social-icon whatsapp" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i></a>
+                                <a href="https://linkedin.com/in/sivaruban-thaksigan" aria-label="LinkedIn" class="social-icon linkedin" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="https://github.com/Thaksigan23" aria-label="GitHub" class="social-icon github" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                                <a href="https://www.instagram.com/thaksigan_7?igsh=ZGUzMzM3NWJiOQ==" aria-label="Instagram" class="social-icon instagram" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
                             </div>
                         </div>
                     </div>
                     <form id="contactForm" class="premium-form">
+                        <p class="form-heading">Send a message</p>
+                        <p class="form-hint">Opens your email app with this message filled in—no server required.</p>
                         <div class="input-group">
-                            <input type="text" id="name" required placeholder=" " aria-label="Your Name">
+                            <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" aria-label="Your Name">
                             <label for="name">Name</label>
                         </div>
                         <div class="input-group">
-                            <input type="email" id="email" required placeholder=" " aria-label="Your Email">
+                            <input type="email" id="email" name="email" required placeholder=" " autocomplete="email" aria-label="Your Email">
                             <label for="email">Email</label>
                         </div>
                         <div class="input-group">
-                            <textarea id="message" required placeholder=" " rows="4" aria-label="Your Message"></textarea>
+                            <input type="text" id="subject" name="subject" placeholder=" " autocomplete="off" aria-label="Subject (optional)">
+                            <label for="subject">Subject <span class="label-optional">(optional)</span></label>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="message" name="message" required placeholder=" " rows="5" aria-label="Your Message"></textarea>
                             <label for="message">Message</label>
                         </div>
+                        <p class="form-status" id="contact-form-status" role="status" aria-live="polite"></p>
                         <button type="submit" class="submit-btn">
-                            <span>Send Message</span>
+                            <span>Open in email</span>
                             <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </form>

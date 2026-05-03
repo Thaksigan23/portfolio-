@@ -134,7 +134,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-title, .home-text, .home-image, .about-text, .bento-item, .contact-card, .timeline-item, .testimonial-card').forEach((el, index) => {
+    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .timeline-item, .testimonial-card').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`;
@@ -236,6 +236,28 @@ document.addEventListener('DOMContentLoaded', () => {
             closeProjectModal();
         }
     });
+
+    // 9. Contact form → mailto (no backend)
+    const contactForm = document.getElementById('contactForm');
+    const contactFormStatus = document.getElementById('contact-form-status');
+    if (contactForm) {
+        contactForm.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subjectField = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const to = 'thaksithaksigan@gmail.com';
+            const subjectLine = subjectField || `Portfolio inquiry from ${name}`;
+            const body = [`From: ${name}`, `Reply-To: ${email}`, '', message].join('\n');
+            const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailto;
+            if (contactFormStatus) {
+                contactFormStatus.textContent =
+                    'If your email app did not open, copy your message and send it to thaksithaksigan@gmail.com.';
+            }
+        });
+    }
 
     // Dynamic Style Injection for Reveal
     const style = document.createElement('style');
