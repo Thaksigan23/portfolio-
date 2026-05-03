@@ -36,17 +36,19 @@
         <div class="glow-2"></div>
         <div class="glow-3"></div>
     </div>
+
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
     
     <!-- Custom Cursor -->
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
 
-    <header>
-        <nav class="navbar">
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
             <div class="nav-brand">
                 <span class="brand-text">Sivaruban Thaksigan</span><span class="brand-dot">.</span>
             </div>
-            <ul class="nav-menu">
+            <ul class="nav-menu" id="primary-navigation">
                 <li><a href="#home" class="nav-link active">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
@@ -59,11 +61,11 @@
                 </div>
                 <a href="#contact" class="cta-btn">Let's Talk</a>
             </div>
-            <div class="hamburger">
+            <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </nav>
     </header>
 

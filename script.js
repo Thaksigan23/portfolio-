@@ -3,24 +3,59 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Theme Toggle Logic
     const themeToggle = document.getElementById('theme-toggle');
     const body = document.body;
-    const icon = themeToggle.querySelector('i');
+    const icon = themeToggle && themeToggle.querySelector('i');
 
     // Check for saved theme
     const savedTheme = localStorage.getItem('theme') || 'dark';
     body.setAttribute('data-theme', savedTheme);
-    updateThemeIcon(savedTheme);
+    if (icon) updateThemeIcon(savedTheme);
 
-    themeToggle.addEventListener('click', () => {
-        const currentTheme = body.getAttribute('data-theme');
-        const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-        
-        body.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        updateThemeIcon(newTheme);
-    });
+    if (themeToggle && icon) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateThemeIcon(newTheme);
+        });
+    }
 
     function updateThemeIcon(theme) {
+        if (!icon) return;
         icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+    }
+
+    // Mobile drawer nav (index only)
+    const hamburger = document.getElementById('nav-hamburger');
+    const navOverlay = document.getElementById('nav-drawer-overlay');
+    const primaryNav = document.getElementById('primary-navigation');
+    function setNavDrawerOpen(open) {
+        if (!hamburger) return;
+        document.body.classList.toggle('nav-open', open);
+        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        document.body.style.overflow = open ? 'hidden' : '';
+        if (navOverlay) navOverlay.setAttribute('aria-hidden', open ? 'false' : 'true');
+    }
+    if (hamburger && primaryNav) {
+        hamburger.addEventListener('click', () => {
+            setNavDrawerOpen(!document.body.classList.contains('nav-open'));
+        });
+        if (navOverlay) {
+            navOverlay.addEventListener('click', () => setNavDrawerOpen(false));
+        }
+        primaryNav.querySelectorAll('a').forEach((a) => {
+            a.addEventListener('click', () => setNavDrawerOpen(false));
+        });
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 992) setNavDrawerOpen(false);
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && document.body.classList.contains('nav-open')) {
+                setNavDrawerOpen(false);
+            }
+        });
     }
 
     // 2. Custom Cursor
