@@ -444,9 +444,14 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 /* Bento Skills */
 .skills-bento { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
 .bento-item { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--border-radius); padding: 2.5rem; transition: var(--transition-smooth); }
+.bento-item.main-tech { grid-row: span 2; }
+.bento-item.marketing { grid-column: 1 / -1; }
 .tech-icons { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
-.tech-icon { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; }
+.tech-icon { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 5.5rem; }
 .tech-icon i { font-size: 2.5rem; color: var(--accent-primary); }
+.tool-list { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 1rem; }
+.tool-list li { display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary); font-weight: 500; }
+.tool-list li i { font-size: 1.25rem; color: var(--accent-primary); width: 1.5rem; text-align: center; }
 
 /* Projects Section */
 .filter-bar { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
