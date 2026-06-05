@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .timeline-item, .testimonial-card').forEach((el, index) => {
+    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-card, .testimonial-card').forEach((el, index) => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`;
@@ -186,7 +186,41 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // 8. Project Details Modal
+    // 8. Journey grid — sort by date, filter by category
+    const journeyGrid = document.getElementById('journey-grid');
+    const journeyEmpty = document.getElementById('journey-empty');
+    const journeyFilters = document.querySelectorAll('.journey-filter');
+
+    if (journeyGrid) {
+        const journeyCards = Array.from(journeyGrid.querySelectorAll('.journey-card'));
+        journeyCards
+            .sort((a, b) => Number(b.dataset.sort) - Number(a.dataset.sort))
+            .forEach((card) => journeyGrid.appendChild(card));
+
+        function applyJourneyFilter(filter) {
+            let visibleCount = 0;
+            journeyCards.forEach((card) => {
+                const show = filter === 'all' || card.dataset.category === filter;
+                card.classList.toggle('is-hidden', !show);
+                if (show) visibleCount += 1;
+            });
+            if (journeyEmpty) journeyEmpty.hidden = visibleCount > 0;
+        }
+
+        journeyFilters.forEach((btn) => {
+            btn.addEventListener('click', () => {
+                journeyFilters.forEach((b) => {
+                    b.classList.remove('active');
+                    b.setAttribute('aria-selected', 'false');
+                });
+                btn.classList.add('active');
+                btn.setAttribute('aria-selected', 'true');
+                applyJourneyFilter(btn.dataset.filter);
+            });
+        });
+    }
+
+    // 9. Project Details Modal
     const projectData = {
         careerguide: {
             category: 'Web App',
@@ -272,7 +306,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // 9. Contact form → mailto (no backend)
+    // 10. Contact form → mailto (no backend)
     const contactForm = document.getElementById('contactForm');
     const contactFormStatus = document.getElementById('contact-form-status');
     if (contactForm) {

@@ -27,7 +27,7 @@
     <!-- Modern Typography -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=premium-v13">
+    <link rel="stylesheet" href="style.css?v=premium-v14">
 </head>
 <body>
     <!-- Premium Background Effects -->
@@ -187,115 +187,120 @@
                     </div>
                 </div>
 
-                <!-- Professional Timeline -->
-                <div class="timeline-container">
-                    <h3 class="timeline-title">My Journey</h3>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">September 2025 - Present</div>
-                            <div class="timeline-content">
-                                <h4>Techloom.ai, Sri Lanka</h4>
-                                <p>Marketing and Development Intern.</p>
-                            </div>
+                <!-- Journey — compact filterable grid, newest first -->
+                <div class="journey-section">
+                    <div class="journey-header">
+                        <div>
+                            <h3 class="journey-title">My Journey</h3>
+                            <p class="journey-subtitle">Leadership, experience, and education — sorted newest first.</p>
                         </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2025 - Present</div>
-                            <div class="timeline-content">
-                                <h4>IEEE University of Vavuniya Student Branch</h4>
-                                <p>Treasurer.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Term 24.25</div>
-                            <div class="timeline-content">
-                                <h4>IEEE University of Vavuniya Student Branch</h4>
-                                <p>Logistics Lead.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2025 - Present</div>
-                            <div class="timeline-content">
-                                <h4>Information Technology Computer Society, University of Vavuniya</h4>
-                                <p>Vice President.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2025 - Present</div>
-                            <div class="timeline-content">
-                                <h4>Rotaract Club, University of Vavuniya</h4>
-                                <p>Secretary.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Term 26.27</div>
-                            <div class="timeline-content">
-                                <h4>AIESEC in Vavuniya</h4>
-                                <p>Initiative Group President.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Term 25.26</div>
-                            <div class="timeline-content">
-                                <h4>AIESEC in Vavuniya</h4>
-                                <p>Initiative Group Vice President for Marketing.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">Term 25.26</div>
-                            <div class="timeline-content">
-                                <h4>G17 University Community</h4>
-                                <p>University Ambassador.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">September 2023 - September 2026 (Expected)</div>
-                            <div class="timeline-content">
-                                <h4>University of Vavuniya</h4>
-                                <p>Bachelor of Science in Information Technology.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">October 2022 - June 2023</div>
-                            <div class="timeline-content">
-                                <h4>ICBT Campus, Sri Lanka</h4>
-                                <p>Diploma in Information Technology.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">October 2022 - June 2023</div>
-                            <div class="timeline-content">
-                                <h4>ICBT Campus, Sri Lanka</h4>
-                                <p>Diploma in English Language and Literature.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">November 2022 - February 2023</div>
-                            <div class="timeline-content">
-                                <h4>DMI Computer Education and School, Jaffna</h4>
-                                <p>C Programming Certificate.</p>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-date">2008 - 2021</div>
-                            <div class="timeline-content">
-                                <h4>Jaffna College</h4>
-                                <p>School Education.</p>
-                            </div>
+                        <div class="journey-filters" role="tablist" aria-label="Filter journey entries">
+                            <button type="button" class="journey-filter active" data-filter="all" role="tab" aria-selected="true">All</button>
+                            <button type="button" class="journey-filter" data-filter="leadership" role="tab" aria-selected="false">Leadership</button>
+                            <button type="button" class="journey-filter" data-filter="work" role="tab" aria-selected="false">Experience</button>
+                            <button type="button" class="journey-filter" data-filter="education" role="tab" aria-selected="false">Education</button>
                         </div>
                     </div>
+                    <div class="journey-grid" id="journey-grid">
+                        <article class="journey-card" data-category="leadership" data-sort="202602" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Term 26.27</time>
+                                <span class="journey-card-badge">Current</span>
+                            </div>
+                            <h4 class="journey-card-org">AIESEC in Vavuniya</h4>
+                            <p class="journey-card-role">Initiative Group President</p>
+                        </article>
+                        <article class="journey-card" data-category="work" data-sort="202509" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Sep 2025 — Present</time>
+                                <span class="journey-card-badge">Current</span>
+                            </div>
+                            <h4 class="journey-card-org">Techloom.ai, Sri Lanka</h4>
+                            <p class="journey-card-role">Marketing &amp; Development Intern</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202501" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">2025 — Present</time>
+                                <span class="journey-card-badge">Current</span>
+                            </div>
+                            <h4 class="journey-card-org">IEEE University of Vavuniya Student Branch</h4>
+                            <p class="journey-card-role">Treasurer</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202501" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">2025 — Present</time>
+                                <span class="journey-card-badge">Current</span>
+                            </div>
+                            <h4 class="journey-card-org">IT Computer Society, University of Vavuniya</h4>
+                            <p class="journey-card-role">Vice President</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202501" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">2025 — Present</time>
+                                <span class="journey-card-badge">Current</span>
+                            </div>
+                            <h4 class="journey-card-org">Rotaract Club, University of Vavuniya</h4>
+                            <p class="journey-card-role">Secretary</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202502">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Term 25.26</time>
+                            </div>
+                            <h4 class="journey-card-org">AIESEC in Vavuniya</h4>
+                            <p class="journey-card-role">Initiative Group Vice President for Marketing</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202502">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Term 25.26</time>
+                            </div>
+                            <h4 class="journey-card-org">G17 University Community</h4>
+                            <p class="journey-card-role">University Ambassador</p>
+                        </article>
+                        <article class="journey-card" data-category="leadership" data-sort="202402">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Term 24.25</time>
+                            </div>
+                            <h4 class="journey-card-org">IEEE University of Vavuniya Student Branch</h4>
+                            <p class="journey-card-role">Logistics Lead</p>
+                        </article>
+                        <article class="journey-card" data-category="education" data-sort="202309" data-current="true">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Sep 2023 — Sep 2026</time>
+                                <span class="journey-card-badge">In progress</span>
+                            </div>
+                            <h4 class="journey-card-org">University of Vavuniya</h4>
+                            <p class="journey-card-role">B.Sc. Information Technology</p>
+                        </article>
+                        <article class="journey-card" data-category="education" data-sort="202211">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Nov 2022 — Feb 2023</time>
+                            </div>
+                            <h4 class="journey-card-org">DMI Computer Education, Jaffna</h4>
+                            <p class="journey-card-role">C Programming Certificate</p>
+                        </article>
+                        <article class="journey-card" data-category="education" data-sort="202210">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Oct 2022 — Jun 2023</time>
+                            </div>
+                            <h4 class="journey-card-org">ICBT Campus, Sri Lanka</h4>
+                            <p class="journey-card-role">Diploma in Information Technology</p>
+                        </article>
+                        <article class="journey-card" data-category="education" data-sort="202210">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">Oct 2022 — Jun 2023</time>
+                            </div>
+                            <h4 class="journey-card-org">ICBT Campus, Sri Lanka</h4>
+                            <p class="journey-card-role">Diploma in English Language &amp; Literature</p>
+                        </article>
+                        <article class="journey-card" data-category="education" data-sort="200801">
+                            <div class="journey-card-top">
+                                <time class="journey-card-date">2008 — 2021</time>
+                            </div>
+                            <h4 class="journey-card-org">Jaffna College</h4>
+                            <p class="journey-card-role">School Education</p>
+                        </article>
+                    </div>
+                    <p class="journey-empty" id="journey-empty" hidden>No entries in this category yet.</p>
                 </div>
             </div>
         </section>
@@ -533,6 +538,6 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="script.js?v=premium-v6"></script>
+    <script src="script.js?v=premium-v7"></script>
 </body>
 </html>
