@@ -298,6 +298,10 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .about-btn { display: inline-flex; align-items: center; gap: 0.8rem; padding: 1rem 2rem; border: 1px solid var(--accent-primary); color: var(--accent-primary); border-radius: var(--border-radius-pill); font-weight: 700; transition: var(--transition-smooth); }
 
 /* Journey — premium vertical timeline */
+.section.journey {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+}
 .journey-section {
     --journey-accent: #ffb400;
     --journey-accent-soft: #ffc94d;
@@ -308,9 +312,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     --journey-year-edge: #52535c;
     --journey-line: rgba(255, 255, 255, 0.14);
     --journey-line-glow: rgba(255, 180, 0, 0.12);
-    margin-top: 5rem;
-    padding-top: 3.5rem;
-    border-top: 1px solid var(--glass-border);
 }
 [data-theme="light"] .journey-section {
     --journey-panel: #eef1f6;
@@ -395,7 +396,8 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 .journey-timeline {
     position: relative;
-    max-width: 860px;
+    width: 100%;
+    max-width: 920px;
     margin: 0 auto;
 }
 .journey-timeline::before,
@@ -510,7 +512,7 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     border-radius: 50%;
     background: rgba(255, 255, 255, 0.35);
 }
-.journey-item:has(.journey-badge) .journey-marker {
+.journey-item.is-current .journey-marker {
     animation: journey-marker-pulse 2.8s ease-in-out infinite;
 }
 .journey-content {
@@ -560,8 +562,16 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     padding: 0.22rem 0.55rem;
     border-radius: 999px;
     color: var(--item-accent);
-    background: color-mix(in srgb, var(--item-accent) 14%, transparent);
-    border: 1px solid color-mix(in srgb, var(--item-accent) 28%, transparent);
+    background: rgba(255, 180, 0, 0.14);
+    border: 1px solid rgba(255, 180, 0, 0.3);
+}
+.journey-item[data-category="leadership"] .journey-content::after {
+    background: rgba(79, 156, 249, 0.14);
+    border-color: rgba(79, 156, 249, 0.3);
+}
+.journey-item[data-category="education"] .journey-content::after {
+    background: rgba(183, 148, 246, 0.14);
+    border-color: rgba(183, 148, 246, 0.3);
 }
 .journey-item:hover .journey-year {
     transform: translateX(-3px);
@@ -575,9 +585,17 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
         0 0 24px var(--item-glow),
         0 0 48px var(--item-glow);
 }
+.journey-item[data-category="leadership"]:hover .journey-content {
+    border-color: rgba(79, 156, 249, 0.4);
+}
+.journey-item[data-category="work"]:hover .journey-content {
+    border-color: rgba(255, 180, 0, 0.4);
+}
+.journey-item[data-category="education"]:hover .journey-content {
+    border-color: rgba(183, 148, 246, 0.4);
+}
 .journey-item:hover .journey-content {
     transform: translateX(8px);
-    border-color: color-mix(in srgb, var(--item-accent) 35%, rgba(255, 255, 255, 0.08));
     box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
 }
 .journey-role {

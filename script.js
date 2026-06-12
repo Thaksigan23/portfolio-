@@ -196,6 +196,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (journeyGrid) {
         const journeyItems = Array.from(journeyGrid.querySelectorAll('.journey-item'));
+        journeyItems.forEach((item) => {
+            if (item.querySelector('.journey-badge')) {
+                item.classList.add('is-current');
+            }
+        });
         journeyItems
             .sort((a, b) => Number(b.dataset.sort) - Number(a.dataset.sort))
             .forEach((item) => journeyGrid.appendChild(item));
