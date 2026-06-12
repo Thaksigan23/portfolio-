@@ -170,9 +170,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card').forEach((el, index) => {
+        const delay = el.classList.contains('journey-item')
+            ? index * 0.07
+            : index * 0.05;
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
-        el.style.transition = `all 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${index * 0.05}s`;
+        el.style.transition = `opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`;
         revealObserver.observe(el);
     });
 
