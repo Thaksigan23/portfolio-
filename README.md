@@ -11,7 +11,7 @@ Check out the live site here: **[thaksigan.com](https://thaksigan.com/)** (or yo
 
 ---
 
-## ✨ Features
+## ✨ features
 
 - **🌓 Dual Theme System**: Seamless transition between high-end "Deep Dark" and clean "Slate Light" modes.
 - **🔍 Project Filtering**: Interactive category-based filtering for Web Apps, Java, and Design projects.
