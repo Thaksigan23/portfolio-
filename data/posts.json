@@ -1,0 +1,19 @@
+{
+  "posts": [
+    {
+      "slug": "introducing-my-blog",
+      "title": "Introducing My Blog",
+      "date": "2026-06-16",
+      "category": "Updates",
+      "excerpt": "Why I’m starting a blog, what I’ll post, and how I plan to share my learning journey in public."
+    },
+    {
+      "slug": "building-resilient-apis",
+      "title": "Building Resilient APIs",
+      "date": "2026-05-30",
+      "category": "Engineering",
+      "excerpt": "A practical checklist I use for designing APIs that are reliable, secure, and easy to evolve."
+    }
+  ]
+}
+

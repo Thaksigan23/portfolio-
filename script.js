@@ -62,29 +62,31 @@ document.addEventListener('DOMContentLoaded', () => {
     const cursor = document.querySelector('.custom-cursor');
     const follower = document.querySelector('.custom-cursor-follower');
 
-    document.addEventListener('mousemove', (e) => {
-        cursor.style.left = e.clientX + 'px';
-        cursor.style.top = e.clientY + 'px';
-        
-        setTimeout(() => {
-            follower.style.left = e.clientX + 'px';
-            follower.style.top = e.clientY + 'px';
-        }, 80);
-    });
+    if (cursor && follower) {
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
 
-    const interactiveElements = document.querySelectorAll('a, button, .stat, .bento-item, .project-card, .theme-toggle, .filter-btn');
-    interactiveElements.forEach(el => {
-        el.addEventListener('mouseenter', () => {
-            cursor.style.transform = 'scale(2)';
-            follower.style.transform = 'scale(2.5)';
-            follower.style.background = 'rgba(0, 212, 255, 0.1)';
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 80);
         });
-        el.addEventListener('mouseleave', () => {
-            cursor.style.transform = 'scale(1)';
-            follower.style.transform = 'scale(1)';
-            follower.style.background = 'transparent';
+
+        const interactiveElements = document.querySelectorAll('a, button, .stat, .bento-item, .project-card, .theme-toggle, .filter-btn, .blog-card, .blog-back, .blog-post-link');
+        interactiveElements.forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(2)';
+                follower.style.transform = 'scale(2.5)';
+                follower.style.background = 'rgba(0, 212, 255, 0.1)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                follower.style.transform = 'scale(1)';
+                follower.style.background = 'transparent';
+            });
         });
-    });
+    }
 
     // 3. Counter Animation Logic
     const counterObserver = new IntersectionObserver((entries) => {
@@ -143,22 +145,24 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // 5. Typewriter Effect
+    // 5. Typewriter Effect (index only)
     const professionElement = document.getElementById('rotating-profession');
-    const professions = ['Software Developer', 'UI/UX Enthusiast', 'Full-Stack Engineer', 'Problem Solver'];
-    let profIndex = 0, charIndex = 0, isDeleting = false;
+    if (professionElement) {
+        const professions = ['Software Developer', 'UI/UX Enthusiast', 'Full-Stack Engineer', 'Problem Solver'];
+        let profIndex = 0, charIndex = 0, isDeleting = false;
 
-    function type() {
-        const current = professions[profIndex];
-        professionElement.textContent = isDeleting ? current.substring(0, charIndex - 1) : current.substring(0, charIndex + 1);
-        charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
+        function type() {
+            const current = professions[profIndex];
+            professionElement.textContent = isDeleting ? current.substring(0, charIndex - 1) : current.substring(0, charIndex + 1);
+            charIndex = isDeleting ? charIndex - 1 : charIndex + 1;
 
-        let typeSpeed = isDeleting ? 50 : 150;
-        if (!isDeleting && charIndex === current.length) { typeSpeed = 2000; isDeleting = true; }
-        else if (isDeleting && charIndex === 0) { isDeleting = false; profIndex = (profIndex + 1) % professions.length; typeSpeed = 500; }
-        setTimeout(type, typeSpeed);
+            let typeSpeed = isDeleting ? 50 : 150;
+            if (!isDeleting && charIndex === current.length) { typeSpeed = 2000; isDeleting = true; }
+            else if (isDeleting && charIndex === 0) { isDeleting = false; profIndex = (profIndex + 1) % professions.length; typeSpeed = 500; }
+            setTimeout(type, typeSpeed);
+        }
+        type();
     }
-    type();
 
     // 6. Scroll Reveal
     const revealObserver = new IntersectionObserver((entries) => {
@@ -169,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card').forEach((el, index) => {
+    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article').forEach((el, index) => {
         const delay = el.classList.contains('journey-item')
             ? index * 0.07
             : index * 0.05;
@@ -181,13 +185,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // 7. Back to Top Logic
     const backToTop = document.querySelector('.back-to-top');
-    window.addEventListener('scroll', () => {
-        backToTop.classList.toggle('visible', window.scrollY > 500);
-    });
+    if (backToTop) {
+        window.addEventListener('scroll', () => {
+            backToTop.classList.toggle('visible', window.scrollY > 500);
+        });
 
-    backToTop.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
 
     // 8. Journey timeline — sort by date, filter by category
     const journeyGrid = document.getElementById('journey-grid');
@@ -228,7 +234,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 9. Project Details Modal
+    // 9. Project Details Modal (index only)
     const projectData = {
         careerguide: {
             category: 'Web App',
@@ -269,50 +275,56 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalGithub = document.getElementById('project-modal-github');
     const projectTriggers = document.querySelectorAll('.js-open-project');
 
-    function openProjectModal(projectKey) {
-        const project = projectData[projectKey];
-        if (!project) return;
+    const canUseModal =
+        modalOverlay && modalCloseBtn && modalImage && modalCategory && modalTitle &&
+        modalDescription && modalPoints && modalTech && modalGithub;
 
-        modalImage.src = project.image;
-        modalImage.alt = `${project.title} preview`;
-        modalCategory.textContent = project.category;
-        modalTitle.textContent = project.title;
-        modalDescription.textContent = project.description;
-        modalPoints.innerHTML = project.points.map(item => `<li>${item}</li>`).join('');
-        modalGithub.href = project.github;
-        modalGithub.setAttribute('aria-disabled', project.github === '#' ? 'true' : 'false');
-        modalGithub.textContent = project.github === '#' ? 'GitHub Link Coming Soon' : 'View GitHub';
-        modalTech.innerHTML = project.tech.map(item => `<span>${item}</span>`).join('');
+    if (canUseModal) {
+        function openProjectModal(projectKey) {
+            const project = projectData[projectKey];
+            if (!project) return;
 
-        modalOverlay.classList.add('active');
-        modalOverlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-    }
+            modalImage.src = project.image;
+            modalImage.alt = `${project.title} preview`;
+            modalCategory.textContent = project.category;
+            modalTitle.textContent = project.title;
+            modalDescription.textContent = project.description;
+            modalPoints.innerHTML = project.points.map(item => `<li>${item}</li>`).join('');
+            modalGithub.href = project.github;
+            modalGithub.setAttribute('aria-disabled', project.github === '#' ? 'true' : 'false');
+            modalGithub.textContent = project.github === '#' ? 'GitHub Link Coming Soon' : 'View GitHub';
+            modalTech.innerHTML = project.tech.map(item => `<span>${item}</span>`).join('');
 
-    function closeProjectModal() {
-        modalOverlay.classList.remove('active');
-        modalOverlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-    }
+            modalOverlay.classList.add('active');
+            modalOverlay.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
 
-    projectTriggers.forEach(trigger => {
-        trigger.addEventListener('click', (event) => {
-            event.preventDefault();
-            openProjectModal(trigger.dataset.project);
+        function closeProjectModal() {
+            modalOverlay.classList.remove('active');
+            modalOverlay.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        projectTriggers.forEach(trigger => {
+            trigger.addEventListener('click', (event) => {
+                event.preventDefault();
+                openProjectModal(trigger.dataset.project);
+            });
         });
-    });
 
-    modalCloseBtn.addEventListener('click', closeProjectModal);
-    modalOverlay.addEventListener('click', (event) => {
-        if (event.target === modalOverlay) {
-            closeProjectModal();
-        }
-    });
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
-            closeProjectModal();
-        }
-    });
+        modalCloseBtn.addEventListener('click', closeProjectModal);
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) {
+                closeProjectModal();
+            }
+        });
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && modalOverlay.classList.contains('active')) {
+                closeProjectModal();
+            }
+        });
+    }
 
     // 10. Contact form → mailto (no backend)
     const contactForm = document.getElementById('contactForm');

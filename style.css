@@ -1083,6 +1083,140 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     }
 }
 
+/* Blog */
+.blog-page { padding-top: 7rem; }
+.blog-hero { display: flex; align-items: flex-end; justify-content: space-between; gap: 1.25rem; margin-bottom: 1.5rem; }
+.blog-subtitle { color: var(--text-muted); font-size: 0.98rem; max-width: 520px; }
+
+.blog-controls { display: flex; gap: 0.75rem; align-items: center; }
+.blog-search {
+    width: min(520px, 70vw);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius-pill);
+    padding: 0.8rem 1.1rem;
+    color: var(--text-primary);
+    outline: none;
+    font-weight: 600;
+    transition: var(--transition-fast);
+}
+.blog-search::placeholder { color: var(--text-secondary); font-weight: 600; }
+.blog-search:focus { border-color: var(--border-accent); box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.12); }
+
+.blog-categories-wrap { margin-top: 0.75rem; }
+.blog-categories { display: flex; flex-wrap: wrap; gap: 0.55rem; }
+.blog-filter {
+    padding: 0.5rem 1rem;
+    border-radius: var(--border-radius-pill);
+    border: 1px solid var(--glass-border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.blog-filter:hover { color: var(--text-primary); border-color: var(--border-accent); }
+.blog-filter.active { background: var(--accent-gradient); border-color: transparent; color: #fff; box-shadow: 0 6px 16px var(--accent-glow); }
+
+.blog-list {
+    margin-top: 1.75rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1rem;
+}
+
+.blog-card {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 1.25rem 1.3rem 1.35rem;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+.blog-card::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--accent-gradient);
+    opacity: 0.9;
+}
+.blog-card:hover { transform: translateY(-4px); border-color: var(--border-accent); box-shadow: var(--shadow-hover); }
+
+.blog-meta { display: flex; align-items: center; gap: 0.55rem; color: var(--text-muted); font-weight: 700; font-size: 0.82rem; position: relative; }
+.blog-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--accent-primary); box-shadow: 0 0 12px var(--accent-glow); }
+.blog-title { font-family: 'Outfit', sans-serif; font-weight: 900; margin-top: 0.85rem; font-size: 1.2rem; position: relative; }
+.blog-excerpt { margin-top: 0.55rem; color: var(--text-secondary); font-size: 0.92rem; line-height: 1.7; position: relative; }
+
+.blog-post-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 1.15rem;
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-weight: 800;
+    position: relative;
+    transition: var(--transition-fast);
+}
+.blog-post-link:hover { transform: translateY(-1px); box-shadow: 0 10px 20px var(--accent-glow); }
+
+.blog-empty {
+    margin-top: 2rem;
+    text-align: center;
+    color: var(--text-muted);
+    padding: 2rem 1rem;
+    border: 1px dashed var(--glass-border);
+    border-radius: 16px;
+}
+
+/* Blog post page */
+.blog-post { padding-top: 8rem; }
+.blog-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text-secondary);
+    font-weight: 800;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+    transition: var(--transition-fast);
+}
+.blog-back:hover { color: var(--text-primary); border-color: var(--border-accent); transform: translateY(-1px); }
+
+.blog-article {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-card);
+    padding: 2.25rem 2rem;
+}
+.blog-post-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 900;
+    font-size: clamp(1.9rem, 4.2vw, 2.7rem);
+    margin-bottom: 0.8rem;
+}
+.blog-post-meta { color: var(--text-muted); font-weight: 800; }
+.blog-post-content { margin-top: 1.6rem; }
+.blog-post-content p,
+.blog-post-content li {
+    color: var(--text-secondary);
+    line-height: 1.9;
+    margin-top: 1rem;
+}
+.blog-post-content ul { margin-left: 1.2rem; margin-top: 0.9rem; }
+.blog-post-content h2 { margin-top: 2rem; font-size: 1.25rem; font-weight: 900; color: var(--text-primary); }
+
 @media (pointer: coarse) {
     .custom-cursor,
     .custom-cursor-follower {
