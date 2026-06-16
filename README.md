@@ -4,7 +4,7 @@
 [![GitHub Forks](https://img.shields.io/github/forks/Thaksigan23/portfolio-?style=social)](https://github.com/Thaksigan23/portfolio-)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Welcome to my professional portfolio! This project showcases my journey as a Software Developer, an IT Undergraduate at the University of Vavuniya, and a leader in youth development.
+Welcome to my professional portfolio! This Project showcases my journey as a Software Developer, an IT Undergraduate at the University of Vavuniya, and a leader in youth development.
 
 ## 🚀 Live Preview
 Check out the live site here: **[thaksigan.com](https://thaksigan.com/)** (or your's preferred link)
