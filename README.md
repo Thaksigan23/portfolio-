@@ -6,7 +6,7 @@
 
 Welcome to my Professional portfolio! This Project showcases my journey as a Software Developer, an IT Undergraduate at the University of Vavuniya, and a leader in youth development.
 
-## 🚀 Live Preview
+## 🚀 Live PrevieW
 Check out the live site here: **[thaksigan.com](https://thaksigan.com/)** (or your's preferred link)
 
 ---
