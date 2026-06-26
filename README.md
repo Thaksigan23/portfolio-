@@ -1,4 +1,4 @@
-# 💎 Sivaruban Thaksigan - Premium portfolio
+# 💎 Sivaruban Thaksigan - Premium Portfolio
 
 [![GitHub Stars](https://img.shields.io/github/stars/Thaksigan23/portfolio-?style=social)](https://github.com/Thaksigan23/portfolio-)
 [![GitHub Forks](https://img.shields.io/github/forks/Thaksigan23/portfolio-?style=social)](https://github.com/Thaksigan23/portfolio-)
