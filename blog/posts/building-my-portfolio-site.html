@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Building Resilient APIs | Sivaruban Thaksigan</title>
-    <meta name="description" content="A practical checklist for reliable and secure API design." />
-    <link rel="stylesheet" href="../../style.css?v=premium-v18-mobile">
+    <title>Building My Portfolio with Vanilla JS | Sivaruban Thaksigan</title>
+    <meta name="description" content="Why I built my portfolio with vanilla HTML, CSS, and JavaScript—and what I learned." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v19-hiring">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
 </head>
@@ -17,7 +17,6 @@
     </div>
 
     <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
-
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
 
@@ -41,9 +40,7 @@
                 <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
             </div>
             <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </nav>
     </header>
@@ -57,28 +54,41 @@
                 </a>
 
                 <article class="blog-article">
-                    <h1 class="blog-post-title">Building Resilient APIs</h1>
-                    <div class="blog-post-meta">2026-05-30 · Engineering</div>
+                    <h1 class="blog-post-title">Building My Portfolio with Vanilla JS</h1>
+                    <div class="blog-post-meta">2026-05-22 · Engineering</div>
 
                     <div class="blog-post-content">
                         <p>
-                            “Resilient API” doesn’t just mean the server stays up. It means the API stays predictable under
-                            real-world conditions: bad inputs, slow dependencies, partial failures, and changing requirements.
+                            I chose to build this portfolio with plain HTML, CSS, and JavaScript instead of React or a static site generator.
+                            Here's why—and what I learned along the way.
                         </p>
 
-                        <h2>My practical checklist</h2>
+                        <h2>Why vanilla?</h2>
                         <ul>
-                            <li><strong>Define error contracts:</strong> stable error codes + consistent response shape.</li>
-                            <li><strong>Validate early:</strong> reject invalid requests before hitting expensive logic.</li>
-                            <li><strong>Use idempotency where it matters:</strong> safe retries for create/update flows.</li>
-                            <li><strong>Time out dependencies:</strong> don’t let requests hang forever.</li>
-                            <li><strong>Log with context:</strong> correlation IDs, route, and user/account identifiers.</li>
-                            <li><strong>Version without fear:</strong> plan for backward compatibility.</li>
+                            <li><strong>GitHub Pages:</strong> Zero build step—just push and deploy</li>
+                            <li><strong>Performance:</strong> No framework bundle; the site loads fast on mobile</li>
+                            <li><strong>Control:</strong> Full control over animations, theming, and layout without fighting a framework</li>
+                            <li><strong>Demonstrates fundamentals:</strong> Shows I understand DOM APIs, CSS, and JS—not just frameworks</li>
                         </ul>
 
+                        <h2>Features I built</h2>
+                        <ul>
+                            <li>Dark/light theme with <code>localStorage</code> persistence</li>
+                            <li>Scroll-reveal animations with <code>IntersectionObserver</code></li>
+                            <li>A filterable journey timeline and project modal system</li>
+                            <li>A code-wise blog powered by <code>posts.json</code></li>
+                            <li>Mobile drawer navigation and responsive layouts</li>
+                        </ul>
+
+                        <h2>Lessons learned</h2>
                         <p>
-                            When you design these from day one, you’ll spend less time debugging edge cases later—and more
-                            time shipping improvements that users actually feel.
+                            The biggest takeaway: cache-busting matters. When I updated the CSS, browsers kept serving old styles
+                            until I bumped the <code>?v=</code> query string on asset links. I also learned that scroll-reveal animations
+                            need fallbacks—sections can stay invisible if the observer doesn't fire reliably on mobile.
+                        </p>
+
+                        <p>
+                            <a href="https://github.com/Thaksigan23/portfolio-" target="_blank" rel="noopener noreferrer">View source on GitHub</a>
                         </p>
                     </div>
                 </article>
@@ -96,7 +106,6 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="../../script.js?v=premium-v18-mobile"></script>
+    <script src="../../script.js?v=premium-v19-hiring"></script>
 </body>
 </html>
-

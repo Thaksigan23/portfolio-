@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Introducing My Blog | Sivaruban Thaksigan</title>
-    <meta name="description" content="Why I’m starting a blog and what I plan to share." />
-    <link rel="stylesheet" href="../../style.css?v=premium-v18-mobile">
+    <title>How I Built CareerGuide Hub | Sivaruban Thaksigan</title>
+    <meta name="description" content="A breakdown of building CareerGuide Hub with React, Node.js, Express, and MySQL." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v19-hiring">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
 </head>
@@ -17,7 +17,6 @@
     </div>
 
     <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
-
     <div class="custom-cursor"></div>
     <div class="custom-cursor-follower"></div>
 
@@ -41,9 +40,7 @@
                 <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
             </div>
             <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </button>
         </nav>
     </header>
@@ -57,30 +54,47 @@
                 </a>
 
                 <article class="blog-article">
-                    <h1 class="blog-post-title">Introducing My Blog</h1>
-                    <div class="blog-post-meta">2026-06-16 · Updates</div>
+                    <h1 class="blog-post-title">How I Built CareerGuide Hub</h1>
+                    <div class="blog-post-meta">2026-06-10 · Projects</div>
 
                     <div class="blog-post-content">
                         <p>
-                            I’m starting this blog to share the lessons I learn while building software and working with real users.
-                            My goal is simple: write clearly, keep it practical, and document the “why” behind my decisions.
+                            CareerGuide Hub started as a university project with a clear goal: help students connect their skills
+                            and interests to realistic career paths. I built it as a full-stack application and deployed it live on Vercel.
                         </p>
 
+                        <h2>The problem</h2>
                         <p>
-                            Expect posts about API design, backend engineering, UI/UX patterns, and leadership in tech communities.
-                            I’ll also include short “what I’d do differently next time” notes from projects as they evolve.
+                            Many students know what they're studying but don't know which careers align with their strengths.
+                            I wanted a system where users could create a profile, list their skills, and receive structured career suggestions.
                         </p>
 
-                        <h2>What you’ll find here</h2>
+                        <h2>Tech stack</h2>
                         <ul>
-                            <li>Engineering notes from building real systems</li>
-                            <li>Checklists and patterns you can reuse</li>
-                            <li>Experiments, outcomes, and improvements</li>
-                            <li>Thoughts on leadership and collaboration</li>
+                            <li><strong>Frontend:</strong> React with component-based UI and protected routes</li>
+                            <li><strong>Backend:</strong> Node.js + Express REST API</li>
+                            <li><strong>Database:</strong> MySQL for user profiles and career data</li>
+                            <li><strong>Deployment:</strong> Vercel for the live demo</li>
+                        </ul>
+
+                        <h2>Key challenges</h2>
+                        <p>
+                            The hardest part was designing the recommendation flow—mapping free-form skill inputs to career categories
+                            without overcomplicating the UX. I solved this with a structured skill-selection form and a scoring algorithm
+                            on the backend that ranks careers by match percentage.
+                        </p>
+
+                        <h2>What I learned</h2>
+                        <ul>
+                            <li>How to structure a React app with authentication and dashboard views</li>
+                            <li>Designing REST APIs that separate auth, profile, and recommendation concerns</li>
+                            <li>Deploying a full-stack project and making it accessible via a live URL</li>
                         </ul>
 
                         <p>
-                            If you have suggestions for topics you’d like me to cover, feel free to reach out through the contact section.
+                            <a href="https://career-guidance-system-plum.vercel.app" target="_blank" rel="noopener noreferrer">View the live demo</a>
+                            ·
+                            <a href="https://github.com/Thaksigan23/career-guidance-system" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
                         </p>
                     </div>
                 </article>
@@ -98,7 +112,6 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="../../script.js?v=premium-v18-mobile"></script>
+    <script src="../../script.js?v=premium-v19-hiring"></script>
 </body>
 </html>
-

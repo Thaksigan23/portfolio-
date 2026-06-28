@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 80);
         });
 
-        const interactiveElements = document.querySelectorAll('a, button, .stat, .bento-item, .project-card, .theme-toggle, .filter-btn, .blog-card, .blog-back, .blog-post-link');
+        const interactiveElements = document.querySelectorAll('a, button, .stat, .bento-item, .project-card, .theme-toggle, .filter-btn, .blog-card, .blog-back, .blog-post-link, .project-action-btn');
         interactiveElements.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursor.style.transform = 'scale(2)';
@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Typewriter Effect (index only)
     const professionElement = document.getElementById('rotating-profession');
     if (professionElement) {
-        const professions = ['Software Developer', 'UI/UX Enthusiast', 'Full-Stack Engineer', 'Problem Solver'];
+        const professions = ['Full-Stack Developer', 'React & Node.js Builder', 'UI/UX Enthusiast', 'Open to Internships'];
         let profIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {
@@ -266,27 +266,39 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Web App',
             title: 'CareerGuide Hub',
             image: 'images/careerguide.png',
-            description: 'CareerGuide Hub is a full-stack platform that helps students and early professionals discover the best career path based on skills, interests, and goals. It includes secure authentication, a personalized dashboard, and dynamic recommendation logic that maps user profiles to suitable careers. The system also allows users to track progress, explore learning paths, and access practical guidance resources in one place.',
+            description: 'A full-stack career guidance platform that helps students discover career paths based on their skills, interests, and academic background.',
+            problem: 'Students often struggle to connect their skills and interests to realistic career options without structured guidance.',
+            role: 'Sole full-stack developer — designed the UI, built the React frontend, Node.js/Express API, and MySQL database schema.',
+            challenge: 'Mapping diverse user skill profiles to career recommendations while keeping the auth flow and dashboard performant and intuitive.',
+            outcome: 'Deployed live on Vercel with working authentication, personalized dashboards, and skill-based career suggestions.',
             points: [
-                'Secure login and user profile personalization',
-                'Skill-based career recommendations',
-                'Dashboard for progress and guidance resources'
+                'JWT-based authentication with protected routes',
+                'Skill profiling form that feeds recommendation logic',
+                'Responsive dashboard for tracking career paths',
+                'REST API with Express and MySQL persistence'
             ],
             tech: ['React', 'Node.js', 'Express', 'MySQL'],
+            live: 'https://career-guidance-system-plum.vercel.app',
             github: 'https://github.com/Thaksigan23/career-guidance-system'
         },
         bookstore: {
             category: 'Web App',
             title: 'Book Selling E-commerce',
             image: 'images/ecombook.png',
-            description: 'Book Selling E-commerce is an online bookstore designed to provide a smooth shopping experience for readers. Users can browse books by category, search by title or author, view detailed product pages, and manage their cart before checkout. The platform focuses on a clean user interface, responsive design, and reliable order flow, making it easy for customers to discover and buy books from any device.',
+            description: 'An online bookstore where users can browse books by category, manage a shopping cart, and complete a checkout flow.',
+            problem: 'Needed a practical e-commerce system to demonstrate end-to-end product catalog, cart state, and order handling.',
+            role: 'Full-stack developer — built the product listing UI, cart logic, API endpoints, and MongoDB data models.',
+            challenge: 'Keeping cart state consistent across pages and structuring the product catalog for easy browsing and filtering.',
+            outcome: 'Working bookstore application with category filters, cart management, and a complete checkout user flow.',
             points: [
-                'Book catalog with category and search filters',
-                'Cart and checkout flow for easy purchasing',
-                'Responsive UI optimized for mobile and desktop'
+                'Product catalog with search and category filters',
+                'Persistent cart with add/remove/update quantity',
+                'Checkout flow with order summary',
+                'RESTful API backed by MongoDB'
             ],
             tech: ['React', 'Node.js', 'Express', 'MongoDB'],
-            github: '#'
+            live: '',
+            github: 'https://github.com/Thaksigan23/ecomica'
         }
     };
 
@@ -296,14 +308,20 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalCategory = document.getElementById('project-modal-category');
     const modalTitle = document.getElementById('project-modal-title');
     const modalDescription = document.getElementById('project-modal-description');
+    const modalProblem = document.getElementById('project-modal-problem');
+    const modalRole = document.getElementById('project-modal-role');
+    const modalChallenge = document.getElementById('project-modal-challenge');
+    const modalOutcome = document.getElementById('project-modal-outcome');
     const modalPoints = document.getElementById('project-modal-points');
     const modalTech = document.getElementById('project-modal-tech');
+    const modalLive = document.getElementById('project-modal-live');
     const modalGithub = document.getElementById('project-modal-github');
     const projectTriggers = document.querySelectorAll('.js-open-project');
 
     const canUseModal =
         modalOverlay && modalCloseBtn && modalImage && modalCategory && modalTitle &&
-        modalDescription && modalPoints && modalTech && modalGithub;
+        modalDescription && modalProblem && modalRole && modalChallenge && modalOutcome &&
+        modalPoints && modalTech && modalGithub;
 
     if (canUseModal) {
         function openProjectModal(projectKey) {
@@ -315,11 +333,24 @@ document.addEventListener('DOMContentLoaded', () => {
             modalCategory.textContent = project.category;
             modalTitle.textContent = project.title;
             modalDescription.textContent = project.description;
+            if (modalProblem) modalProblem.textContent = project.problem || '';
+            if (modalRole) modalRole.textContent = project.role || '';
+            if (modalChallenge) modalChallenge.textContent = project.challenge || '';
+            if (modalOutcome) modalOutcome.textContent = project.outcome || '';
             modalPoints.innerHTML = project.points.map(item => `<li>${item}</li>`).join('');
-            modalGithub.href = project.github;
-            modalGithub.setAttribute('aria-disabled', project.github === '#' ? 'true' : 'false');
-            modalGithub.textContent = project.github === '#' ? 'GitHub Link Coming Soon' : 'View GitHub';
             modalTech.innerHTML = project.tech.map(item => `<span>${item}</span>`).join('');
+
+            modalGithub.href = project.github || '#';
+            modalGithub.style.display = project.github ? 'inline-flex' : 'none';
+
+            if (modalLive) {
+                if (project.live) {
+                    modalLive.href = project.live;
+                    modalLive.style.display = 'inline-flex';
+                } else {
+                    modalLive.style.display = 'none';
+                }
+            }
 
             modalOverlay.classList.add('active');
             modalOverlay.setAttribute('aria-hidden', 'false');

@@ -7,7 +7,7 @@
 Welcome to my Professional portfolio! This Project showcases my journey as a Software Developer, an IT Undergraduate at the University of Vavuniya, and a leader in youth development.
 
 ## 🚀 Live PrevieW
-Check out the live site here: **[thaksigan.com](https://thaksigan.com/)** (or your's preferred link)
+Check out the live site here: **[thaksigan23.github.io/portfolio-](https://thaksigan23.github.io/portfolio-/)**
 
 ---
 
@@ -60,6 +60,10 @@ Check out the live site here: **[thaksigan.com](https://thaksigan.com/)** (or yo
 
 ```text
 ├── images/           # High-resolution assets and profile photos
+├── blog/             # Blog post pages
+├── blog.html         # Blog listing page
+├── blog.js           # Blog listing logic
+├── data/posts.json   # Blog post metadata
 ├── index.html        # Main entry point and SEO structure
 ├── style.css         # Premium design system & theme variables
 ├── script.js        # Interactive logic & animations
