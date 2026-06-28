@@ -953,6 +953,22 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 @media (max-width: 520px) {
     .dm-brand { font-size: 1rem; }
     .dm-back-link { font-size: 0.78rem; }
+    .section { padding: 7rem 0 3rem; }
+    .hero-stats { gap: 1rem 1.5rem; }
+    .hero-actions { gap: 1rem; }
+    .hire-btn { width: 100%; justify-content: center; }
+    .social-links { justify-content: center; }
+    .hero-desc { margin-bottom: 2rem; }
+    .about-highlights { gap: 1rem; }
+    .experience-badge { padding: 0.8rem 1.1rem; bottom: -10px; right: -10px; }
+    .contact-info, .premium-form { padding: 1.75rem 1.1rem; }
+    .contact-social-links { gap: 0.85rem; }
+    .testimonial-card { padding: 2rem 1.25rem; }
+    .blog-page { padding-top: 6.5rem; }
+    .blog-post { padding-top: 7rem; }
+    .blog-categories { gap: 0.4rem; }
+    .blog-filter { padding: 0.45rem 0.85rem; font-size: 0.82rem; }
+    .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
 }
 @media (max-width: 992px) {
     .home-content, .about-content, .contact-card, .skills-bento { grid-template-columns: 1fr; }
@@ -1017,6 +1033,13 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     }
     .project-modal { grid-template-columns: 1fr; }
     .project-modal img { min-height: 210px; max-height: 260px; }
+
+    /* Blog responsive */
+    .blog-hero { flex-direction: column; align-items: stretch; gap: 1rem; }
+    .blog-controls { width: 100%; }
+    .blog-search { width: 100%; }
+    .blog-list { grid-template-columns: 1fr; }
+    .blog-article { padding: 1.75rem 1.25rem; }
 
     .hamburger { display: flex; }
     .nav-drawer-overlay {

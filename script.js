@@ -165,23 +165,49 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 6. Scroll Reveal
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-            }
-        });
-    }, { threshold: 0.1 });
+    const revealEls = Array.from(document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article'));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const revealNow = (el) => el.classList.add('revealed');
 
-    document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article').forEach((el, index) => {
-        const delay = el.classList.contains('journey-item')
-            ? index * 0.07
-            : index * 0.05;
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = `opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`;
-        revealObserver.observe(el);
-    });
+    if (!('IntersectionObserver' in window) || prefersReducedMotion) {
+        // No animation support (or user prefers reduced motion): show everything immediately.
+        revealEls.forEach(revealNow);
+    } else {
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    revealNow(entry.target);
+                    revealObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.08, rootMargin: '0px 0px -8% 0px' });
+
+        revealEls.forEach((el, index) => {
+            const delay = el.classList.contains('journey-item')
+                ? index * 0.07
+                : index * 0.05;
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = `opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s, transform 0.8s cubic-bezier(0.4, 0, 0.2, 1) ${delay}s`;
+            revealObserver.observe(el);
+        });
+
+        // Safety net: never let a section stay invisible. If anything in view
+        // hasn't revealed shortly after load, reveal it directly.
+        const revealVisible = () => {
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            revealEls.forEach((el) => {
+                if (el.classList.contains('revealed')) return;
+                const rect = el.getBoundingClientRect();
+                if (rect.top < vh && rect.bottom > 0) {
+                    revealNow(el);
+                    revealObserver.unobserve(el);
+                }
+            });
+        };
+        window.addEventListener('load', () => setTimeout(revealVisible, 600));
+        setTimeout(revealVisible, 1500);
+    }
 
     // 7. Back to Top Logic
     const backToTop = document.querySelector('.back-to-top');
