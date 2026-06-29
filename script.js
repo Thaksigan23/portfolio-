@@ -265,19 +265,27 @@ document.addEventListener('DOMContentLoaded', () => {
         careerguide: {
             category: 'Web App',
             title: 'CareerGuide Hub',
-            image: 'images/careerguide.png',
-            description: 'A full-stack career guidance platform that helps students discover career paths based on their skills, interests, and academic background.',
-            problem: 'Students often struggle to connect their skills and interests to realistic career options without structured guidance.',
-            role: 'Sole full-stack developer — designed the UI, built the React frontend, Node.js/Express API, and MySQL database schema.',
-            challenge: 'Mapping diverse user skill profiles to career recommendations while keeping the auth flow and dashboard performant and intuitive.',
-            outcome: 'Deployed live on Vercel with working authentication, personalized dashboards, and skill-based career suggestions.',
+            image: 'images/careerguidance/front.png',
+            description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform — blending a job board, an AI-style CV/skill matcher, and a LinkedIn-style network in a modern "Aurora Glow" UI.',
+            problem: 'Students struggle to connect their skills to real opportunities, while employers and the platform itself lack a unified space for job matching, professional networking, and moderation.',
+            role: 'Sole full-stack developer — designed the Aurora Glow UI, built the React + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access.',
+            challenge: 'Combining a job board, AI-style skill matching, and a LinkedIn-style social layer (connections, feed, endorsements) into one performant app with secure, role-based access for students, employers, and admins.',
+            outcome: 'Deployed live on Vercel with JWT auth, three role-based dashboards, skill-based job matching, CV analysis, and a full networking layer — profiles, connections, an activity feed, and skill endorsements.',
             points: [
-                'JWT-based authentication with protected routes',
-                'Skill profiling form that feeds recommendation logic',
-                'Responsive dashboard for tracking career paths',
-                'REST API with Express and MySQL persistence'
+                'JWT authentication with bcrypt hashing and role-based access (student, employer, admin)',
+                'AI-style job matching that scores jobs against a student\u2019s skills and experience',
+                'LinkedIn-style networking: rich profiles, connections, activity feed, and skill endorsements',
+                'Employer & admin dashboards with job stats, applicant tracking, and job moderation',
+                'Hardened API with Helmet, rate limiting, input validation, and CORS allow-listing'
             ],
-            tech: ['React', 'Node.js', 'Express', 'MySQL'],
+            tech: ['React', 'Vite', 'Node.js', 'Express', 'Supabase', 'Tailwind CSS'],
+            gallery: [
+                { src: 'images/careerguidance/front.png', caption: 'Landing page' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021218.png', caption: 'Employer dashboard' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021259.png', caption: 'Student home feed' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021345.png', caption: 'AI CV analyzer' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021401.png', caption: 'AI job recommendations' }
+            ],
             live: 'https://career-guidance-system-plum.vercel.app',
             github: 'https://github.com/Thaksigan23/career-guidance-system'
         },
@@ -316,6 +324,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalTech = document.getElementById('project-modal-tech');
     const modalLive = document.getElementById('project-modal-live');
     const modalGithub = document.getElementById('project-modal-github');
+    const modalGallery = document.getElementById('project-modal-gallery');
+    const modalThumbs = document.getElementById('project-modal-thumbs');
     const projectTriggers = document.querySelectorAll('.js-open-project');
 
     const canUseModal =
@@ -339,6 +349,30 @@ document.addEventListener('DOMContentLoaded', () => {
             if (modalOutcome) modalOutcome.textContent = project.outcome || '';
             modalPoints.innerHTML = project.points.map(item => `<li>${item}</li>`).join('');
             modalTech.innerHTML = project.tech.map(item => `<span>${item}</span>`).join('');
+
+            if (modalGallery && modalThumbs) {
+                const gallery = Array.isArray(project.gallery) ? project.gallery : [];
+                if (gallery.length) {
+                    modalThumbs.innerHTML = gallery.map((shot, index) => `
+                        <button type="button" class="project-modal-thumb${index === 0 ? ' active' : ''}" data-src="${shot.src}" aria-label="View ${shot.caption || 'screenshot'}">
+                            <img src="${shot.src}" alt="${shot.caption || project.title + ' screenshot'}" loading="lazy">
+                            <span class="project-modal-thumb-caption">${shot.caption || ''}</span>
+                        </button>
+                    `).join('');
+                    modalGallery.hidden = false;
+
+                    modalThumbs.querySelectorAll('.project-modal-thumb').forEach(thumb => {
+                        thumb.addEventListener('click', () => {
+                            modalImage.src = thumb.dataset.src;
+                            modalThumbs.querySelectorAll('.project-modal-thumb').forEach(t => t.classList.remove('active'));
+                            thumb.classList.add('active');
+                        });
+                    });
+                } else {
+                    modalThumbs.innerHTML = '';
+                    modalGallery.hidden = true;
+                }
+            }
 
             modalGithub.href = project.github || '#';
             modalGithub.style.display = project.github ? 'inline-flex' : 'none';
