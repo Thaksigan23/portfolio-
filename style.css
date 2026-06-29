@@ -687,9 +687,16 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     font-size: 1.02rem;
     line-height: 1.7;
 }
-.skills-bento { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
+.skills-bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
 .bento-item {
     position: relative;
+    display: flex;
+    flex-direction: column;
     background: var(--glass-bg);
     border: 1px solid var(--glass-border);
     border-radius: var(--border-radius);
@@ -712,9 +719,8 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     box-shadow: var(--shadow-card);
 }
 .bento-item:hover::before { opacity: 1; }
-.bento-item.main-tech { grid-row: span 2; }
-.bento-item.familiar { grid-row: span 1; }
-.bento-item.marketing { grid-column: 1 / -1; }
+/* Row 1: Proficient (wide) + Familiar  |  Row 2: Design + Tools + Marketing */
+.bento-item.main-tech { grid-column: span 2; }
 
 /* Bento card header */
 .bento-head {
@@ -1139,6 +1145,7 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 @media (max-width: 520px) {
     .dm-brand { font-size: 1rem; }
     .dm-back-link { font-size: 0.78rem; }
+    .skills-bento { grid-template-columns: 1fr; }
     .section { padding: 7rem 0 3rem; }
     .hero-stats { gap: 1rem 1.5rem; }
     .hero-actions { gap: 1rem; }
@@ -1161,7 +1168,9 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     .theme-toggle { width: 36px; height: 36px; }
 }
 @media (max-width: 992px) {
-    .home-content, .about-content, .contact-card, .skills-bento { grid-template-columns: 1fr; }
+    .home-content, .about-content, .contact-card { grid-template-columns: 1fr; }
+    .skills-bento { grid-template-columns: repeat(2, 1fr); }
+    .bento-item.main-tech { grid-column: 1 / -1; }
     .dm-hub-grid { grid-template-columns: 1fr; }
     .poster-gallery { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
     .about-highlights { grid-template-columns: 1fr; }
