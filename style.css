@@ -1156,31 +1156,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 
 /* Animations & Media Queries */
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-@media (max-width: 520px) {
-    .dm-brand { font-size: 1rem; }
-    .dm-back-link { font-size: 0.78rem; }
-    .skills-bento { grid-template-columns: 1fr; }
-    .section { padding: 7rem 0 3rem; }
-    .hero-stats { gap: 1rem 1.5rem; }
-    .hero-actions { gap: 1rem; }
-    .hire-btn { width: 100%; justify-content: center; }
-    .social-links { justify-content: center; }
-    .hero-desc { margin-bottom: 2rem; }
-    .about-highlights { gap: 1rem; }
-    .experience-badge { padding: 0.8rem 1.1rem; bottom: -10px; right: -10px; }
-    .contact-info, .premium-form { padding: 1.75rem 1.1rem; }
-    .contact-social-links { gap: 0.85rem; }
-    .testimonial-card { padding: 2rem 1.25rem; }
-    .blog-page { padding-top: 6.5rem; }
-    .blog-post { padding-top: 7rem; }
-    .blog-categories { gap: 0.4rem; }
-    .blog-filter { padding: 0.45rem 0.85rem; font-size: 0.82rem; }
-    .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
-    .navbar { padding: 0.6rem 0.85rem; }
-    .nav-actions .cta-btn { display: none; }
-    .nav-brand .brand-text { max-width: min(56vw, 13rem); }
-    .theme-toggle { width: 36px; height: 36px; }
-}
 @media (max-width: 992px) {
     .home-content, .about-content, .contact-card { grid-template-columns: 1fr; }
     .skills-bento { grid-template-columns: repeat(2, 1fr); }
@@ -1288,6 +1263,41 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
         position: relative;
         z-index: 1002;
     }
+}
+@media (max-width: 520px) {
+    .dm-brand { font-size: 1rem; }
+    .dm-back-link { font-size: 0.78rem; }
+    .skills-bento { grid-template-columns: 1fr; }
+    .bento-item { padding: 1.5rem 1.35rem; }
+    .bento-item.main-tech { grid-column: auto; }
+    .tech-icons { gap: 0.6rem; }
+    .tech-icon { padding: 0.55rem 0.85rem; }
+    .tech-icon i { font-size: 1.3rem; }
+    .tech-icon span { font-size: 0.85rem; }
+    .section { padding: 7rem 0 3rem; }
+    .hero-stats { gap: 1rem 1.5rem; }
+    .hero-actions { gap: 1rem; }
+    .hire-btn { width: 100%; justify-content: center; }
+    .social-links { justify-content: center; }
+    .hero-desc { margin-bottom: 2rem; }
+    .about-highlights { gap: 1rem; }
+    .experience-badge { padding: 0.8rem 1.1rem; bottom: -10px; right: -10px; }
+    .projects-grid { gap: 1.5rem; }
+    .project-info { padding: 1.5rem 1.35rem; }
+    .project-image { height: 200px; }
+    .collections-btn { width: 100%; justify-content: center; }
+    .contact-info, .premium-form { padding: 1.75rem 1.1rem; }
+    .contact-social-links { gap: 0.85rem; }
+    .testimonial-card { padding: 2rem 1.25rem; }
+    .blog-page { padding-top: 6.5rem; }
+    .blog-post { padding-top: 7rem; }
+    .blog-categories { gap: 0.4rem; }
+    .blog-filter { padding: 0.45rem 0.85rem; font-size: 0.82rem; }
+    .back-to-top { bottom: 20px; right: 20px; width: 44px; height: 44px; }
+    .navbar { padding: 0.6rem 0.85rem; }
+    .nav-actions .cta-btn { display: none; }
+    .nav-brand .brand-text { max-width: min(56vw, 13rem); }
+    .theme-toggle { width: 36px; height: 36px; }
 }
 
 /* Blog */
