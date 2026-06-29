@@ -679,23 +679,111 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 
 /* Bento Skills */
+.skills-intro {
+    max-width: 640px;
+    margin: -1.5rem auto 3rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 1.02rem;
+    line-height: 1.7;
+}
 .skills-bento { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; }
-.bento-item { background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: var(--border-radius); padding: 2.5rem; transition: var(--transition-smooth); }
+.bento-item {
+    position: relative;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--border-radius);
+    padding: 2.25rem;
+    transition: var(--transition-smooth);
+    overflow: hidden;
+}
+.bento-item::before {
+    content: '';
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 3px;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+.bento-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-accent);
+    box-shadow: var(--shadow-card);
+}
+.bento-item:hover::before { opacity: 1; }
 .bento-item.main-tech { grid-row: span 2; }
 .bento-item.familiar { grid-row: span 1; }
 .bento-item.marketing { grid-column: 1 / -1; }
+
+/* Bento card header */
+.bento-head {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--glass-border);
+}
+.bento-icon {
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 14px;
+    background: linear-gradient(135deg, var(--accent-glow), transparent);
+    border: 1px solid var(--border-accent);
+    color: var(--accent-primary);
+    font-size: 1.25rem;
+}
+.bento-head-text h3 { margin: 0; font-size: 1.25rem; }
 .skills-tier-note {
-    margin-top: 0.35rem;
-    font-size: 0.88rem;
+    margin-top: 0.3rem;
+    font-size: 0.85rem;
     color: var(--text-muted);
     line-height: 1.5;
 }
-.tech-icons { display: flex; flex-wrap: wrap; gap: 1.5rem; margin-top: 2rem; }
-.tech-icon { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; min-width: 5.5rem; }
-.tech-icon i { font-size: 2.5rem; color: var(--accent-primary); }
-.tool-list { list-style: none; padding: 0; margin: 2rem 0 0; display: flex; flex-direction: column; gap: 1rem; }
-.tool-list li { display: flex; align-items: center; gap: 0.75rem; color: var(--text-secondary); font-weight: 500; }
-.tool-list li i { font-size: 1.25rem; color: var(--accent-primary); width: 1.5rem; text-align: center; }
+
+/* Skill tiles */
+.tech-icons { display: flex; flex-wrap: wrap; gap: 0.85rem; }
+.tech-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.65rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    transition: var(--transition-fast);
+}
+.tech-icon:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-primary);
+    box-shadow: 0 8px 20px var(--accent-glow);
+}
+.tech-icon i { font-size: 1.5rem; color: var(--accent-primary); transition: var(--transition-fast); }
+.tech-icon span { font-size: 0.9rem; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+.tool-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.85rem; }
+.tool-list li {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.7rem 1rem;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: var(--transition-fast);
+}
+.tool-list li:hover {
+    border-color: var(--accent-primary);
+    color: var(--text-primary);
+    transform: translateX(4px);
+}
+.tool-list li i { font-size: 1.15rem; color: var(--accent-primary); width: 1.5rem; text-align: center; }
 
 /* Projects Section */
 .filter-bar { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; }
