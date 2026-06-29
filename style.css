@@ -853,6 +853,70 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     border-color: transparent;
 }
 
+/* "View Collections" CTA */
+.collections-btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-top: 1.4rem;
+    padding: 0.7rem 1.4rem 0.7rem 0.7rem;
+    border-radius: 999px;
+    font-family: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.01em;
+    color: var(--text-primary);
+    text-decoration: none;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    isolation: isolate;
+}
+.collections-btn::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: var(--accent-gradient);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+.collections-btn-icon {
+    display: grid;
+    place-items: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    color: #fff;
+    font-size: 0.85rem;
+    box-shadow: 0 6px 14px var(--accent-glow);
+    transition: var(--transition-smooth);
+}
+.collections-btn-arrow {
+    font-size: 0.8rem;
+    color: var(--accent-primary);
+    transform: translateX(0);
+    transition: var(--transition-smooth);
+}
+.collections-btn:hover {
+    color: #fff;
+    border-color: transparent;
+    transform: translateY(-2px);
+    box-shadow: 0 14px 30px var(--accent-glow);
+}
+.collections-btn:hover::before { opacity: 1; }
+.collections-btn:hover .collections-btn-icon {
+    background: rgba(255, 255, 255, 0.2);
+    box-shadow: none;
+}
+.collections-btn:hover .collections-btn-arrow {
+    color: #fff;
+    transform: translateX(4px);
+}
+
 /* Project Modal */
 .project-modal-overlay {
     position: fixed;
