@@ -308,6 +308,50 @@ document.addEventListener('DOMContentLoaded', () => {
             tech: ['React', 'Node.js', 'Express', 'MongoDB'],
             live: '',
             github: 'https://github.com/Thaksigan23/ecomica'
+        },
+        aiassistant: {
+            category: 'AI Assistant',
+            title: 'Nova — Personal AI Assistant',
+            image: 'images/ai-assistant.png',
+            description: 'A personal AI assistant I\u2019m building to help with coding, research, and everyday tasks — combining conversational chat, contextual memory, and a fast, distraction-free interface.',
+            problem: 'Switching between separate tools for coding help, research, and notes breaks focus. I wanted one assistant that remembers context and adapts to how I actually work.',
+            role: 'Solo builder — designing the product, the chat UX, the prompt/orchestration layer, and the backend that connects to LLM and retrieval services.',
+            challenge: 'Giving the assistant useful long-term memory and accurate, grounded answers while keeping responses fast and the interface simple.',
+            outcome: 'An in-progress assistant with a working chat interface, conversation history, and a retrieval layer for context-aware answers — actively evolving toward a daily-driver tool.',
+            points: [
+                'Conversational chat with streaming responses and saved history',
+                'Contextual memory using a vector database for retrieval-augmented answers',
+                'Code-aware help with syntax-highlighted snippets',
+                'Clean, keyboard-friendly UI focused on speed and minimal distraction'
+            ],
+            tech: ['React', 'Node.js', 'LLM APIs', 'Vector DB'],
+            gallery: [
+                { src: 'images/ai-assistant.png', caption: 'Chat interface with code-aware answers' }
+            ],
+            live: '',
+            github: ''
+        },
+        figmawireframe: {
+            category: 'Figma Plugin',
+            title: 'Site \u2192 Wireframe',
+            image: 'images/figma-wireframe.png',
+            description: 'A Figma plugin that converts any live website into a clean, low-fidelity wireframe in seconds, so designers can skip hours of manual setup and start iterating on layout and structure right away.',
+            problem: 'Recreating an existing site\u2019s structure as a wireframe is slow and repetitive — designers spend hours boxing out sections before they can even start improving the design.',
+            role: 'Solo developer — built the plugin UI, the page-parsing logic, and the wireframe-generation engine that maps real DOM structure to Figma layers.',
+            challenge: 'Translating messy, real-world web layouts into a tidy wireframe — detecting sections, swapping images for placeholders, and simplifying typography while preserving the original structure.',
+            outcome: 'A working plugin that ingests a URL and outputs an editable, low-fidelity wireframe directly on the Figma canvas, dramatically cutting the time from reference site to first draft.',
+            points: [
+                'Paste a URL and generate an editable wireframe on the Figma canvas',
+                'Auto-detects sections and converts images to placeholder blocks',
+                'Simplifies colors and typography for true low-fidelity output',
+                'Toggle options for navigation, footer, and image placeholders'
+            ],
+            tech: ['Figma Plugin API', 'TypeScript', 'React', 'Node.js'],
+            gallery: [
+                { src: 'images/figma-wireframe.png', caption: 'Live site converted into an editable wireframe' }
+            ],
+            live: '',
+            github: ''
         }
     };
 
