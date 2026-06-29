@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building an AI-Style CV Analyzer | Sivaruban Thaksigan</title>
+    <meta name="description" content="How I built the AI CV Analyzer in CareerGuide Hub—parsing résumés, scoring skills against jobs, and turning a static document into ranked matches." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
+</head>
+<body>
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+    </div>
+
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <div class="nav-brand">
+                <span class="brand-text">Sivaruban Thaksigan</span><span class="brand-dot">.</span>
+            </div>
+            <ul class="nav-menu" id="primary-navigation">
+                <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../../index.html#project" class="nav-link">Projects</a></li>
+                <li><a href="../../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
+            </div>
+            <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section blog-post">
+            <div class="container">
+                <a class="blog-back" href="../../blog.html">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to Blog</span>
+                </a>
+
+                <article class="blog-article">
+                    <h1 class="blog-post-title">Building an AI-Style CV Analyzer</h1>
+                    <div class="blog-post-meta">2026-06-25 · Engineering</div>
+
+                    <img class="blog-post-cover" src="../../images/careerguidance/cg3.png" alt="AI CV Analyzer parsing a résumé and showing a 100% top job match" loading="lazy">
+
+                    <div class="blog-post-content">
+                        <p>
+                            The feature I'm most proud of in <strong>CareerGuide Hub</strong> is the AI CV Analyzer. A student uploads a
+                            résumé and instantly gets a skill-based analysis, a match score, and a ranked list of jobs that fit them. This
+                            post walks through how I approached it—and the trade-offs I made to keep it fast and reliable.
+                        </p>
+
+                        <h2>The goal</h2>
+                        <p>
+                            A CV is a static document. I wanted to turn it into something actionable: extract the skills, compare them to
+                            live job postings, and surface the best matches with a clear percentage—so a student knows exactly where they
+                            stand and what to improve.
+                        </p>
+
+                        <h2>How it works</h2>
+                        <ul>
+                            <li><strong>Upload &amp; parse:</strong> the CV is uploaded with <code>Multer</code> and the text is extracted on the server</li>
+                            <li><strong>Skill extraction:</strong> the text is normalized and matched against a curated skill vocabulary</li>
+                            <li><strong>Scoring:</strong> each job is scored by how many of its required skills the candidate has, weighted by relevance</li>
+                            <li><strong>Ranking:</strong> jobs are sorted by match percentage and returned with a "Top Match" badge for the best fit</li>
+                            <li><strong>History:</strong> every analysis is saved so students can track progress as they update their CV</li>
+                        </ul>
+
+                        <h2>Why a transparent score beats a black box</h2>
+                        <p>
+                            I deliberately kept the matching logic explainable. Instead of an opaque model, the score reflects concrete
+                            overlap between CV skills and job requirements. That means a student can see <em>why</em> a job is a 100% match
+                            versus a 40% one—and what skill would move the needle. For a career tool, trust and clarity matter more than
+                            sophistication for its own sake.
+                        </p>
+
+                        <h2>Challenges</h2>
+                        <p>
+                            Messy input was the hard part. Résumés come in wildly different formats, so the parser had to be forgiving—handling
+                            inconsistent spacing, synonyms (e.g. "JS" vs "JavaScript"), and noise. I solved this with a normalization step and a
+                            synonym map before scoring, which dramatically improved match accuracy.
+                        </p>
+
+                        <h2>What I learned</h2>
+                        <ul>
+                            <li>Designing an explainable scoring algorithm that users can actually trust</li>
+                            <li>Handling file uploads and server-side text extraction safely</li>
+                            <li>Turning a one-off result into a saved, trackable history with PostgreSQL</li>
+                            <li>That a simple, transparent approach often delivers more value than a complex one</li>
+                        </ul>
+
+                        <p>
+                            <a href="https://career-guidance-system-plum.vercel.app" target="_blank" rel="noopener noreferrer">Try the live demo</a>
+                            ·
+                            <a href="https://github.com/Thaksigan23/career-guidance-system" target="_blank" rel="noopener noreferrer">Source on GitHub</a>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sivaruban Thaksigan. Crafted with passion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../../script.js?v=premium-v20-navbar"></script>
+</body>
+</html>

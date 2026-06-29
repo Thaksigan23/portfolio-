@@ -1,6 +1,13 @@
 {
   "posts": [
     {
+      "slug": "building-an-ai-cv-analyzer",
+      "title": "Building an AI-Style CV Analyzer",
+      "date": "2026-06-25",
+      "category": "Engineering",
+      "excerpt": "How I built the AI CV Analyzer in CareerGuide Hub—parsing résumés, scoring skills against live jobs, and turning a static document into ranked, explainable matches."
+    },
+    {
       "slug": "building-careerguide-hub",
       "title": "How I Built CareerGuide Hub",
       "date": "2026-06-10",
