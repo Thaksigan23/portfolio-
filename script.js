@@ -266,25 +266,27 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Web App',
             title: 'CareerGuide Hub',
             image: 'images/careerguidance/front.png',
-            description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform — blending a job board, an AI-style CV/skill matcher, and a LinkedIn-style network in a modern "Aurora Glow" UI.',
+            description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform. It blends a job board, an AI-style CV/skill matcher, and a LinkedIn-style professional network — all wrapped in a modern "Aurora Glow" UI.',
             problem: 'Students struggle to connect their skills to real opportunities, while employers and the platform itself lack a unified space for job matching, professional networking, and moderation.',
-            role: 'Sole full-stack developer — designed the Aurora Glow UI, built the React + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access.',
-            challenge: 'Combining a job board, AI-style skill matching, and a LinkedIn-style social layer (connections, feed, endorsements) into one performant app with secure, role-based access for students, employers, and admins.',
-            outcome: 'Deployed live on Vercel with JWT auth, three role-based dashboards, skill-based job matching, CV analysis, and a full networking layer — profiles, connections, an activity feed, and skill endorsements.',
+            role: 'Sole full-stack developer — designed the Aurora Glow UI (glassmorphism, gradients, Clash Display + Satoshi fonts), built the React 18 + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access for students, employers, and admins.',
+            challenge: 'Bringing a job board, AI-style skill matching, and a full LinkedIn-style social layer (connections, feed, endorsements) into one performant app — with secure, role-based access and three distinct dashboards sharing a single consistent experience.',
+            outcome: 'Deployed live on Vercel with JWT auth, three role-based dashboards, an AI CV analyzer, skill-based job matching, and a complete networking layer — profiles, timelines, connections, an activity feed, and skill endorsements.',
             points: [
-                'JWT authentication with bcrypt hashing and role-based access (student, employer, admin)',
-                'AI-style job matching that scores jobs against a student\u2019s skills and experience',
-                'LinkedIn-style networking: rich profiles, connections, activity feed, and skill endorsements',
-                'Employer & admin dashboards with job stats, applicant tracking, and job moderation',
-                'Hardened API with Helmet, rate limiting, input validation, and CORS allow-listing'
+                '<strong>AI CV Analyzer (signature feature)</strong> — upload a CV/résumé to get an instant skill-based analysis, a match score, and personalized job suggestions with saved history',
+                'AI-style job matching that scores jobs against a student\u2019s skills and experience, visualized with a gauge + bar-chart insights graph',
+                'Job board — employers post jobs, admins approve/reject, and students browse, search, save, and apply',
+                'LinkedIn-style networking — rich profiles with an "Open to work" badge, experience/education timelines, connections, an activity feed, and skill endorsements',
+                'Three role-based dashboards — student home feed, employer job stats & applicant tracking, and admin platform stats, user management, and job moderation',
+                'JWT authentication with bcrypt-hashed passwords and role-based access (student, employer, admin)',
+                'Hardened API with Helmet security headers, rate limiting, input validation, and CORS allow-listing'
             ],
-            tech: ['React', 'Vite', 'Node.js', 'Express', 'Supabase', 'Tailwind CSS'],
+            tech: ['React 18', 'Vite', 'Tailwind CSS', 'Recharts', 'Node.js', 'Express', 'Supabase', 'JWT'],
             gallery: [
                 { src: 'images/careerguidance/front.png', caption: 'Landing page' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021218.png', caption: 'Employer dashboard' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021259.png', caption: 'Student home feed' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021345.png', caption: 'AI CV analyzer' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021401.png', caption: 'AI job recommendations' }
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021345.png', caption: 'AI CV Analyzer' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021401.png', caption: 'AI job recommendations' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021259.png', caption: 'Student feed & match insights' },
+                { src: 'images/careerguidance/Screenshot%202026-06-30%20021218.png', caption: 'Employer hiring dashboard' }
             ],
             live: 'https://career-guidance-system-plum.vercel.app',
             github: 'https://github.com/Thaksigan23/career-guidance-system'
