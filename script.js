@@ -265,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
         careerguide: {
             category: 'Web App',
             title: 'CareerGuide Hub',
-            image: 'images/careerguidance/front.png',
+            image: 'images/careerguidance/cg3.png',
             description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform. It blends a job board, an AI-style CV/skill matcher, and a LinkedIn-style professional network — all wrapped in a modern "Aurora Glow" UI.',
             problem: 'Students struggle to connect their skills to real opportunities, while employers and the platform itself lack a unified space for job matching, professional networking, and moderation.',
             role: 'Sole full-stack developer — designed the Aurora Glow UI (glassmorphism, gradients, Clash Display + Satoshi fonts), built the React 18 + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access for students, employers, and admins.',
@@ -282,11 +282,10 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             tech: ['React 18', 'Vite', 'Tailwind CSS', 'Recharts', 'Node.js', 'Express', 'Supabase', 'JWT'],
             gallery: [
-                { src: 'images/careerguidance/front.png', caption: 'Landing page' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021345.png', caption: 'AI CV Analyzer' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021401.png', caption: 'AI job recommendations' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021259.png', caption: 'Student feed & match insights' },
-                { src: 'images/careerguidance/Screenshot%202026-06-30%20021218.png', caption: 'Employer hiring dashboard' }
+                { src: 'images/careerguidance/cg3.png', caption: 'AI CV Analyzer' },
+                { src: 'images/careerguidance/cg4.png', caption: 'AI job recommendations' },
+                { src: 'images/careerguidance/cg2.png', caption: 'Student feed & match insights' },
+                { src: 'images/careerguidance/cg1.png', caption: 'Employer hiring dashboard' }
             ],
             live: 'https://career-guidance-system-plum.vercel.app',
             github: 'https://github.com/Thaksigan23/career-guidance-system'
