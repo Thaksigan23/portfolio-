@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How I Built CareerGuide Hub | Sivaruban Thaksigan</title>
-    <meta name="description" content="A breakdown of building CareerGuide Hub with React, Node.js, Express, and MySQL." />
+    <meta name="description" content="A breakdown of building CareerGuide Hub — a full-stack career platform with React, Node.js, Express, and Supabase, featuring an AI CV Analyzer, a job board, and a LinkedIn-style network." />
     <link rel="stylesheet" href="../../style.css?v=premium-v20-navbar">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
@@ -57,38 +57,68 @@
                     <h1 class="blog-post-title">How I Built CareerGuide Hub</h1>
                     <div class="blog-post-meta">2026-06-10 · Projects</div>
 
+                    <img class="blog-post-cover" src="../../images/careerguidance/cg2.png" alt="CareerGuide Hub dashboard with job match insights" loading="lazy">
+
                     <div class="blog-post-content">
                         <p>
-                            CareerGuide Hub started as a university project with a clear goal: help students connect their skills
-                            and interests to realistic career paths. I built it as a full-stack application and deployed it live on Vercel.
+                            CareerGuide Hub started as a university project but grew into a full-stack career platform. Students build
+                            professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate
+                            the platform — blending a job board, an AI-style CV/skill matcher, and a LinkedIn-style network in a modern
+                            "Aurora Glow" UI. It's deployed live on Vercel.
                         </p>
 
                         <h2>The problem</h2>
                         <p>
-                            Many students know what they're studying but don't know which careers align with their strengths.
-                            I wanted a system where users could create a profile, list their skills, and receive structured career suggestions.
+                            Students often know what they're studying but not which careers align with their strengths — and they lack a
+                            single place to match with jobs, network professionally, and get feedback on their CV. I wanted one system that
+                            tied profiles, job matching, and networking together for students, employers, and admins alike.
                         </p>
+
+                        <h2>The AI CV Analyzer</h2>
+                        <p>
+                            The standout feature is the <strong>AI CV Analyzer</strong>. A student uploads a CV/résumé and instantly gets a
+                            skill-based analysis, a match score, and personalized job suggestions — with saved history so they can track
+                            progress over time. It's the feature I'm most proud of because it turns a static document into actionable matches.
+                        </p>
+
+                        <figure class="blog-figure">
+                            <img src="../../images/careerguidance/cg3.png" alt="AI CV Analyzer page showing a parsed CV and a 100% top job match" loading="lazy">
+                            <figcaption>AI CV Analyzer — upload a CV and get scored job matches instantly.</figcaption>
+                        </figure>
 
                         <h2>Tech stack</h2>
                         <ul>
-                            <li><strong>Frontend:</strong> React with component-based UI and protected routes</li>
-                            <li><strong>Backend:</strong> Node.js + Express REST API</li>
-                            <li><strong>Database:</strong> MySQL for user profiles and career data</li>
+                            <li><strong>Frontend:</strong> React 18 + Vite, React Router, Tailwind CSS, and Recharts for the insights graphs</li>
+                            <li><strong>Backend:</strong> Node.js + Express REST API with JWT auth and role-based access</li>
+                            <li><strong>Database:</strong> Supabase (PostgreSQL) for users, jobs, applications, and the social layer</li>
+                            <li><strong>Security:</strong> bcrypt hashing, Helmet headers, rate limiting, input validation, and CORS allow-listing</li>
                             <li><strong>Deployment:</strong> Vercel for the live demo</li>
                         </ul>
 
+                        <figure class="blog-figure">
+                            <img src="../../images/careerguidance/cg4.png" alt="AI job recommendations list with match percentages" loading="lazy">
+                            <figcaption>AI job recommendations ranked by how well they match a student's profile.</figcaption>
+                        </figure>
+
                         <h2>Key challenges</h2>
                         <p>
-                            The hardest part was designing the recommendation flow—mapping free-form skill inputs to career categories
-                            without overcomplicating the UX. I solved this with a structured skill-selection form and a scoring algorithm
-                            on the backend that ranks careers by match percentage.
+                            The hardest part was bringing a job board, AI-style skill matching, and a full LinkedIn-style social layer
+                            (connections, feed, endorsements) into one performant app — with secure, role-based access and three distinct
+                            dashboards that still share a single, consistent experience. I solved matching with a scoring algorithm on the
+                            backend that ranks jobs by match percentage, then visualized it with a gauge and bar charts on the home feed.
                         </p>
+
+                        <figure class="blog-figure">
+                            <img src="../../images/careerguidance/cg1.png" alt="Employer hiring dashboard showing posted jobs and applicant stats" loading="lazy">
+                            <figcaption>Employer dashboard — job stats and applicant tracking at a glance.</figcaption>
+                        </figure>
 
                         <h2>What I learned</h2>
                         <ul>
-                            <li>How to structure a React app with authentication and dashboard views</li>
-                            <li>Designing REST APIs that separate auth, profile, and recommendation concerns</li>
-                            <li>Deploying a full-stack project and making it accessible via a live URL</li>
+                            <li>How to structure a React app with authentication, role-based routing, and three dashboard experiences</li>
+                            <li>Designing REST APIs that cleanly separate auth, profiles, jobs, recommendations, and the social layer</li>
+                            <li>Modeling a relational schema in Supabase (PostgreSQL) for both job data and networking features</li>
+                            <li>Hardening an API for production with Helmet, rate limiting, and CORS allow-listing</li>
                         </ul>
 
                         <p>

@@ -5,7 +5,7 @@
       "title": "How I Built CareerGuide Hub",
       "date": "2026-06-10",
       "category": "Projects",
-      "excerpt": "A breakdown of building a full-stack career guidance app with React, Node.js, Express, and MySQL—and deploying it to Vercel."
+      "excerpt": "A breakdown of building a full-stack career platform with React, Node.js, Express, and Supabase—featuring an AI CV Analyzer, a job board, and a LinkedIn-style network, deployed to Vercel."
     },
     {
       "slug": "building-my-portfolio-site",
