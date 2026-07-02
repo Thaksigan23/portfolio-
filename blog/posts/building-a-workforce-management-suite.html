@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Building a Workforce Management Suite | Sivaruban Thaksigan</title>
+    <meta name="description" content="How I engineered a production workforce platform with a Python desktop agent, Socket.io telemetry, and PowerShell release automation." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
+</head>
+<body>
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+    </div>
+
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <div class="nav-brand">
+                <span class="brand-text">Sivaruban Thaksigan</span><span class="brand-dot">.</span>
+            </div>
+            <ul class="nav-menu" id="primary-navigation">
+                <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../../index.html#project" class="nav-link">Projects</a></li>
+                <li><a href="../../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
+            </div>
+            <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section blog-post">
+            <div class="container">
+                <a class="blog-back" href="../../blog.html">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to Blog</span>
+                </a>
+
+                <article class="blog-article">
+                    <h1 class="blog-post-title">Building a Workforce Management Suite</h1>
+                    <div class="blog-post-meta">2026-07-01 · Projects</div>
+
+                    <img class="blog-post-cover" src="../../images/employeemonitor/ems-portal.png" alt="KAIONEX Employee Portal branding" loading="lazy">
+
+                    <div class="blog-post-content">
+                        <p>
+                            One of the most technically diverse projects I've worked on at Techloom.ai is a full workforce management
+                            suite — combining a Python desktop agent, a React/Node.js web dashboard, and enterprise packaging
+                            workflows. The goal: give remote and hybrid teams real-time visibility into productivity without
+                            building heavy software that slows down employee machines.
+                        </p>
+
+                        <h2>The architecture</h2>
+                        <p>
+                            The system splits cleanly into three layers. A lightweight Python background client uses system-level
+                            hooks to track active application focus and productivity metrics. A Node.js API stores telemetry in
+                            MongoDB and exposes REST endpoints for dashboards, chat, leave requests, and admin controls. The React
+                            frontend streams live updates through Socket.io so managers see activity as it happens — not after a
+                            nightly batch job.
+                        </p>
+
+                        <h2>Desktop agent challenges</h2>
+                        <ul>
+                            <li>Keeping CPU and memory overhead low enough that employees don't notice the agent running</li>
+                            <li>Masking sensitive window titles and skipping screenshots for banking or credential screens</li>
+                            <li>Handling offline periods gracefully and syncing when connectivity returns</li>
+                            <li>Packaging the agent as a deployable <code>.exe</code> with pre-configured batch installers</li>
+                        </ul>
+
+                        <h2>Real-time telemetry with Socket.io</h2>
+                        <p>
+                            Bidirectional Socket.io pipelines were the right fit for live dashboards. When an employee clocks in,
+                            takes a break, or switches focus, the dashboard reflects it within seconds. The tricky part was
+                            balancing event frequency — too many emits and the server gets noisy; too few and the dashboard
+                            feels stale. I settled on batched updates for activity logs and immediate emits for state changes
+                            like shift start/end.
+                        </p>
+
+                        <h2>Enterprise release automation</h2>
+                        <p>
+                            Shipping a desktop agent to corporate environments means more than pushing to Vercel. I configured
+                            PowerShell build-release workflows that compile Python scripts into standalone executables, bundle
+                            dependencies, and produce installer packages IT teams can deploy without manual setup.
+                        </p>
+
+                        <h2>What I learned</h2>
+                        <ul>
+                            <li>Cross-stack thinking: desktop Python, web React, and DevOps scripting in one product</li>
+                            <li>Privacy-by-design for monitoring tools — employees need transparency about what's tracked</li>
+                            <li>Real-time systems need clear event contracts between agent, API, and dashboard</li>
+                            <li>Enterprise delivery is as much about packaging and deployment as it is about code quality</li>
+                        </ul>
+
+                        <p>
+                            <a href="../../index.html#project">View this project in my portfolio</a>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sivaruban Thaksigan. Crafted with passion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../../script.js?v=premium-v20-navbar"></script>
+</body>
+</html>

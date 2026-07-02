@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Optimizing Core Web Vitals at Techloom.ai | Sivaruban Thaksigan</title>
+    <meta name="description" content="Frontend performance lessons from building Techloom.ai — reusable components, layout optimization, and hitting sub-2.0s LCP targets." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
+</head>
+<body>
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+    </div>
+
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <div class="nav-brand">
+                <span class="brand-text">Sivaruban Thaksigan</span><span class="brand-dot">.</span>
+            </div>
+            <ul class="nav-menu" id="primary-navigation">
+                <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../../index.html#project" class="nav-link">Projects</a></li>
+                <li><a href="../../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
+            </div>
+            <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section blog-post">
+            <div class="container">
+                <a class="blog-back" href="../../blog.html">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to Blog</span>
+                </a>
+
+                <article class="blog-article">
+                    <h1 class="blog-post-title">Optimizing Core Web Vitals at Techloom.ai</h1>
+                    <div class="blog-post-meta">2026-06-18 · Engineering</div>
+
+                    <img class="blog-post-cover" src="../../images/techloom/techloom-home.png" alt="Techloom.ai platform branding" loading="lazy">
+
+                    <div class="blog-post-content">
+                        <p>
+                            Working as a Development &amp; Marketing Executive at Techloom.ai means wearing two hats: shipping
+                            clean frontend code and making sure the platform itself performs like the product we sell. When
+                            your agency promises high-performance digital experiences, your own site has to lead by example.
+                            Our target: keep Largest Contentful Paint (LCP) under 2.0 seconds on average.
+                        </p>
+
+                        <h2>Starting with the layout</h2>
+                        <p>
+                            Performance optimization isn't a final polish step — it starts in the layout. I rebuilt page
+                            sections using responsive, reusable UI components so we weren't duplicating heavy markup across
+                            routes. Fewer one-off layouts means smaller bundles, more predictable rendering, and easier
+                            lazy-loading decisions.
+                        </p>
+
+                        <h2>Component-level wins</h2>
+                        <ul>
+                            <li><strong>Hero sections:</strong> Prioritized the LCP element — usually the headline or hero image — with explicit dimensions to prevent layout shift</li>
+                            <li><strong>Images:</strong> Used modern formats and size-appropriate sources so mobile doesn't download desktop assets</li>
+                            <li><strong>Fonts:</strong> Limited weight variants and used <code>font-display: swap</code> to avoid invisible text during load</li>
+                            <li><strong>Below-the-fold content:</strong> Deferred non-critical sections so the first paint stays fast</li>
+                        </ul>
+
+                        <h2>Headless CMS integration</h2>
+                        <p>
+                            Techloom.ai uses a Headless CMS for scalable content delivery. The challenge is that CMS-driven
+                            pages can easily become slow if every route fetches too much data at build time or blocks rendering
+                            on slow API calls. I helped structure flexible schemas so pages fetch only the fields they need,
+                            and server-side rendering handles the initial HTML before client hydration kicks in.
+                        </p>
+
+                        <h2>Design-to-code workflow</h2>
+                        <p>
+                            A big part of my role is translating high-fidelity UI/UX wireframes into production interfaces
+                            without losing visual hierarchy. That means matching spacing, typography, and component states
+                            precisely — but also pushing back when a design choice hurts performance. A heavy animation on
+                            the hero might look great in Figma and still cost 400ms of LCP.
+                        </p>
+
+                        <h2>Measuring what matters</h2>
+                        <p>
+                            I tracked Core Web Vitals in real conditions — not just localhost. Mobile throttling, slow 4G,
+                            and cold cache loads reveal problems that dev machines hide. The goal isn't a perfect Lighthouse
+                            score; it's consistent sub-2.0s LCP for real users landing on the homepage from social or search.
+                        </p>
+
+                        <h2>What I'd do differently</h2>
+                        <ul>
+                            <li>Set performance budgets before building new page templates, not after launch</li>
+                            <li>Automate image optimization in CI so contributors can't accidentally ship 2MB hero photos</li>
+                            <li>Document component performance guidelines so the whole team builds with LCP in mind</li>
+                        </ul>
+
+                        <p>
+                            <a href="https://techloom.ai/" target="_blank" rel="noopener noreferrer">Visit Techloom.ai</a>
+                            ·
+                            <a href="../../index.html#project">View in my portfolio</a>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sivaruban Thaksigan. Crafted with passion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../../script.js?v=premium-v20-navbar"></script>
+</body>
+</html>

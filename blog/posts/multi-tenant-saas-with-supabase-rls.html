@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Tenant SaaS with Supabase RLS | Sivaruban Thaksigan</title>
+    <meta name="description" content="Architecting Orbit Client Portal — a white-label PWA with Supabase Row-Level Security for strict corporate workspace isolation." />
+    <link rel="stylesheet" href="../../style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
+</head>
+<body>
+    <div class="bg-glow">
+        <div class="glow-1"></div>
+        <div class="glow-2"></div>
+        <div class="glow-3"></div>
+    </div>
+
+    <div class="nav-drawer-overlay" id="nav-drawer-overlay" aria-hidden="true"></div>
+    <div class="custom-cursor"></div>
+    <div class="custom-cursor-follower"></div>
+
+    <header class="site-header">
+        <nav class="navbar" aria-label="Main">
+            <div class="nav-brand">
+                <span class="brand-text">Sivaruban Thaksigan</span><span class="brand-dot">.</span>
+            </div>
+            <ul class="nav-menu" id="primary-navigation">
+                <li><a href="../../index.html#home" class="nav-link">Home</a></li>
+                <li><a href="../../index.html#about" class="nav-link">About</a></li>
+                <li><a href="../../index.html#skills" class="nav-link">Skills</a></li>
+                <li><a href="../../index.html#project" class="nav-link">Projects</a></li>
+                <li><a href="../../blog.html" class="nav-link active">Blog</a></li>
+                <li><a href="../../index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="nav-actions">
+                <div class="theme-toggle" id="theme-toggle" title="Toggle Dark/Light Mode">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <a href="../../index.html#contact" class="cta-btn">Let's Talk</a>
+            </div>
+            <button type="button" class="hamburger" id="nav-hamburger" aria-controls="primary-navigation" aria-expanded="false" aria-label="Open menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
+    </header>
+
+    <main>
+        <section class="section blog-post">
+            <div class="container">
+                <a class="blog-back" href="../../blog.html">
+                    <i class="fas fa-arrow-left" aria-hidden="true"></i>
+                    <span>Back to Blog</span>
+                </a>
+
+                <article class="blog-article">
+                    <h1 class="blog-post-title">Multi-Tenant SaaS with Supabase RLS</h1>
+                    <div class="blog-post-meta">2026-06-28 · Engineering</div>
+
+                    <img class="blog-post-cover" src="../../images/orbit-portal-cover.svg" alt="Orbit Client Portal architecture concept" loading="lazy">
+
+                    <div class="blog-post-content">
+                        <p>
+                            When building Orbit Client Portal — a white-label Progressive Web App for B2B client collaboration —
+                            the non-negotiable requirement was data isolation. Each company that signs up gets its own workspace.
+                            Users from Company A must never see Company B's assets, messages, or workflows. Application-level
+                            filtering alone isn't enough; the database itself has to enforce boundaries.
+                        </p>
+
+                        <h2>Why Row-Level Security?</h2>
+                        <p>
+                            Supabase Row-Level Security (RLS) lets you define policies directly on PostgreSQL tables. Even if
+                            application code has a bug or a query forgets a <code>WHERE org_id = ?</code> clause, RLS blocks
+                            unauthorized rows at the database layer. For a multi-tenant B2B product, that's the safety net you want.
+                        </p>
+
+                        <h2>Designing workspace isolation</h2>
+                        <ul>
+                            <li>Every tenant-scoped table carries an <code>organization_id</code> foreign key</li>
+                            <li>RLS policies compare <code>organization_id</code> against the authenticated user's org claim</li>
+                            <li>SQL triggers auto-assign org context on insert so new records inherit the correct workspace</li>
+                            <li>Admin roles within an org get broader read/write policies without crossing org boundaries</li>
+                        </ul>
+
+                        <h2>Next.js App Router on top</h2>
+                        <p>
+                            The frontend uses Next.js App Router for server-side rendering, dynamic routing, and optimized
+                            data-fetching. SSR matters here because client portals need to feel instant — a slow first paint
+                            undermines trust in a product meant for professional collaboration. Server components fetch
+                            tenant-scoped data through Supabase's server client, and the RLS policies apply regardless of
+                            whether the query runs on the server or client.
+                        </p>
+
+                        <h2>Encrypted Asset Vault</h2>
+                        <p>
+                            Sensitive client files live in cloud storage buckets with time-limited signed URLs. The portal
+                            never exposes permanent public links. When a user requests a file, the backend generates a
+                            short-lived URL scoped to their organization and role. Combined with RLS on the metadata table,
+                            this gives defense in depth for file access.
+                        </p>
+
+                        <h2>Key takeaways</h2>
+                        <ul>
+                            <li>Multi-tenancy is a database design problem first, a UI problem second</li>
+                            <li>RLS + triggers reduce the blast radius of application bugs</li>
+                            <li>White-label PWAs need fast SSR and strict tenant scoping to feel enterprise-grade</li>
+                            <li>Signed URLs are essential when storing sensitive files outside the primary database</li>
+                        </ul>
+
+                        <p>
+                            <a href="../../index.html#project">View agency projects in my portfolio</a>
+                        </p>
+                    </div>
+                </article>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Sivaruban Thaksigan. Crafted with passion. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <div class="back-to-top" aria-label="Scroll to top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="../../script.js?v=premium-v20-navbar"></script>
+</body>
+</html>

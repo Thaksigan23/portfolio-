@@ -1,11 +1,32 @@
 {
   "posts": [
     {
+      "slug": "building-a-workforce-management-suite",
+      "title": "Building a Workforce Management Suite",
+      "date": "2026-07-01",
+      "category": "Projects",
+      "excerpt": "Engineering a production workforce platform with a Python desktop agent, Socket.io live telemetry, MongoDB, and PowerShell release automation for enterprise deployment."
+    },
+    {
+      "slug": "multi-tenant-saas-with-supabase-rls",
+      "title": "Multi-Tenant SaaS with Supabase RLS",
+      "date": "2026-06-28",
+      "category": "Engineering",
+      "excerpt": "How I architected Orbit Client Portal with Supabase Row-Level Security, SQL triggers, and Next.js App Router to enforce strict corporate workspace isolation."
+    },
+    {
       "slug": "building-an-ai-cv-analyzer",
       "title": "Building an AI-Style CV Analyzer",
       "date": "2026-06-25",
       "category": "Engineering",
       "excerpt": "How I built the AI CV Analyzer in CareerGuide Hub—parsing résumés, scoring skills against live jobs, and turning a static document into ranked, explainable matches."
+    },
+    {
+      "slug": "optimizing-core-web-vitals-at-techloom",
+      "title": "Optimizing Core Web Vitals at Techloom.ai",
+      "date": "2026-06-18",
+      "category": "Engineering",
+      "excerpt": "Frontend performance lessons from agency work at Techloom.ai — reusable components, Headless CMS schemas, and keeping LCP under 2.0 seconds."
     },
     {
       "slug": "building-careerguide-hub",
