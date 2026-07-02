@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#050a12"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <circle cx="400" cy="230" r="110" fill="none" stroke="rgba(0,212,255,0.2)" stroke-width="2"/>
+  <circle cx="400" cy="230" r="70" fill="rgba(0,212,255,0.06)" stroke="#00d4ff" stroke-width="1.5"/>
+  <circle cx="400" cy="230" r="28" fill="#00d4ff" opacity="0.85"/>
+  <circle cx="290" cy="180" r="14" fill="rgba(124,58,237,0.8)"/>
+  <circle cx="510" cy="180" r="14" fill="rgba(124,58,237,0.8)"/>
+  <circle cx="290" cy="280" r="14" fill="rgba(124,58,237,0.8)"/>
+  <circle cx="510" cy="280" r="14" fill="rgba(124,58,237,0.8)"/>
+  <line x1="400" y1="230" x2="290" y2="180" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+  <line x1="400" y1="230" x2="510" y2="180" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+  <line x1="400" y1="230" x2="290" y2="280" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+  <line x1="400" y1="230" x2="510" y2="280" stroke="rgba(0,212,255,0.35)" stroke-width="1.5"/>
+  <text x="400" y="400" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="22" font-weight="700" text-anchor="middle">Orbit Client Portal</text>
+  <text x="400" y="430" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" text-anchor="middle">Multi-tenant B2B PWA</text>
+</svg>

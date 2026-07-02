@@ -352,6 +352,102 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             live: '',
             github: ''
+        },
+        employeemonitor: {
+            category: 'Enterprise Suite',
+            title: 'Employee Monitoring & Workforce Management Suite',
+            subtitle: 'Full-Stack & Desktop Systems Engineer',
+            image: 'images/employee-monitor-cover.svg',
+            description: 'Engineered an end-to-end, production-grade workforce productivity platform designed for modern remote and hybrid teams, enabling real-time activity tracking, interactive analytics, and seamless cross-role communication.',
+            longDescription: 'Authored a lightweight, low-overhead Python background desktop client utilizing system-level hooks to securely monitor active application focus and track productivity metrics. Built a live web-dashboard streaming bidirectional telemetry data via Socket.io pipelines, and configured automated PowerShell build-release workflows to compile scripts into deployable enterprise executables (.exe) with pre-configured batch installers.',
+            problem: 'Remote and hybrid teams need unified visibility into workforce productivity without heavy, intrusive tooling that slows down employee machines.',
+            role: 'Full-Stack & Desktop Systems Engineer — built the Python desktop telemetry client, the React/Node.js live dashboard, and PowerShell release automation for enterprise .exe deployment.',
+            challenge: 'Streaming real-time desktop activity data with minimal system overhead while packaging the stack into installable enterprise executables with reliable cross-role communication.',
+            outcome: 'A production-grade suite with a low-overhead desktop client, Socket.io-powered live dashboard, and automated PowerShell build pipelines delivering deployable enterprise installers.',
+            points: [
+                'Python background client with system-level hooks for active-app focus and productivity metrics',
+                'Live web dashboard with bidirectional Socket.io telemetry pipelines',
+                'Automated PowerShell build-release workflows compiling scripts into enterprise .exe installers',
+                'Real-time analytics and cross-role communication for remote and hybrid teams'
+            ],
+            tech: ['Python', 'Node.js', 'React.js', 'MongoDB', 'Socket.io', 'PowerShell', 'Tailwind CSS'],
+            live: 'https://employee-monitor-six.vercel.app',
+            github: '',
+            isCompanyProject: true,
+            collaborator: 'Internal Agency Product',
+            companyDetails: 'Proprietary internal enterprise suite engineered to optimize workforce management operations.'
+        },
+        orbitportal: {
+            category: 'SaaS Platform',
+            title: 'Orbit Client Portal (Client Management System)',
+            subtitle: 'SaaS Architecture & Full-Stack Engineer',
+            image: 'images/orbit-portal-cover.svg',
+            description: 'Engineered a modern, production-grade white-label Progressive Web App (PWA) client portal that enables companies to securely collaborate with clients, manage assets, and handle workflows within isolated corporate environments.',
+            longDescription: 'Architected database isolation logic using Supabase Row-Level Security (RLS) and SQL triggers to ensure strict corporate workspace isolation (one organization per company signup). Leveraged Next.js App Router for server-side rendering, dynamic routing, and optimized data-fetching to ensure instantaneous page loads. Integrated an encrypted Asset Vault utilizing cloud storage buckets with time-limited signed URLs to protect sensitive user files.',
+            problem: 'B2B client portals must keep each organization\u2019s data strictly isolated while still delivering fast, white-label experiences and secure file handling.',
+            role: 'SaaS Architecture & Full-Stack Engineer — designed multi-tenant isolation, built the Next.js PWA, and integrated encrypted asset storage with signed URL access.',
+            challenge: 'Enforcing per-organization data isolation at the database layer while maintaining instant SSR page loads and securing the asset vault for sensitive client files.',
+            outcome: 'A white-label PWA with Supabase RLS workspace isolation, Next.js App Router performance, and an encrypted Asset Vault backed by time-limited signed URLs.',
+            points: [
+                'Supabase Row-Level Security (RLS) and SQL triggers for strict corporate workspace isolation',
+                'Next.js App Router with SSR, dynamic routing, and optimized data-fetching',
+                'Encrypted Asset Vault with cloud storage buckets and time-limited signed URLs',
+                'White-label PWA enabling secure client collaboration and workflow management'
+            ],
+            tech: ['Next.js', 'Supabase', 'PostgreSQL', 'TypeScript', 'Tailwind CSS', 'Recharts'],
+            live: '',
+            github: '',
+            isCompanyProject: true,
+            collaborator: 'Enterprise Client Deployment',
+            companyDetails: 'Multi-tenant B2B suite engineered under agency framework for secure client delivery.'
+        },
+        thooddakkaaran: {
+            category: 'Corporate Web',
+            title: 'Thooddakkaaran Corporate Web Platform',
+            subtitle: 'UI/UX Designer & Frontend Developer',
+            image: 'images/thooddakkaaran-cover.svg',
+            description: 'Designed and developed the official responsive web platform for Thooddakkaaran (Pvt) Ltd, showcasing large-scale agricultural initiatives, agrotech services, and localized corporate branding solutions.',
+            longDescription: 'Formulated a high-fidelity, responsive user interface utilizing modern design systems to establish a strong, clean visual identity matching corporate guidelines. Implemented automated image and heavy asset optimization pipelines to handle high-resolution visual stories efficiently while performing comprehensive cross-browser and mobile performance tuning.',
+            problem: 'Thooddakkaaran needed an official digital presence that communicates large-scale agricultural initiatives with a polished, localized corporate identity.',
+            role: 'UI/UX Designer & Frontend Developer — owned visual design, responsive frontend implementation, and performance optimization for the corporate platform.',
+            challenge: 'Delivering a high-fidelity brand experience with heavy visual storytelling assets while keeping load times fast across browsers and mobile devices.',
+            outcome: 'A responsive corporate platform with optimized media pipelines, cross-browser tuning, and a clean visual identity aligned to Thooddakkaaran\u2019s brand guidelines.',
+            points: [
+                'High-fidelity responsive UI built with modern design systems and corporate branding',
+                'Automated image and heavy asset optimization for high-resolution visual stories',
+                'Cross-browser and mobile performance tuning across the full site',
+                'Localized corporate branding for agricultural and agrotech services'
+            ],
+            tech: ['UI/UX Design', 'Frontend Development', 'Web Design', 'Responsive Web Design', 'HTML/CSS'],
+            live: 'https://www.thooddakkaaran.com/#home',
+            github: '',
+            isCompanyProject: true,
+            collaborator: 'Thooddakkaaran (Pvt) Ltd',
+            companyDetails: 'Official platform designed and engineered under digital agency contract for Thooddakkaaran (Pvt) Ltd.'
+        },
+        techloomplatform: {
+            category: 'Agency Platform',
+            title: 'Techloom.ai Digital Platform Development',
+            subtitle: 'Frontend Engineer & UI/UX Designer',
+            image: 'images/techloom-platform-cover.svg',
+            description: 'Contributed to the core frontend engineering, modern architectural components, and performance optimizations for Techloom.ai, a high-performance digital experience platform built for global corporate branding and full-stack web solutions.',
+            longDescription: 'Built and updated responsive, reusable UI components, optimizing the platform\u2019s layout to achieve an exceptional core web vital footprint (<2.0s average Largest Contentful Paint). Translated high-fidelity UI/UX design wireframes into clean frontend interfaces, assisted in structuring flexible schemas for Headless CMS architectures, and managed GitHub version control workflows to preserve visual hierarchy.',
+            problem: 'Techloom.ai needed a fast, scalable frontend platform that could support global corporate branding while maintaining exceptional Core Web Vitals.',
+            role: 'Frontend Engineer & UI/UX Designer — built reusable UI components, translated wireframes into production interfaces, and optimized layout performance.',
+            challenge: 'Hitting sub-2.0s LCP targets while integrating Headless CMS flexibility and preserving visual hierarchy across a growing component library.',
+            outcome: 'A high-performance platform frontend with reusable components, Headless CMS-ready schemas, and an average LCP under 2.0 seconds.',
+            points: [
+                'Responsive, reusable UI components optimized for Core Web Vitals (<2.0s average LCP)',
+                'High-fidelity wireframes translated into clean, production-ready frontend interfaces',
+                'Flexible Headless CMS schema structures for scalable content delivery',
+                'GitHub version control workflows preserving visual hierarchy across releases'
+            ],
+            tech: ['Next.js', 'React.js', 'Tailwind CSS', 'Headless CMS', 'Web Performance Optimization', 'UI/UX Design'],
+            live: 'https://techloom.ai/',
+            github: '',
+            isCompanyProject: true,
+            collaborator: 'Agency Core Platform',
+            companyDetails: 'Developed and optimized frontend UI layers as a core agency platform initiative.'
         }
     };
 
@@ -371,6 +467,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const modalGithub = document.getElementById('project-modal-github');
     const modalGallery = document.getElementById('project-modal-gallery');
     const modalThumbs = document.getElementById('project-modal-thumbs');
+    const modalCorpBadge = document.getElementById('project-modal-corp-badge');
+    const modalCorpDetails = document.getElementById('project-modal-corp-details');
+    const modalSubtitle = document.getElementById('project-modal-subtitle');
     const projectTriggers = document.querySelectorAll('.js-open-project');
 
     const canUseModal =
@@ -387,7 +486,30 @@ document.addEventListener('DOMContentLoaded', () => {
             modalImage.alt = `${project.title} preview`;
             modalCategory.textContent = project.category;
             modalTitle.textContent = project.title;
+            if (modalSubtitle) {
+                if (project.subtitle) {
+                    modalSubtitle.textContent = project.subtitle;
+                    modalSubtitle.hidden = false;
+                } else {
+                    modalSubtitle.textContent = '';
+                    modalSubtitle.hidden = true;
+                }
+            }
             modalDescription.textContent = project.description;
+            if (modalCorpBadge && modalCorpDetails) {
+                if (project.isCompanyProject) {
+                    modalCorpBadge.hidden = false;
+                    modalCorpDetails.hidden = false;
+                    modalCorpDetails.innerHTML = [
+                        project.collaborator ? `<strong>${project.collaborator}</strong>` : '',
+                        project.companyDetails || ''
+                    ].filter(Boolean).join(' — ');
+                } else {
+                    modalCorpBadge.hidden = true;
+                    modalCorpDetails.hidden = true;
+                    modalCorpDetails.textContent = '';
+                }
+            }
             if (modalProblem) modalProblem.textContent = project.problem || '';
             if (modalRole) modalRole.textContent = project.role || '';
             if (modalChallenge) modalChallenge.textContent = project.challenge || '';

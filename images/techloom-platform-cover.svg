@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#050a12"/>
+    </linearGradient>
+    <linearGradient id="loom" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#6366f1"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="140" y="110" width="520" height="280" rx="14" fill="rgba(99,102,241,0.06)" stroke="rgba(99,102,241,0.3)" stroke-width="1.5"/>
+  <rect x="170" y="140" width="460" height="32" rx="6" fill="url(#loom)" opacity="0.25"/>
+  <rect x="170" y="195" width="200" height="155" rx="8" fill="rgba(0,212,255,0.08)"/>
+  <rect x="390" y="195" width="240" height="68" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <rect x="390" y="282" width="240" height="68" rx="6" fill="rgba(255,255,255,0.04)"/>
+  <text x="400" y="445" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="22" font-weight="700" text-anchor="middle">Techloom.ai</text>
+  <text x="400" y="472" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="14" text-anchor="middle">Digital Platform Development</text>
+</svg>

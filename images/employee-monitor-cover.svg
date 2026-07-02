@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1628"/>
+      <stop offset="100%" style="stop-color:#050a12"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#00d4ff"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <rect x="120" y="100" width="560" height="300" rx="16" fill="rgba(0,212,255,0.04)" stroke="rgba(0,212,255,0.25)" stroke-width="1.5"/>
+  <rect x="150" y="130" width="500" height="36" rx="8" fill="rgba(0,212,255,0.08)"/>
+  <rect x="150" y="190" width="220" height="160" rx="10" fill="rgba(124,58,237,0.12)" stroke="rgba(124,58,237,0.35)" stroke-width="1"/>
+  <rect x="390" y="190" width="260" height="72" rx="8" fill="rgba(0,212,255,0.06)"/>
+  <rect x="390" y="278" width="260" height="72" rx="8" fill="rgba(0,212,255,0.06)"/>
+  <circle cx="260" cy="270" r="40" fill="none" stroke="url(#accent)" stroke-width="3"/>
+  <text x="400" y="455" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="20" font-weight="700" text-anchor="middle">Workforce Management Suite</text>
+</svg>
