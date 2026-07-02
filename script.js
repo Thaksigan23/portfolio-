@@ -357,7 +357,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Enterprise Suite',
             title: 'Employee Monitoring & Workforce Management Suite',
             subtitle: 'Full-Stack & Desktop Systems Engineer',
-            image: 'images/employee-monitor-cover.svg',
+            image: 'images/employeemonitor/ems-portal.png',
             description: 'Engineered an end-to-end, production-grade workforce productivity platform designed for modern remote and hybrid teams, enabling real-time activity tracking, interactive analytics, and seamless cross-role communication.',
             longDescription: 'Authored a lightweight, low-overhead Python background desktop client utilizing system-level hooks to securely monitor active application focus and track productivity metrics. Built a live web-dashboard streaming bidirectional telemetry data via Socket.io pipelines, and configured automated PowerShell build-release workflows to compile scripts into deployable enterprise executables (.exe) with pre-configured batch installers.',
             problem: 'Remote and hybrid teams need unified visibility into workforce productivity without heavy, intrusive tooling that slows down employee machines.',
@@ -371,7 +371,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Real-time analytics and cross-role communication for remote and hybrid teams'
             ],
             tech: ['Python', 'Node.js', 'React.js', 'MongoDB', 'Socket.io', 'PowerShell', 'Tailwind CSS'],
-            live: 'https://employee-monitor-six.vercel.app',
+            gallery: [
+                { src: 'images/employeemonitor/ems-portal.png', caption: 'KAIONEX Employee Portal' }
+            ],
+            live: '',
             github: '',
             isCompanyProject: true,
             collaborator: 'Internal Agency Product',
@@ -405,7 +408,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Corporate Web',
             title: 'Thooddakkaaran Corporate Web Platform',
             subtitle: 'UI/UX Designer & Frontend Developer',
-            image: 'images/thooddakkaaran-cover.svg',
+            image: 'images/thooddakkaaran/thooddakkaaran-home.webp',
             description: 'Designed and developed the official responsive web platform for Thooddakkaaran (Pvt) Ltd, showcasing large-scale agricultural initiatives, agrotech services, and localized corporate branding solutions.',
             longDescription: 'Formulated a high-fidelity, responsive user interface utilizing modern design systems to establish a strong, clean visual identity matching corporate guidelines. Implemented automated image and heavy asset optimization pipelines to handle high-resolution visual stories efficiently while performing comprehensive cross-browser and mobile performance tuning.',
             problem: 'Thooddakkaaran needed an official digital presence that communicates large-scale agricultural initiatives with a polished, localized corporate identity.',
@@ -419,6 +422,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Localized corporate branding for agricultural and agrotech services'
             ],
             tech: ['UI/UX Design', 'Frontend Development', 'Web Design', 'Responsive Web Design', 'HTML/CSS'],
+            gallery: [
+                { src: 'images/thooddakkaaran/thooddakkaaran-home.webp', caption: 'Thooddakkaaran homepage hero' }
+            ],
             live: 'https://www.thooddakkaaran.com/#home',
             github: '',
             isCompanyProject: true,
@@ -429,7 +435,7 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Agency Platform',
             title: 'Techloom.ai Digital Platform Development',
             subtitle: 'Frontend Engineer & UI/UX Designer',
-            image: 'images/techloom-platform-cover.svg',
+            image: 'images/techloom/techloom-home.png',
             description: 'Contributed to the core frontend engineering, modern architectural components, and performance optimizations for Techloom.ai, a high-performance digital experience platform built for global corporate branding and full-stack web solutions.',
             longDescription: 'Built and updated responsive, reusable UI components, optimizing the platform\u2019s layout to achieve an exceptional core web vital footprint (<2.0s average Largest Contentful Paint). Translated high-fidelity UI/UX design wireframes into clean frontend interfaces, assisted in structuring flexible schemas for Headless CMS architectures, and managed GitHub version control workflows to preserve visual hierarchy.',
             problem: 'Techloom.ai needed a fast, scalable frontend platform that could support global corporate branding while maintaining exceptional Core Web Vitals.',
@@ -443,6 +449,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 'GitHub version control workflows preserving visual hierarchy across releases'
             ],
             tech: ['Next.js', 'React.js', 'Tailwind CSS', 'Headless CMS', 'Web Performance Optimization', 'UI/UX Design'],
+            gallery: [
+                { src: 'images/techloom/techloom-home.png', caption: 'Techloom.ai platform homepage' },
+                { src: 'images/techloom/techloom-logo.svg', caption: 'Techloom.ai brand mark' }
+            ],
             live: 'https://techloom.ai/',
             github: '',
             isCompanyProject: true,
