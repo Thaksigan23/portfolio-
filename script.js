@@ -594,24 +594,82 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 10. Contact form → mailto (no backend)
+    // 10. Contact form → FormSubmit (emails thaksithaksigan@gmail.com)
+    const CONTACT_EMAIL = 'thaksithaksigan@gmail.com';
     const contactForm = document.getElementById('contactForm');
     const contactFormStatus = document.getElementById('contact-form-status');
     if (contactForm) {
-        contactForm.addEventListener('submit', (event) => {
+        const submitBtn = contactForm.querySelector('.submit-btn');
+        const submitBtnLabel = submitBtn?.querySelector('span');
+        const defaultBtnText = submitBtnLabel?.textContent || 'Send message';
+
+        contactForm.addEventListener('submit', async (event) => {
             event.preventDefault();
+
+            const honeypot = contactForm.querySelector('[name="_honey"]');
+            if (honeypot?.value) {
+                return;
+            }
+
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const subjectField = document.getElementById('subject').value.trim();
             const message = document.getElementById('message').value.trim();
-            const to = 'thaksithaksigan@gmail.com';
             const subjectLine = subjectField || `Portfolio inquiry from ${name}`;
-            const body = [`From: ${name}`, `Reply-To: ${email}`, '', message].join('\n');
-            const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subjectLine)}&body=${encodeURIComponent(body)}`;
-            window.location.href = mailto;
+
             if (contactFormStatus) {
-                contactFormStatus.textContent =
-                    'If your email app did not open, copy your message and send it to thaksithaksigan@gmail.com.';
+                contactFormStatus.textContent = '';
+                contactFormStatus.classList.remove('is-success', 'is-error');
+            }
+
+            if (submitBtn) {
+                submitBtn.disabled = true;
+            }
+            if (submitBtnLabel) {
+                submitBtnLabel.textContent = 'Sending…';
+            }
+
+            try {
+                const response = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(CONTACT_EMAIL)}`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Accept: 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        subject: subjectLine,
+                        message,
+                        _subject: `Portfolio: ${subjectLine}`,
+                        _template: 'table',
+                        _captcha: 'false',
+                    }),
+                });
+
+                const data = await response.json().catch(() => null);
+
+                if (!response.ok || data?.success === false) {
+                    throw new Error(data?.message || 'Send failed');
+                }
+
+                contactForm.reset();
+                if (contactFormStatus) {
+                    contactFormStatus.textContent = 'Message sent! I will get back to you soon.';
+                    contactFormStatus.classList.add('is-success');
+                }
+            } catch {
+                if (contactFormStatus) {
+                    contactFormStatus.textContent = `Could not send right now. Please email me at ${CONTACT_EMAIL}.`;
+                    contactFormStatus.classList.add('is-error');
+                }
+            } finally {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                }
+                if (submitBtnLabel) {
+                    submitBtnLabel.textContent = defaultBtnText;
+                }
             }
         });
     }

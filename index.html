@@ -840,9 +840,10 @@
                             </div>
                         </div>
                     </div>
-                    <form id="contactForm" class="premium-form">
+                    <form id="contactForm" class="premium-form" novalidate>
                         <p class="form-heading">Send a message</p>
-                        <p class="form-hint">Opens your email app with this message filled in—no server required.</p>
+                        <p class="form-hint">Your message is sent straight to my inbox. I usually reply within a couple of days.</p>
+                        <input type="text" name="_honey" class="form-honeypot" tabindex="-1" autocomplete="off" aria-hidden="true">
                         <div class="input-group">
                             <input type="text" id="name" name="name" required placeholder=" " autocomplete="name" aria-label="Your Name">
                             <label for="name">Name</label>
@@ -861,7 +862,7 @@
                         </div>
                         <p class="form-status" id="contact-form-status" role="status" aria-live="polite"></p>
                         <button type="submit" class="submit-btn">
-                            <span>Open in email</span>
+                            <span>Send message</span>
                             <i class="fas fa-paper-plane" aria-hidden="true"></i>
                         </button>
                     </form>
