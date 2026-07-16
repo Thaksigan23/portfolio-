@@ -380,6 +380,35 @@ document.addEventListener('DOMContentLoaded', () => {
             collaborator: 'Internal Agency Product',
             companyDetails: 'Proprietary internal enterprise suite engineered to optimize workforce management operations.'
         },
+        financetracker: {
+            category: 'Finance Platform',
+            title: 'Kaionex Finance Tracker',
+            subtitle: 'Full-Stack Engineer',
+            image: 'images/finance-tracker-cover.svg',
+            description: 'A dark-themed, Supabase-backed full-stack finance management system for Kaionex — tracking sales, purchases, and expenses across companies and departments, with budgets, P&L reports, audit logs, and Recharts analytics.',
+            longDescription: 'Built a multi-company finance platform on React + Vite + Tailwind with a Supabase PostgreSQL backend. Companies own multiple departments; admins manage company profiles, budgets, categories, and approvals while company/branch users enter transactions scoped to their departments. Includes table-based auth with bcrypt hashing, overview filters, budget alerts, CSV import/export, recurring entries, and a sensitive-events security log.',
+            problem: 'The company needed a unified way to track department-level sales, purchases, and expenses — with monthly budgets, role-based visibility, and exportable reports — without relying on fragile hosted auth flows.',
+            role: 'Full-Stack Engineer — designed the Supabase schema (departments, transactions, budgets, company profiles, audit/sensitive events), built the React + Vite + Tailwind dashboard with Recharts, and implemented table-based login with bcrypt, company scoping, and admin tooling.',
+            challenge: 'Supporting multi-company \u2192 multi-department data scoping, reliable login without Supabase Auth timeouts, budget alerts and reporting, plus admin features (impersonation, approvals, audit) while keeping the UI fast and usable for daily finance entry.',
+            outcome: 'A production finance tracker with role-based dashboards, department budgets and alerts, CSV/print reporting, transaction approval workflow, recurring entries, audit & sensitive-event logs, light/dark theme, and Vercel-ready deployment against Supabase.',
+            points: [
+                'Multi-company finance: admin creates company logins; each company owns multiple departments via company_profile_id',
+                'Transaction ledger for sales, purchases, and expenses with filters, CSV bulk import/export, and print reports',
+                'Monthly department budgets with 80%/100% spend alerts, revenue KPI targets, and overview analytics (Recharts)',
+                'Table-based auth with bcrypt-hashed passwords, sessionStorage sessions, login rate limiting, and forgot-password tokens',
+                'Admin tooling — company detail pages, activate/deactivate, password reset, impersonate (“Login as”), category library, approvals',
+                'Audit log + Sensitive Events Log (login/delete attempts, device info); P&L summary reports; PWA manifest; keyboard shortcut N for new entry'
+            ],
+            tech: ['React', 'Vite', 'Tailwind CSS', 'Recharts', 'Supabase', 'PostgreSQL'],
+            gallery: [
+                { src: 'images/finance-tracker-cover.svg', caption: 'Kaionex Finance Tracker dashboard concept' }
+            ],
+            live: '',
+            github: '',
+            isCompanyProject: true,
+            collaborator: 'KAIONEX Internal Product',
+            companyDetails: 'Proprietary finance management system engineered for multi-company department tracking, budgets, and reporting.'
+        },
         orbitportal: {
             category: 'SaaS Platform',
             title: 'Orbit Client Portal (Client Management System)',

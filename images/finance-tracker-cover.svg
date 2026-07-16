@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="500" viewBox="0 0 800 500">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0b1220"/>
+      <stop offset="100%" style="stop-color:#05080f"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" style="stop-color:#10b981"/>
+      <stop offset="100%" style="stop-color:#34d399"/>
+    </linearGradient>
+    <linearGradient id="line" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#22d3ee"/>
+      <stop offset="100%" style="stop-color:#10b981"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" fill="url(#bg)"/>
+  <!-- Dashboard frame -->
+  <rect x="100" y="80" width="600" height="320" rx="14" fill="rgba(16,185,129,0.04)" stroke="rgba(16,185,129,0.28)" stroke-width="1.5"/>
+  <!-- Sidebar -->
+  <rect x="100" y="80" width="120" height="320" rx="14" fill="rgba(34,211,238,0.05)"/>
+  <rect x="118" y="110" width="84" height="10" rx="5" fill="rgba(148,163,184,0.35)"/>
+  <rect x="118" y="140" width="68" height="8" rx="4" fill="rgba(16,185,129,0.45)"/>
+  <rect x="118" y="162" width="72" height="8" rx="4" fill="rgba(148,163,184,0.25)"/>
+  <rect x="118" y="184" width="60" height="8" rx="4" fill="rgba(148,163,184,0.25)"/>
+  <rect x="118" y="206" width="76" height="8" rx="4" fill="rgba(148,163,184,0.25)"/>
+  <!-- KPI cards -->
+  <rect x="246" y="108" width="130" height="58" rx="8" fill="rgba(16,185,129,0.1)" stroke="rgba(16,185,129,0.3)" stroke-width="1"/>
+  <rect x="392" y="108" width="130" height="58" rx="8" fill="rgba(34,211,238,0.08)" stroke="rgba(34,211,238,0.28)" stroke-width="1"/>
+  <rect x="538" y="108" width="130" height="58" rx="8" fill="rgba(251,146,60,0.08)" stroke="rgba(251,146,60,0.28)" stroke-width="1"/>
+  <text x="262" y="132" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="10">Revenue</text>
+  <text x="262" y="152" fill="#34d399" font-family="system-ui,sans-serif" font-size="16" font-weight="700">$48.2k</text>
+  <text x="408" y="132" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="10">Expenses</text>
+  <text x="408" y="152" fill="#22d3ee" font-family="system-ui,sans-serif" font-size="16" font-weight="700">$31.7k</text>
+  <text x="554" y="132" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="10">Budget</text>
+  <text x="554" y="152" fill="#fb923c" font-family="system-ui,sans-serif" font-size="16" font-weight="700">82%</text>
+  <!-- Chart bars -->
+  <rect x="260" y="300" width="28" height="60" rx="4" fill="url(#bar)" opacity="0.75"/>
+  <rect x="304" y="270" width="28" height="90" rx="4" fill="url(#bar)" opacity="0.85"/>
+  <rect x="348" y="250" width="28" height="110" rx="4" fill="url(#bar)"/>
+  <rect x="392" y="280" width="28" height="80" rx="4" fill="url(#bar)" opacity="0.8"/>
+  <rect x="436" y="235" width="28" height="125" rx="4" fill="url(#bar)"/>
+  <rect x="480" y="265" width="28" height="95" rx="4" fill="url(#bar)" opacity="0.9"/>
+  <!-- Trend line -->
+  <polyline points="274,290 318,255 362,240 406,265 450,220 494,245" fill="none" stroke="url(#line)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="494" cy="245" r="5" fill="#22d3ee"/>
+  <!-- Labels -->
+  <text x="400" y="445" fill="#e2e8f0" font-family="system-ui,sans-serif" font-size="20" font-weight="700" text-anchor="middle">Kaionex Finance Tracker</text>
+  <text x="400" y="470" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="13" text-anchor="middle">Multi-company finance management</text>
+</svg>
