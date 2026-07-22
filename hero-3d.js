@@ -223,17 +223,17 @@ function initStage(stageEl, canvasEl, variant) {
 function getVariantConfig(variant, mobile) {
     const configs = {
         home: {
-            cameraZ: 4.2,
-            opacity: 0.55,
+            cameraZ: 3.6,
+            opacity: 0.7,
             rings: true,
-            ringRadius: 1.55,
+            ringRadius: 1.7,
             innerGlow: true,
-            particles: mobile ? 28 : 48,
-            particleSpread: 4.5,
-            particleSize: 0.04,
-            spinX: 0.2,
-            spinY: 0.32,
-            createGeometry: () => new THREE.IcosahedronGeometry(1.1, 1)
+            particles: mobile ? 40 : 70,
+            particleSpread: 5.2,
+            particleSize: 0.045,
+            spinX: 0.22,
+            spinY: 0.36,
+            createGeometry: () => new THREE.IcosahedronGeometry(1.25, 1)
         },
         blog: {
             cameraZ: 4,
