@@ -7,9 +7,10 @@
     <meta name="description" content="AIESEC digital marketing posters.">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="style.css?v=premium-v22-site3d">
 </head>
 <body>
+    <canvas id="site-3d-canvas" class="site-3d-canvas" aria-hidden="true"></canvas>
     <div class="bg-glow">
         <div class="glow-1"></div>
         <div class="glow-2"></div>
@@ -225,5 +226,13 @@
     </div>
 
     <script src="marketing.js?v=1"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
+    <script type="module" src="hero-3d.js?v=2"></script>
 </body>
 </html>
