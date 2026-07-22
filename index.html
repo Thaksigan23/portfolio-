@@ -28,7 +28,7 @@
     <!-- Modern Typography -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=premium-v20-navbar">
+    <link rel="stylesheet" href="style.css?v=premium-v21-3d">
 </head>
 <body>
     <!-- Premium Background Effects -->
@@ -73,6 +73,7 @@
 
     <main>
         <section id="home" class="section home">
+            <canvas id="hero-3d-canvas" class="hero-3d-canvas" aria-hidden="true"></canvas>
             <div class="container">
                 <div class="home-content">
                     <div class="home-text">
@@ -954,5 +955,13 @@
     </div>
 
     <script src="script.js?v=premium-v21-corporate"></script>
+    <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"
+        }
+    }
+    </script>
+    <script type="module" src="hero-3d.js?v=1"></script>
 </body>
 </html>

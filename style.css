@@ -138,6 +138,27 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 
 /* Home Section */
+.section.home {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+
+.hero-3d-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.85;
+}
+
+.section.home > .container {
+    position: relative;
+    z-index: 1;
+}
+
 .home-content {
     display: grid;
     grid-template-columns: 1.4fr 0.6fr;
@@ -148,6 +169,63 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .home-image {
     max-width: 380px;
     margin-left: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.image-container {
+    position: relative;
+}
+
+.floating-card {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.65rem 1rem;
+    background: rgba(var(--bg-secondary-rgb, 10, 10, 10), 0.72);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    box-shadow: var(--shadow-card);
+    white-space: nowrap;
+    z-index: 2;
+    animation: float 5s ease-in-out infinite;
+}
+
+.floating-card i {
+    color: var(--accent-primary);
+}
+
+.floating-card.card-1 {
+    top: 12%;
+    left: -18%;
+    animation-delay: 0s;
+}
+
+.floating-card.card-2 {
+    top: 48%;
+    right: -22%;
+    animation-delay: 0.8s;
+}
+
+.floating-card.card-3 {
+    bottom: 10%;
+    left: -8%;
+    animation-delay: 1.6s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-3d-canvas {
+        display: none;
+    }
+
+    .floating-card {
+        animation: none;
+    }
 }
 
 .section { padding: 10rem 0 5rem; min-height: 100vh; }
@@ -1278,6 +1356,12 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 @media (max-width: 992px) {
     .home-content, .about-content, .contact-card { grid-template-columns: 1fr; }
+    .home-image { margin: 2rem auto 0; max-width: 300px; }
+    .floating-card { font-size: 0.68rem; padding: 0.5rem 0.75rem; }
+    .floating-card.card-1 { left: -6%; }
+    .floating-card.card-2 { right: -8%; }
+    .floating-card.card-3 { left: 0; }
+    .hero-3d-canvas { opacity: 0.65; }
     .skills-bento { grid-template-columns: repeat(2, 1fr); }
     .bento-item.main-tech { grid-column: 1 / -1; }
     .bento-item.project-skills { grid-column: 1 / -1; }
