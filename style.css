@@ -155,12 +155,13 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 
 .page-3d-stage--home {
     position: absolute;
-    inset: 0;
+    inset: -12% -18% -8% -18%;
     z-index: 0;
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
+    width: auto;
+    height: auto;
+    border-radius: 0;
     overflow: hidden;
+    pointer-events: none;
 }
 
 .page-3d-stage--blog {
@@ -220,32 +221,16 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 
 .home-content {
     display: grid;
-    grid-template-columns: 1.35fr 0.65fr;
-    gap: 3rem;
+    grid-template-columns: 1.4fr 0.6fr;
+    gap: 4rem;
     align-items: center;
 }
 
 .home-image {
-    max-width: 420px;
-    width: 100%;
+    max-width: 380px;
     margin-left: auto;
     position: relative;
     z-index: 1;
-}
-
-.home-visual {
-    position: relative;
-    width: 100%;
-    aspect-ratio: 1 / 1;
-    display: grid;
-    place-items: center;
-}
-
-.home-visual .image-container {
-    position: relative;
-    z-index: 1;
-    width: 68%;
-    margin: 0;
 }
 
 .image-container {
@@ -277,20 +262,20 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 
 .floating-card.card-1 {
-    top: 8%;
-    left: -12%;
+    top: 12%;
+    left: -18%;
     animation-delay: 0s;
 }
 
 .floating-card.card-2 {
-    top: 46%;
-    right: -14%;
+    top: 48%;
+    right: -22%;
     animation-delay: 0.8s;
 }
 
 .floating-card.card-3 {
-    bottom: 6%;
-    left: -4%;
+    bottom: 10%;
+    left: -8%;
     animation-delay: 1.6s;
 }
 
@@ -1441,8 +1426,7 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 @media (max-width: 992px) {
     .home-content, .about-content, .contact-card { grid-template-columns: 1fr; }
-    .home-image { margin: 2rem auto 0; max-width: 320px; }
-    .home-visual .image-container { width: 72%; }
+    .home-image { margin: 2rem auto 0; max-width: 300px; }
     .floating-card { font-size: 0.68rem; padding: 0.5rem 0.75rem; }
     .floating-card.card-1 { left: -6%; }
     .floating-card.card-2 { right: -8%; }
