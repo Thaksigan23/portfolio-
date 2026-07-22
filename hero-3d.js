@@ -1,39 +1,37 @@
 /**
- * Site-wide 3D ambient scene — continuous across all pages.
- * Wireframe + particle network with mouse parallax, theme sync, reduced-motion.
+ * Per-page contained 3D scenes — each variant stays in its own stage,
+ * so content is never covered by a full-screen overlay.
  */
 import * as THREE from 'three';
 
-if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    const canvas = ensureCanvas();
-    initSite3D(canvas);
+if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    // no-op
+} else {
+    document.querySelectorAll('[data-3d]').forEach((stage) => {
+        const canvas = stage.querySelector('canvas') || document.createElement('canvas');
+        if (!canvas.parentElement) {
+            canvas.className = 'page-3d-canvas';
+            canvas.setAttribute('aria-hidden', 'true');
+            stage.appendChild(canvas);
+        }
+        initStage(stage, canvas, stage.getAttribute('data-3d') || 'home');
+    });
 }
 
-function ensureCanvas() {
-    let canvas = document.getElementById('site-3d-canvas') || document.getElementById('hero-3d-canvas');
-    if (!canvas) {
-        canvas = document.createElement('canvas');
-        canvas.id = 'site-3d-canvas';
-        canvas.className = 'site-3d-canvas';
-        canvas.setAttribute('aria-hidden', 'true');
-        document.body.prepend(canvas);
-    } else {
-        canvas.id = 'site-3d-canvas';
-        canvas.classList.add('site-3d-canvas');
-        canvas.classList.remove('hero-3d-canvas');
-    }
-    document.body.classList.add('has-site-3d');
-    return canvas;
+function getAccent() {
+    const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue('--accent-primary')
+        .trim() || '#00d4ff';
+    return new THREE.Color(raw);
 }
 
-function initSite3D(canvasEl) {
+function initStage(stageEl, canvasEl, variant) {
     const isMobile = () => window.innerWidth < 768;
-    const isHome = Boolean(document.getElementById('home'));
-    const particleCount = isMobile() ? 70 : (isHome ? 150 : 120);
+    const config = getVariantConfig(variant, isMobile());
 
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 100);
-    camera.position.z = 6.5;
+    const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 50);
+    camera.position.z = config.cameraZ;
 
     const renderer = new THREE.WebGLRenderer({
         canvas: canvasEl,
@@ -44,256 +42,250 @@ function initSite3D(canvasEl) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     renderer.setClearColor(0x000000, 0);
 
+    let accent = getAccent();
     const root = new THREE.Group();
-    const rootB = new THREE.Group();
     scene.add(root);
-    scene.add(rootB);
 
-    function getAccentHex() {
-        const raw = getComputedStyle(document.documentElement)
-            .getPropertyValue('--accent-primary')
-            .trim() || '#00d4ff';
-        return new THREE.Color(raw);
+    const disposables = [];
+
+    function track(obj) {
+        disposables.push(obj);
+        return obj;
     }
 
-    let accent = getAccentHex();
+    // Main mesh by variant
+    const geo = track(config.createGeometry());
+    const mat = track(new THREE.MeshBasicMaterial({
+        color: accent,
+        wireframe: true,
+        transparent: true,
+        opacity: config.opacity
+    }));
+    const mesh = new THREE.Mesh(geo, mat);
+    root.add(mesh);
 
-    function makeOrb(scale, opacity) {
-        const group = new THREE.Group();
-        const coreGeo = new THREE.IcosahedronGeometry(1.35 * scale, 1);
-        const coreMat = new THREE.MeshBasicMaterial({
+    let ring = null;
+    let ring2 = null;
+    if (config.rings) {
+        const ringGeo = track(new THREE.TorusGeometry(config.ringRadius, 0.02, 10, 64));
+        const ringMat = track(new THREE.MeshBasicMaterial({
             color: accent,
-            wireframe: true,
             transparent: true,
-            opacity: opacity
-        });
-        const core = new THREE.Mesh(coreGeo, coreMat);
-        group.add(core);
+            opacity: config.opacity * 0.7
+        }));
+        ring = new THREE.Mesh(ringGeo, ringMat);
+        ring.rotation.x = Math.PI / 2.5;
+        root.add(ring);
 
-        const glowGeo = new THREE.IcosahedronGeometry(1.05 * scale, 1);
-        const glowMat = new THREE.MeshBasicMaterial({
+        ring2 = ring.clone();
+        ring2.material = track(ringMat.clone());
+        ring2.material.opacity = config.opacity * 0.35;
+        ring2.rotation.x = Math.PI / 1.8;
+        ring2.rotation.y = 0.6;
+        root.add(ring2);
+    }
+
+    // Soft fill
+    if (config.innerGlow) {
+        const glowGeo = track(geo.clone());
+        glowGeo.scale(0.78, 0.78, 0.78);
+        const glowMat = track(new THREE.MeshBasicMaterial({
             color: accent,
             transparent: true,
-            opacity: opacity * 0.15,
+            opacity: config.opacity * 0.12,
             wireframe: false
-        });
-        const glow = new THREE.Mesh(glowGeo, glowMat);
-        group.add(glow);
-
-        const ringGeo = new THREE.TorusGeometry(2.1 * scale, 0.015, 12, 80);
-        const ringMat = new THREE.MeshBasicMaterial({
-            color: accent,
-            transparent: true,
-            opacity: opacity * 0.65
-        });
-        const ring = new THREE.Mesh(ringGeo, ringMat);
-        ring.rotation.x = Math.PI / 2.4;
-        group.add(ring);
-
-        const ring2 = ring.clone();
-        ring2.rotation.x = Math.PI / 1.7;
-        ring2.rotation.y = Math.PI / 5;
-        ring2.material = ringMat.clone();
-        ring2.material.opacity = opacity * 0.35;
-        group.add(ring2);
-
-        return { group, core, glow, ring, ring2, materials: [coreMat, glowMat, ringMat, ring2.material], geometries: [coreGeo, glowGeo, ringGeo] };
+        }));
+        root.add(new THREE.Mesh(glowGeo, glowMat));
     }
 
-    const primary = makeOrb(isHome ? 1 : 0.85, isHome ? 0.5 : 0.32);
-    const secondary = makeOrb(0.55, 0.22);
-    root.add(primary.group);
-    rootB.add(secondary.group);
-
+    // Local particles (kept inside the stage)
+    const particleCount = config.particles;
     const positions = new Float32Array(particleCount * 3);
     const velocities = [];
     for (let i = 0; i < particleCount; i++) {
         const i3 = i * 3;
-        positions[i3] = (Math.random() - 0.5) * 16;
-        positions[i3 + 1] = (Math.random() - 0.5) * 12;
-        positions[i3 + 2] = (Math.random() - 0.5) * 8;
+        const spread = config.particleSpread;
+        positions[i3] = (Math.random() - 0.5) * spread;
+        positions[i3 + 1] = (Math.random() - 0.5) * spread;
+        positions[i3 + 2] = (Math.random() - 0.5) * spread * 0.7;
         velocities.push({
-            x: (Math.random() - 0.5) * 0.004,
-            y: (Math.random() - 0.5) * 0.004,
-            z: (Math.random() - 0.5) * 0.003
+            x: (Math.random() - 0.5) * 0.006,
+            y: (Math.random() - 0.5) * 0.006,
+            z: (Math.random() - 0.5) * 0.004
         });
     }
-
-    const particleGeo = new THREE.BufferGeometry();
+    const particleGeo = track(new THREE.BufferGeometry());
     particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
-    const particleMat = new THREE.PointsMaterial({
+    const particleMat = track(new THREE.PointsMaterial({
         color: accent,
-        size: isMobile() ? 0.03 : 0.04,
+        size: config.particleSize,
         transparent: true,
-        opacity: isHome ? 0.8 : 0.65,
+        opacity: 0.75,
         sizeAttenuation: true,
         depthWrite: false
-    });
-    const particles = new THREE.Points(particleGeo, particleMat);
-    scene.add(particles);
+    }));
+    scene.add(new THREE.Points(particleGeo, particleMat));
 
-    const maxConnections = isMobile() ? 35 : 80;
-    const linePositions = new Float32Array(maxConnections * 6);
-    const lineGeo = new THREE.BufferGeometry();
-    lineGeo.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-    const lineMat = new THREE.LineBasicMaterial({
-        color: accent,
-        transparent: true,
-        opacity: isHome ? 0.16 : 0.12,
-        depthWrite: false
-    });
-    const lines = new THREE.LineSegments(lineGeo, lineMat);
-    scene.add(lines);
-
-    const mouse = { x: 0, y: 0, targetX: 0, targetY: 0 };
-    try {
-        const saved = sessionStorage.getItem('site3d-mouse');
-        if (saved) {
-            const parsed = JSON.parse(saved);
-            mouse.x = mouse.targetX = parsed.x || 0;
-            mouse.y = mouse.targetY = parsed.y || 0;
-        }
-    } catch { /* ignore */ }
-
-    const onPointerMove = (event) => {
-        mouse.targetX = (event.clientX / window.innerWidth) * 2 - 1;
-        mouse.targetY = -((event.clientY / window.innerHeight) * 2 - 1);
-        try {
-            sessionStorage.setItem('site3d-mouse', JSON.stringify({ x: mouse.targetX, y: mouse.targetY }));
-        } catch { /* ignore */ }
+    const mouse = { x: 0, y: 0, tx: 0, ty: 0 };
+    const onMove = (e) => {
+        const rect = stageEl.getBoundingClientRect();
+        if (rect.width === 0) return;
+        mouse.tx = ((e.clientX - rect.left) / rect.width) * 2 - 1;
+        mouse.ty = -(((e.clientY - rect.top) / rect.height) * 2 - 1);
     };
-    window.addEventListener('pointermove', onPointerMove, { passive: true });
+    window.addEventListener('pointermove', onMove, { passive: true });
 
-    function applyThemeColors() {
-        accent = getAccentHex();
-        [...primary.materials, ...secondary.materials, particleMat, lineMat].forEach((mat) => {
-            mat.color.copy(accent);
+    const themeMats = [mat, particleMat];
+    if (ring) themeMats.push(ring.material, ring2.material);
+    const themeObserver = new MutationObserver(() => {
+        accent = getAccent();
+        themeMats.forEach((m) => m.color.copy(accent));
+        root.traverse((child) => {
+            if (child.isMesh && child.material && child.material !== mat) {
+                child.material.color.copy(accent);
+            }
         });
-    }
-
-    const themeObserver = new MutationObserver(applyThemeColors);
+    });
     themeObserver.observe(document.body, { attributes: true, attributeFilter: ['data-theme'] });
 
-    function layoutOrbs() {
-        if (window.innerWidth >= 992) {
-            root.position.set(isHome ? 2.4 : 3.2, isHome ? 0.2 : 1.4, 0);
-            root.scale.setScalar(isHome ? 1.05 : 0.9);
-            rootB.position.set(isHome ? -3.4 : -3.6, isHome ? -1.6 : -2.1, -1);
-            rootB.scale.setScalar(1);
-        } else {
-            root.position.set(0, isHome ? 1.1 : 2.2, -0.4);
-            root.scale.setScalar(0.75);
-            rootB.position.set(1.8, -2.4, -1.2);
-            rootB.scale.setScalar(0.85);
-        }
-    }
-
     function resize() {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        if (width === 0 || height === 0) return;
-        camera.aspect = width / height;
+        const w = stageEl.clientWidth;
+        const h = stageEl.clientHeight;
+        if (w < 2 || h < 2) return;
+        camera.aspect = w / h;
         camera.updateProjectionMatrix();
-        renderer.setSize(width, height, false);
-        layoutOrbs();
+        renderer.setSize(w, h, false);
     }
 
-    window.addEventListener('resize', resize, { passive: true });
+    let visible = true;
+    const io = new IntersectionObserver((entries) => {
+        visible = entries[0]?.isIntersecting ?? false;
+    }, { threshold: 0.05 });
+    io.observe(stageEl);
+
+    const ro = new ResizeObserver(resize);
+    ro.observe(stageEl);
     resize();
 
     const clock = new THREE.Clock();
-    let rafId = 0;
-    let pageVisible = document.visibilityState !== 'hidden';
-    document.addEventListener('visibilitychange', () => {
-        pageVisible = document.visibilityState !== 'hidden';
-    });
-
-    function updateConnections(posAttr) {
-        const arr = posAttr.array;
-        let lineIndex = 0;
-        const linkDist = isMobile() ? 1.55 : 1.85;
-        const linkDistSq = linkDist * linkDist;
-
-        for (let i = 0; i < particleCount && lineIndex < maxConnections; i++) {
-            const ix = i * 3;
-            for (let j = i + 1; j < particleCount && lineIndex < maxConnections; j++) {
-                const jx = j * 3;
-                const dx = arr[ix] - arr[jx];
-                const dy = arr[ix + 1] - arr[jx + 1];
-                const dz = arr[ix + 2] - arr[jx + 2];
-                if (dx * dx + dy * dy + dz * dz < linkDistSq) {
-                    const li = lineIndex * 6;
-                    linePositions[li] = arr[ix];
-                    linePositions[li + 1] = arr[ix + 1];
-                    linePositions[li + 2] = arr[ix + 2];
-                    linePositions[li + 3] = arr[jx];
-                    linePositions[li + 4] = arr[jx + 1];
-                    linePositions[li + 5] = arr[jx + 2];
-                    lineIndex++;
-                }
-            }
-        }
-
-        for (let k = lineIndex * 6; k < linePositions.length; k++) linePositions[k] = 0;
-        lineGeo.attributes.position.needsUpdate = true;
-    }
+    let raf = 0;
 
     function animate() {
-        rafId = requestAnimationFrame(animate);
-        if (!pageVisible) return;
+        raf = requestAnimationFrame(animate);
+        if (!visible) return;
 
         const t = clock.getElapsedTime();
-        mouse.x += (mouse.targetX - mouse.x) * 0.05;
-        mouse.y += (mouse.targetY - mouse.y) * 0.05;
+        mouse.x += (mouse.tx - mouse.x) * 0.06;
+        mouse.y += (mouse.ty - mouse.y) * 0.06;
 
-        primary.core.rotation.x = t * 0.18 + mouse.y * 0.3;
-        primary.core.rotation.y = t * 0.28 + mouse.x * 0.4;
-        primary.glow.rotation.x = -t * 0.12;
-        primary.glow.rotation.y = t * 0.16;
-        primary.ring.rotation.z = t * 0.22;
-        primary.ring2.rotation.z = -t * 0.15;
-
-        secondary.core.rotation.x = -t * 0.14 + mouse.y * 0.2;
-        secondary.core.rotation.y = t * 0.2 - mouse.x * 0.25;
-        secondary.ring.rotation.z = -t * 0.18;
-        secondary.ring2.rotation.z = t * 0.12;
-
+        mesh.rotation.x = t * config.spinX + mouse.y * 0.4;
+        mesh.rotation.y = t * config.spinY + mouse.x * 0.5;
+        if (ring) {
+            ring.rotation.z = t * 0.25;
+            ring2.rotation.z = -t * 0.18;
+        }
         root.rotation.y = mouse.x * 0.2;
-        root.rotation.x = mouse.y * 0.12;
-        rootB.rotation.y = -mouse.x * 0.15;
-        rootB.rotation.x = mouse.y * 0.1;
+        root.rotation.x = mouse.y * 0.15;
 
-        const posAttr = particleGeo.attributes.position;
-        const arr = posAttr.array;
+        const arr = particleGeo.attributes.position.array;
+        const bound = config.particleSpread * 0.5;
         for (let i = 0; i < particleCount; i++) {
             const i3 = i * 3;
             const v = velocities[i];
             arr[i3] += v.x;
             arr[i3 + 1] += v.y;
             arr[i3 + 2] += v.z;
-            if (Math.abs(arr[i3]) > 8) v.x *= -1;
-            if (Math.abs(arr[i3 + 1]) > 6) v.y *= -1;
-            if (Math.abs(arr[i3 + 2]) > 4) v.z *= -1;
+            if (Math.abs(arr[i3]) > bound) v.x *= -1;
+            if (Math.abs(arr[i3 + 1]) > bound) v.y *= -1;
+            if (Math.abs(arr[i3 + 2]) > bound * 0.7) v.z *= -1;
         }
-        posAttr.needsUpdate = true;
-        updateConnections(posAttr);
+        particleGeo.attributes.position.needsUpdate = true;
 
-        camera.position.x = mouse.x * 0.35;
-        camera.position.y = mouse.y * 0.2;
+        camera.position.x = mouse.x * 0.25;
+        camera.position.y = mouse.y * 0.15;
         camera.lookAt(0, 0, 0);
-
         renderer.render(scene, camera);
     }
 
     animate();
 
     window.addEventListener('beforeunload', () => {
-        cancelAnimationFrame(rafId);
+        cancelAnimationFrame(raf);
+        io.disconnect();
+        ro.disconnect();
         themeObserver.disconnect();
-        window.removeEventListener('pointermove', onPointerMove);
-        window.removeEventListener('resize', resize);
-        [...primary.geometries, ...secondary.geometries, particleGeo, lineGeo].forEach((g) => g.dispose());
-        [...primary.materials, ...secondary.materials, particleMat, lineMat].forEach((m) => m.dispose());
+        window.removeEventListener('pointermove', onMove);
+        disposables.forEach((d) => d.dispose && d.dispose());
         renderer.dispose();
     });
+}
+
+function getVariantConfig(variant, mobile) {
+    const configs = {
+        home: {
+            cameraZ: 4.2,
+            opacity: 0.55,
+            rings: true,
+            ringRadius: 1.55,
+            innerGlow: true,
+            particles: mobile ? 28 : 48,
+            particleSpread: 4.5,
+            particleSize: 0.04,
+            spinX: 0.2,
+            spinY: 0.32,
+            createGeometry: () => new THREE.IcosahedronGeometry(1.1, 1)
+        },
+        blog: {
+            cameraZ: 4,
+            opacity: 0.5,
+            rings: false,
+            innerGlow: true,
+            particles: mobile ? 20 : 36,
+            particleSpread: 4,
+            particleSize: 0.035,
+            spinX: 0.15,
+            spinY: 0.28,
+            createGeometry: () => new THREE.OctahedronGeometry(1.15, 0)
+        },
+        article: {
+            cameraZ: 3.8,
+            opacity: 0.45,
+            rings: true,
+            ringRadius: 1.2,
+            innerGlow: false,
+            particles: mobile ? 14 : 24,
+            particleSpread: 3.2,
+            particleSize: 0.03,
+            spinX: 0.12,
+            spinY: 0.22,
+            createGeometry: () => new THREE.TorusGeometry(0.85, 0.28, 12, 40)
+        },
+        marketing: {
+            cameraZ: 4.4,
+            opacity: 0.48,
+            rings: false,
+            innerGlow: true,
+            particles: mobile ? 22 : 40,
+            particleSpread: 4.2,
+            particleSize: 0.035,
+            spinX: 0.18,
+            spinY: 0.26,
+            createGeometry: () => new THREE.TorusKnotGeometry(0.75, 0.22, 80, 12)
+        },
+        posters: {
+            cameraZ: 4.2,
+            opacity: 0.46,
+            rings: true,
+            ringRadius: 1.4,
+            innerGlow: true,
+            particles: mobile ? 18 : 32,
+            particleSpread: 3.8,
+            particleSize: 0.032,
+            spinX: 0.14,
+            spinY: 0.24,
+            createGeometry: () => new THREE.DodecahedronGeometry(1.05, 0)
+        }
+    };
+
+    return configs[variant] || configs.home;
 }
