@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 6. Scroll Reveal
-    const revealEls = Array.from(document.querySelectorAll('.section-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article'));
+    const revealEls = Array.from(document.querySelectorAll('.section-title, .affiliations-title, .affiliations-eyebrow, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article'));
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealNow = (el) => el.classList.add('revealed');
 
