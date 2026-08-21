@@ -221,6 +221,75 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Affiliations logo marquee — continuous scroll + left/right controls
+    const marqueeRoot = document.querySelector('[data-marquee]');
+    const marqueeTrack = document.querySelector('[data-marquee-track]');
+    const marqueePrev = document.querySelector('[data-marquee-prev]');
+    const marqueeNext = document.querySelector('[data-marquee-next]');
+    if (marqueeRoot && marqueeTrack) {
+        const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const sourceList = marqueeTrack.querySelector('.affiliations-list');
+        if (sourceList && !reduceMotion) {
+            const clone = sourceList.cloneNode(true);
+            clone.setAttribute('aria-hidden', 'true');
+            clone.setAttribute('data-marquee-clone', '');
+            marqueeTrack.appendChild(clone);
+
+            let offset = 0;
+            let paused = false;
+            let resumeTimer = null;
+            const speed = 0.55;
+            const step = 140;
+
+            const loopWidth = () => sourceList.offsetWidth;
+
+            const applyTransform = () => {
+                const width = loopWidth() || 1;
+                while (offset <= -width) offset += width;
+                while (offset > 0) offset -= width;
+                marqueeTrack.style.transform = `translate3d(${offset}px, 0, 0)`;
+            };
+
+            const pauseBriefly = (ms = 1800) => {
+                paused = true;
+                clearTimeout(resumeTimer);
+                resumeTimer = setTimeout(() => { paused = false; }, ms);
+            };
+
+            const nudge = (dir) => {
+                offset += dir * step;
+                applyTransform();
+                pauseBriefly();
+            };
+
+            if (marqueePrev) marqueePrev.addEventListener('click', () => nudge(1));
+            if (marqueeNext) marqueeNext.addEventListener('click', () => nudge(-1));
+
+            marqueeRoot.addEventListener('mouseenter', () => { paused = true; });
+            marqueeRoot.addEventListener('mouseleave', () => {
+                clearTimeout(resumeTimer);
+                paused = false;
+            });
+            marqueeRoot.addEventListener('focusin', () => { paused = true; });
+            marqueeRoot.addEventListener('focusout', () => {
+                clearTimeout(resumeTimer);
+                paused = false;
+            });
+
+            let last = performance.now();
+            const tick = (now) => {
+                const delta = Math.min(32, now - last);
+                last = now;
+                if (!paused) {
+                    offset -= speed * (delta / 16.67);
+                    applyTransform();
+                }
+                requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+        }
+    }
+
     // 8. Journey timeline — sort by date, filter by category
     const journeyGrid = document.getElementById('journey-grid');
     const journeyEmpty = document.getElementById('journey-empty');
