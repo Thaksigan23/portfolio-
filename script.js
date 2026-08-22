@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Typewriter Effect (index only)
     const professionElement = document.getElementById('rotating-profession');
     if (professionElement) {
-        const professions = ['Trainee Software Engineer', 'KAIONEX Product Builder', 'Full-Stack Developer', 'React & Node.js Builder'];
+        const professions = ['Trainee Software Engineer', 'Techloom.ai & KAIONEX', 'Full-Stack Developer', 'React & Node.js Builder'];
         let profIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {
@@ -290,10 +290,81 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 8. Journey timeline — sort by date, filter by category
+    // 8. Journey timeline — horizontal layout, sort, filter, scroll
     const journeyGrid = document.getElementById('journey-grid');
     const journeyEmpty = document.getElementById('journey-empty');
     const journeyFilters = document.querySelectorAll('.journey-filter');
+    const journeyScroll = document.querySelector('.journey-timeline-scroll');
+    const journeyPrev = document.querySelector('[data-journey-prev]');
+    const journeyNext = document.querySelector('[data-journey-next]');
+
+    function setupJourneyHorizontalLayout(item) {
+        const inner = item.querySelector('.journey-item-inner');
+        if (!inner || inner.dataset.layoutReady === 'true') return;
+
+        const year = inner.querySelector('.journey-year');
+        const content = inner.querySelector('.journey-content');
+        if (!year || !content) return;
+
+        const head = content.querySelector('.journey-head');
+        const logos = head ? Array.from(head.querySelectorAll('.journey-logo')) : [];
+
+        if (head) {
+            const headText = head.querySelector('.journey-head-text');
+            if (headText) {
+                const role = headText.querySelector('.journey-role');
+                const org = headText.querySelector('.journey-org');
+                if (role) content.insertBefore(role, content.firstChild);
+                if (org) {
+                    const anchor = content.querySelector('.journey-role');
+                    if (anchor) anchor.insertAdjacentElement('afterend', org);
+                    else content.insertBefore(org, content.firstChild);
+                }
+            }
+            head.remove();
+        }
+
+        const body = document.createElement('div');
+        body.className = 'journey-body';
+        body.append(year, content);
+
+        const axis = document.createElement('div');
+        axis.className = 'journey-axis';
+        const connector = document.createElement('div');
+        connector.className = 'journey-connector';
+        connector.setAttribute('aria-hidden', 'true');
+        axis.appendChild(connector);
+
+        const media = document.createElement('div');
+        media.className = 'journey-axis-media';
+
+        if (logos.length > 1) {
+            media.classList.add('journey-axis-media--stack');
+            logos.forEach((logo) => {
+                const img = logo.cloneNode(true);
+                img.className = '';
+                media.appendChild(img);
+            });
+        } else if (logos.length === 1) {
+            const img = logos[0].cloneNode(true);
+            img.className = '';
+            media.appendChild(img);
+        } else {
+            const icon = document.createElement('i');
+            const category = item.dataset.category;
+            icon.className = category === 'education'
+                ? 'fas fa-graduation-cap journey-axis-icon'
+                : category === 'work'
+                    ? 'fas fa-briefcase journey-axis-icon'
+                    : 'fas fa-users journey-axis-icon';
+            icon.setAttribute('aria-hidden', 'true');
+            media.appendChild(icon);
+        }
+        axis.appendChild(media);
+
+        inner.replaceChildren(body, axis);
+        inner.dataset.layoutReady = 'true';
+    }
 
     if (journeyGrid) {
         const journeyItems = Array.from(journeyGrid.querySelectorAll('.journey-item'));
@@ -301,9 +372,10 @@ document.addEventListener('DOMContentLoaded', () => {
             if (item.querySelector('.journey-badge')) {
                 item.classList.add('is-current');
             }
+            setupJourneyHorizontalLayout(item);
         });
         journeyItems
-            .sort((a, b) => Number(b.dataset.sort) - Number(a.dataset.sort))
+            .sort((a, b) => Number(a.dataset.sort) - Number(b.dataset.sort))
             .forEach((item) => journeyGrid.appendChild(item));
 
         function applyJourneyFilter(filter) {
@@ -327,6 +399,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 applyJourneyFilter(btn.dataset.filter);
             });
         });
+
+        if (journeyScroll && journeyPrev && journeyNext) {
+            const scrollStep = () => Math.min(journeyScroll.clientWidth * 0.55, 380);
+            journeyPrev.addEventListener('click', () => {
+                journeyScroll.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
+            });
+            journeyNext.addEventListener('click', () => {
+                journeyScroll.scrollBy({ left: scrollStep(), behavior: 'smooth' });
+            });
+            requestAnimationFrame(() => {
+                journeyScroll.scrollLeft = journeyScroll.scrollWidth;
+            });
+        }
     }
 
     // 9. Project Details Modal (index only)

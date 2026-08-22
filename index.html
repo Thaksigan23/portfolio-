@@ -7,7 +7,7 @@
     
     <!-- Primary Meta Tags -->
     <meta name="title" content="Sivaruban Thaksigan | Full-Stack Developer Portfolio">
-    <meta name="description" content="IT undergraduate and Trainee Software Engineer at KAIONEX, building digital products at Techloom.ai. Full-stack developer with React & Node.js from Sri Lanka.">
+    <meta name="description" content="IT undergraduate and Trainee Software Engineer at Techloom.ai and KAIONEX. Building React & Node.js apps as a full-stack developer from Sri Lanka.">
     <meta name="keywords" content="Sivaruban Thaksigan, full-stack developer Sri Lanka, React developer Jaffna, Node.js developer, IT undergraduate, software intern">
     <meta name="author" content="Sivaruban Thaksigan">
     <link rel="canonical" href="https://thaksigan23.github.io/portfolio-/">
@@ -28,7 +28,7 @@
     <!-- Modern Typography -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css?v=premium-v30-kaionex">
+    <link rel="stylesheet" href="style.css?v=premium-v32-horizontal-journey">
 </head>
 <body>
     <!-- Premium Background Effects -->
@@ -82,7 +82,7 @@
                         </div>
                         <h1 class="hero-title">Building <span class="accent">Real-World</span> Web Applications</h1>
                         <h2 class="hero-subtitle" id="rotating-profession">Trainee Software Engineer</h2>
-                        <p class="hero-desc">IT undergraduate at the University of Vavuniya and Trainee Software Engineer at KAIONEX—Techloom.ai's cloud ERP &amp; digital products suite. I build full-stack apps with React, Node.js, and MySQL through real production work.</p>
+                        <p class="hero-desc">IT undergraduate at the University of Vavuniya and Trainee Software Engineer at Techloom.ai and KAIONEX—working on agency client work and the company's cloud ERP digital product at the same time. I build full-stack apps with React, Node.js, and MySQL through real production work.</p>
 
                         <div class="hero-stats">
                             <div class="stat counter-box">
@@ -160,7 +160,7 @@
                     <div class="about-text">
                         <div class="about-description">
                             <p>I am Sivaruban Thaksigan, an Information Technology undergraduate at the University of Vavuniya. My journey in tech is driven by a deep curiosity for how systems operate—from low-level logic to high-level abstractions.</p>
-                            <p>As a Trainee Software Engineer at KAIONEX—part of Techloom.ai's digital products—I build and ship features across the cloud ERP platform, internal finance tools, and client-facing web applications. Promoted from Development and Marketing Executive, I'm deepening my skills in scalable full-stack engineering and intuitive user interfaces.</p>
+                            <p>As a Trainee Software Engineer at Techloom.ai and KAIONEX, I work across both at the same time—agency client platforms at Techloom.ai and KAIONEX cloud ERP / finance product features. Promoted from Development and Marketing Executive, I'm deepening my skills in scalable full-stack engineering and intuitive user interfaces.</p>
                             <p>International Student ID holder.</p>
                         </div>
 
@@ -177,8 +177,8 @@
                                 <i class="fas fa-briefcase" aria-hidden="true"></i>
                                 <div>
                                     <h4>Experience</h4>
-                                    <p>Trainee Software Engineer — KAIONEX (Techloom.ai)</p>
-                                    <p>Cloud ERP, finance tools &amp; digital products</p>
+                                    <p>Trainee Software Engineer — Techloom.ai &amp; KAIONEX</p>
+                                    <p>Agency platforms + cloud ERP digital products</p>
                                 </div>
                             </div>
                             <div class="highlight">
@@ -276,21 +276,29 @@
             </div>
         </section>
 
-        <!-- Journey — vertical timeline, newest first -->
+        <!-- Journey — horizontal alternating timeline -->
         <section id="journey" class="section journey">
             <div class="container">
                 <div class="journey-section">
                     <div class="journey-header">
-                        <h3 class="journey-title">My Journey</h3>
+                        <div class="journey-header-copy">
+                            <p class="journey-eyebrow">My path</p>
+                            <h3 class="journey-title">Clubs, experience &amp; education</h3>
+                            <p class="journey-lead">A horizontal timeline of leadership roles, professional work, and academic milestones—from school to Techloom.ai, KAIONEX, and university clubs.</p>
+                        </div>
                         <div class="journey-filters" role="tablist" aria-label="Filter journey entries">
                             <button type="button" class="journey-filter active" data-filter="all" role="tab" aria-selected="true">All</button>
-                            <button type="button" class="journey-filter" data-filter="leadership" role="tab" aria-selected="false">Leadership</button>
+                            <button type="button" class="journey-filter" data-filter="leadership" role="tab" aria-selected="false">Clubs</button>
                             <button type="button" class="journey-filter" data-filter="work" role="tab" aria-selected="false">Experience</button>
                             <button type="button" class="journey-filter" data-filter="education" role="tab" aria-selected="false">Education</button>
                         </div>
                     </div>
                     <div class="journey-timeline-wrap">
-                        <div class="journey-timeline" id="journey-grid">
+                        <button type="button" class="journey-scroll-btn journey-scroll-btn--prev" data-journey-prev aria-label="Scroll timeline left">
+                            <i class="fas fa-chevron-left" aria-hidden="true"></i>
+                        </button>
+                        <div class="journey-timeline-scroll">
+                            <div class="journey-timeline" id="journey-grid">
                             <article class="journey-item" data-category="leadership" data-sort="202602" data-year="2026">
                                 <div class="journey-item-inner">
                                     <span class="journey-year">2026</span>
@@ -314,13 +322,16 @@
                                     <div class="journey-marker" aria-hidden="true"></div>
                                     <div class="journey-content">
                                         <div class="journey-head">
-                                            <img class="journey-logo journey-logo--dark" src="images/clubs/kaionex.png" alt="KAIONEX" width="44" height="44" loading="lazy" decoding="async">
+                                            <div class="journey-logo-stack" aria-hidden="true">
+                                                <img class="journey-logo journey-logo--dark" src="images/clubs/techloom.svg" alt="" width="44" height="44" loading="lazy" decoding="async">
+                                                <img class="journey-logo journey-logo--dark" src="images/clubs/kaionex.png" alt="" width="44" height="44" loading="lazy" decoding="async">
+                                            </div>
                                             <div class="journey-head-text">
                                                 <h4 class="journey-role">Trainee Software Engineer</h4>
-                                                <p class="journey-org">KAIONEX · Techloom.ai digital products <span class="journey-period">· Jul 2026 — Present</span></p>
+                                                <p class="journey-org">Techloom.ai &amp; KAIONEX <span class="journey-period">· Jul 2026 — Present</span></p>
                                             </div>
                                         </div>
-                                        <p class="journey-desc">Promoted to focus on software engineering for KAIONEX and Techloom.ai digital products—building cloud ERP modules, finance dashboards, and production web applications for real business operations.</p>
+                                        <p class="journey-desc">Working on both at the same time—shipping full-stack features for Techloom.ai client platforms and KAIONEX cloud ERP / finance products, with a focus on production UI, performance, and reliable delivery.</p>
                                         <span class="journey-badge">Current</span>
                                     </div>
                                 </div>
@@ -513,6 +524,10 @@
                             </article>
                         </div>
                         <p class="journey-empty" id="journey-empty" hidden>No entries in this category yet.</p>
+                        </div>
+                        <button type="button" class="journey-scroll-btn journey-scroll-btn--next" data-journey-next aria-label="Scroll timeline right">
+                            <i class="fas fa-chevron-right" aria-hidden="true"></i>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -522,7 +537,7 @@
         <section id="skills" class="section skills">
             <div class="container">
                 <h2 class="section-title">Technical Expertise</h2>
-                <p class="skills-intro">Technologies I use across personal builds, KAIONEX &amp; Techloom.ai digital products, and production-grade client work — from full-stack web apps to desktop agents and real-time dashboards.</p>
+                <p class="skills-intro">Technologies I use across personal builds, concurrent work at Techloom.ai and KAIONEX, and production-grade client deliverables — from full-stack web apps to desktop agents and real-time dashboards.</p>
                 <div class="skills-bento">
                     <div class="bento-item main-tech">
                         <div class="bento-head">
@@ -969,7 +984,7 @@
                 <div class="testimonials-slider">
                     <div class="testimonial-card revealed">
                         <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
-                        <p class="testimonial-text">"Thaksigan consistently delivers clean frontend work on KAIONEX and Techloom.ai digital products—taking ownership beyond code with UI implementation, marketing assets, and client-facing deliverables."</p>
+                        <p class="testimonial-text">"Thaksigan consistently delivers clean frontend work across Techloom.ai and KAIONEX at the same time—taking ownership beyond code with UI implementation, marketing assets, and client-facing deliverables."</p>
                         <div class="testimonial-author">
                             <div class="author-info">
                                 <h4>Techloom.ai</h4>
@@ -1106,7 +1121,7 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script src="script.js?v=premium-v25-kaionex"></script>
+    <script src="script.js?v=premium-v27-horizontal-journey"></script>
     <script type="importmap">
     {
         "imports": {
