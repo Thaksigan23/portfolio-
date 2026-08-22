@@ -31,17 +31,25 @@ document.addEventListener('DOMContentLoaded', () => {
     const navOverlay = document.getElementById('nav-drawer-overlay');
     const primaryNav = document.getElementById('primary-navigation');
     function setNavDrawerOpen(open) {
-        if (!hamburger) return;
+        if (!primaryNav) return;
         document.body.classList.toggle('nav-open', open);
-        hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
-        hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        if (hamburger) {
+            hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            hamburger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+        }
         document.body.style.overflow = open ? 'hidden' : '';
         if (navOverlay) navOverlay.setAttribute('aria-hidden', open ? 'false' : 'true');
     }
-    if (hamburger && primaryNav) {
-        hamburger.addEventListener('click', () => {
-            setNavDrawerOpen(!document.body.classList.contains('nav-open'));
-        });
+    if (primaryNav) {
+        if (hamburger) {
+            hamburger.addEventListener('click', () => {
+                setNavDrawerOpen(!document.body.classList.contains('nav-open'));
+            });
+        }
+        const navClose = primaryNav.querySelector('.nav-drawer-close');
+        if (navClose) {
+            navClose.addEventListener('click', () => setNavDrawerOpen(false));
+        }
         if (navOverlay) {
             navOverlay.addEventListener('click', () => setNavDrawerOpen(false));
         }
