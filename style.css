@@ -155,13 +155,15 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 
 .page-3d-stage--home {
     position: absolute;
-    inset: -12% -18% -8% -18%;
+    inset: -6%;
     z-index: 0;
     width: auto;
     height: auto;
-    border-radius: 0;
-    overflow: hidden;
+    border-radius: 50%;
+    overflow: visible;
     pointer-events: none;
+    -webkit-mask-image: radial-gradient(circle at center, #000 38%, rgba(0, 0, 0, 0.55) 58%, transparent 78%);
+    mask-image: radial-gradient(circle at center, #000 38%, rgba(0, 0, 0, 0.55) 58%, transparent 78%);
 }
 
 .page-3d-stage--blog {
@@ -216,21 +218,40 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 
 .section.home {
     position: relative;
-    overflow: hidden;
+    overflow: visible;
+    min-height: 0;
+    padding: 7.5rem 0 3.25rem;
 }
 
 .home-content {
     display: grid;
-    grid-template-columns: 1.4fr 0.6fr;
-    gap: 4rem;
+    grid-template-columns: 1.35fr 0.65fr;
+    gap: clamp(2rem, 4vw, 3.5rem);
     align-items: center;
 }
 
 .home-image {
-    max-width: 380px;
+    max-width: 360px;
+    width: 100%;
     margin-left: auto;
     position: relative;
     z-index: 1;
+    padding: 1.75rem;
+}
+
+.home-image::before {
+    content: '';
+    position: absolute;
+    inset: 6%;
+    border-radius: 50%;
+    background: radial-gradient(
+        circle,
+        color-mix(in srgb, var(--accent-primary) 24%, transparent) 0%,
+        transparent 68%
+    );
+    filter: blur(18px);
+    z-index: 0;
+    pointer-events: none;
 }
 
 .image-container {
@@ -262,20 +283,20 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 
 .floating-card.card-1 {
-    top: 12%;
-    left: -18%;
+    top: 14%;
+    left: -6%;
     animation-delay: 0s;
 }
 
 .floating-card.card-2 {
-    top: 48%;
-    right: -22%;
+    top: 46%;
+    right: -8%;
     animation-delay: 0.8s;
 }
 
 .floating-card.card-3 {
-    bottom: 10%;
-    left: -8%;
+    bottom: 12%;
+    left: 2%;
     animation-delay: 1.6s;
 }
 
@@ -294,19 +315,19 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 .greeting { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.5rem 1rem; background: var(--glass-bg); border: 1px solid var(--glass-border); border-radius: 50px; font-size: 0.8rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 1.5rem; }
 .status-dot { width: 8px; height: 8px; background: #10b981; border-radius: 50%; box-shadow: 0 0 10px #10b981; animation: pulse 2s infinite; }
 @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.5); opacity: 0.5; } 100% { transform: scale(1); opacity: 1; } }
-.hero-title { font-size: clamp(3rem, 8vw, 5rem); line-height: 1.1; margin-bottom: 1.5rem; font-weight: 900; }
+.hero-title { font-size: clamp(2.6rem, 6.5vw, 4.4rem); line-height: 1.08; margin-bottom: 1.1rem; font-weight: 900; }
 .accent { color: var(--accent-primary); text-shadow: 0 0 30px var(--accent-glow); }
-.hero-subtitle { font-size: 2rem; color: var(--text-secondary); margin-bottom: 2rem; }
-.hero-desc { font-size: 1.1rem; color: var(--text-muted); max-width: 500px; margin-bottom: 3rem; }
-.hero-stats { display: flex; gap: 3rem; margin-bottom: 3rem; }
+.hero-subtitle { font-size: clamp(1.35rem, 2.6vw, 1.85rem); color: var(--text-secondary); margin-bottom: 1.35rem; }
+.hero-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 500px; margin-bottom: 2rem; line-height: 1.7; }
+.hero-stats { display: flex; gap: 2.25rem; margin-bottom: 2.25rem; }
 .stat { display: flex; align-items: baseline; gap: 0.2rem; }
-.stat-number { font-size: 2rem; font-weight: 800; color: var(--accent-primary); }
-.stat-label { font-size: 0.8rem; color: var(--text-muted); text-transform: uppercase; margin-left: 0.5rem; }
-.hero-actions { display: flex; gap: 1.5rem; }
-.hire-btn { padding: 1rem 2rem; border-radius: var(--border-radius-pill); font-weight: 700; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 0.5rem; }
+.stat-number { font-size: 1.85rem; font-weight: 800; color: var(--accent-primary); }
+.stat-label { font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase; margin-left: 0.5rem; }
+.hero-actions { display: flex; gap: 1.15rem; flex-wrap: wrap; }
+.hire-btn { padding: 0.95rem 1.75rem; border-radius: var(--border-radius-pill); font-weight: 700; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 0.5rem; }
 .hire-btn.primary { background: var(--accent-gradient); border: none; color: #fff; }
 .hire-btn.secondary { background: transparent; border: 1px solid var(--glass-border); color: var(--text-primary); }
-.social-links { display: flex; gap: 1.5rem; margin-top: 2rem; }
+.social-links { display: flex; gap: 1.35rem; margin-top: 1.6rem; }
 .social-icon { font-size: 1.5rem; color: var(--text-secondary); transition: var(--transition-fast); }
 .social-icon:hover { color: var(--accent-primary); transform: translateY(-3px); }
 
@@ -410,9 +431,10 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     object-fit: cover;
     object-position: center top;
     border-radius: var(--border-radius);
-    filter: grayscale(1) contrast(1.1);
+    filter: grayscale(0.35) contrast(1.05);
     transition: var(--transition-smooth);
     border: 1px solid var(--glass-border);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.28);
 }
 
 .profile-image:hover {
@@ -1628,7 +1650,7 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
 @media (max-width: 992px) {
     .home-content, .about-content, .contact-card { grid-template-columns: 1fr; }
-    .home-image { margin: 2rem auto 0; max-width: 300px; }
+    .home-image { margin: 1.5rem auto 0; max-width: 280px; padding: 1.25rem; }
     .floating-card { font-size: 0.68rem; padding: 0.5rem 0.75rem; }
     .floating-card.card-1 { left: -6%; }
     .floating-card.card-2 { right: -8%; }

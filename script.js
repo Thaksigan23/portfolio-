@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Typewriter Effect (index only)
     const professionElement = document.getElementById('rotating-profession');
     if (professionElement) {
-        const professions = ['Trainee Software Engineer', 'Full-Stack Developer', 'React & Node.js Builder', 'UI/UX Enthusiast'];
+        const professions = ['Trainee Software Engineer', 'KAIONEX Product Builder', 'Full-Stack Developer', 'React & Node.js Builder'];
         let profIndex = 0, charIndex = 0, isDeleting = false;
 
         function type() {

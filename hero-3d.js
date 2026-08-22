@@ -201,8 +201,8 @@ function initStage(stageEl, canvasEl, variant) {
         }
         particleGeo.attributes.position.needsUpdate = true;
 
-        camera.position.x = mouse.x * 0.25;
-        camera.position.y = mouse.y * 0.15;
+        camera.position.x = mouse.x * 0.12;
+        camera.position.y = mouse.y * 0.08;
         camera.lookAt(0, 0, 0);
         renderer.render(scene, camera);
     }
@@ -223,17 +223,17 @@ function initStage(stageEl, canvasEl, variant) {
 function getVariantConfig(variant, mobile) {
     const configs = {
         home: {
-            cameraZ: 3.6,
-            opacity: 0.7,
+            cameraZ: 4.9,
+            opacity: 0.4,
             rings: true,
-            ringRadius: 1.7,
+            ringRadius: 1.28,
             innerGlow: true,
-            particles: mobile ? 40 : 70,
-            particleSpread: 5.2,
-            particleSize: 0.045,
-            spinX: 0.22,
-            spinY: 0.36,
-            createGeometry: () => new THREE.IcosahedronGeometry(1.25, 1)
+            particles: mobile ? 24 : 42,
+            particleSpread: 3.1,
+            particleSize: 0.034,
+            spinX: 0.12,
+            spinY: 0.2,
+            createGeometry: () => new THREE.IcosahedronGeometry(0.95, 1)
         },
         blog: {
             cameraZ: 4,
