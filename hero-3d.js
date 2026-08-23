@@ -1,5 +1,5 @@
 /**
- * Per-page contained 3D scenes — each variant stays in its own stage,
+ * Per-page contained 3D scenes - each variant stays in its own stage,
  * so content is never covered by a full-screen overlay.
  */
 import * as THREE from 'three';

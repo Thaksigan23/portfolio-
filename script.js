@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 6. Scroll Reveal
-    const revealEls = Array.from(document.querySelectorAll('.section-title, .affiliations-title, .affiliations-eyebrow, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article'));
+    const revealEls = Array.from(document.querySelectorAll('.section-title, .affiliations-title, .contact-lead, .home-text, .home-image, .about-text, .bento-item, .contact-card, .journey-item, .testimonial-card, .blog-card, .blog-hero, .blog-article'));
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const revealNow = (el) => el.classList.add('revealed');
 
@@ -229,11 +229,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Affiliations logo marquee — continuous scroll + left/right controls
+    // Affiliations logo marquee, continuous scroll + wheel / page-scroll control
     const marqueeRoot = document.querySelector('[data-marquee]');
     const marqueeTrack = document.querySelector('[data-marquee-track]');
-    const marqueePrev = document.querySelector('[data-marquee-prev]');
-    const marqueeNext = document.querySelector('[data-marquee-next]');
     if (marqueeRoot && marqueeTrack) {
         const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const sourceList = marqueeTrack.querySelector('.affiliations-list');
@@ -247,7 +245,7 @@ document.addEventListener('DOMContentLoaded', () => {
             let paused = false;
             let resumeTimer = null;
             const speed = 0.55;
-            const step = 140;
+            const scrollFactor = 0.45;
 
             const loopWidth = () => sourceList.offsetWidth;
 
@@ -264,14 +262,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 resumeTimer = setTimeout(() => { paused = false; }, ms);
             };
 
-            const nudge = (dir) => {
-                offset += dir * step;
+            const shiftByScroll = (delta) => {
+                if (!delta) return;
+                offset -= delta * scrollFactor;
                 applyTransform();
-                pauseBriefly();
+                pauseBriefly(1200);
             };
 
-            if (marqueePrev) marqueePrev.addEventListener('click', () => nudge(1));
-            if (marqueeNext) marqueeNext.addEventListener('click', () => nudge(-1));
+            marqueeRoot.addEventListener('wheel', (event) => {
+                const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+                shiftByScroll(delta);
+            }, { passive: true });
+
+            let lastPageScrollY = window.scrollY;
+            window.addEventListener('scroll', () => {
+                const rect = marqueeRoot.getBoundingClientRect();
+                const inView = rect.top < window.innerHeight && rect.bottom > 0;
+                const currentY = window.scrollY;
+                const delta = currentY - lastPageScrollY;
+                lastPageScrollY = currentY;
+                if (inView) shiftByScroll(delta);
+            }, { passive: true });
 
             marqueeRoot.addEventListener('mouseenter', () => { paused = true; });
             marqueeRoot.addEventListener('mouseleave', () => {
@@ -298,13 +309,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 8. Journey timeline — horizontal layout, sort, filter, scroll
+    // 8. Journey timeline, horizontal layout, sort, filter, scroll
     const journeyGrid = document.getElementById('journey-grid');
     const journeyEmpty = document.getElementById('journey-empty');
     const journeyFilters = document.querySelectorAll('.journey-filter');
     const journeyScroll = document.querySelector('.journey-timeline-scroll');
-    const journeyPrev = document.querySelector('[data-journey-prev]');
-    const journeyNext = document.querySelector('[data-journey-next]');
 
     function setupJourneyHorizontalLayout(item) {
         const inner = item.querySelector('.journey-item-inner');
@@ -408,14 +417,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        if (journeyScroll && journeyPrev && journeyNext) {
-            const scrollStep = () => Math.min(journeyScroll.clientWidth * 0.55, 380);
-            journeyPrev.addEventListener('click', () => {
-                journeyScroll.scrollBy({ left: -scrollStep(), behavior: 'smooth' });
-            });
-            journeyNext.addEventListener('click', () => {
-                journeyScroll.scrollBy({ left: scrollStep(), behavior: 'smooth' });
-            });
+        if (journeyScroll) {
+            journeyScroll.addEventListener('wheel', (event) => {
+                const delta = Math.abs(event.deltaX) > Math.abs(event.deltaY) ? event.deltaX : event.deltaY;
+                if (!delta) return;
+                journeyScroll.scrollLeft += delta;
+                event.preventDefault();
+            }, { passive: false });
+
             requestAnimationFrame(() => {
                 journeyScroll.scrollLeft = journeyScroll.scrollWidth;
             });
@@ -428,17 +437,17 @@ document.addEventListener('DOMContentLoaded', () => {
             category: 'Web App',
             title: 'CareerGuide Hub',
             image: 'images/careerguidance/cg3.png',
-            description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform. It blends a job board, an AI-style CV/skill matcher, and a LinkedIn-style professional network — all wrapped in a modern "Aurora Glow" UI.',
+            description: 'A full-stack career platform where students build professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate the platform. It blends a job board, an AI-style CV/skill matcher, and a LinkedIn-style professional network, all wrapped in a modern "Aurora Glow" UI.',
             problem: 'Students struggle to connect their skills to real opportunities, while employers and the platform itself lack a unified space for job matching, professional networking, and moderation.',
-            role: 'Sole full-stack developer — designed the Aurora Glow UI (glassmorphism, gradients, Clash Display + Satoshi fonts), built the React 18 + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access for students, employers, and admins.',
-            challenge: 'Bringing a job board, AI-style skill matching, and a full LinkedIn-style social layer (connections, feed, endorsements) into one performant app — with secure, role-based access and three distinct dashboards sharing a single consistent experience.',
-            outcome: 'Deployed live on Vercel with JWT auth, three role-based dashboards, an AI CV analyzer, skill-based job matching, and a complete networking layer — profiles, timelines, connections, an activity feed, and skill endorsements.',
+            role: 'Sole full-stack developer, designed the Aurora Glow UI (glassmorphism, gradients, Clash Display + Satoshi fonts), built the React 18 + Vite frontend, the Node.js/Express REST API, and the Supabase (PostgreSQL) schema with role-based access for students, employers, and admins.',
+            challenge: 'Bringing a job board, AI-style skill matching, and a full LinkedIn-style social layer (connections, feed, endorsements) into one performant app, with secure, role-based access and three distinct dashboards sharing a single consistent experience.',
+            outcome: 'Deployed live on Vercel with JWT auth, three role-based dashboards, an AI CV analyzer, skill-based job matching, and a complete networking layer, profiles, timelines, connections, an activity feed, and skill endorsements.',
             points: [
-                '<strong>AI CV Analyzer (signature feature)</strong> — upload a CV/résumé to get an instant skill-based analysis, a match score, and personalized job suggestions with saved history',
+                '<strong>AI CV Analyzer (signature feature)</strong>, upload a CV/résumé to get an instant skill-based analysis, a match score, and personalized job suggestions with saved history',
                 'AI-style job matching that scores jobs against a student\u2019s skills and experience, visualized with a gauge + bar-chart insights graph',
-                'Job board — employers post jobs, admins approve/reject, and students browse, search, save, and apply',
-                'LinkedIn-style networking — rich profiles with an "Open to work" badge, experience/education timelines, connections, an activity feed, and skill endorsements',
-                'Three role-based dashboards — student home feed, employer job stats & applicant tracking, and admin platform stats, user management, and job moderation',
+                'Job board, employers post jobs, admins approve/reject, and students browse, search, save, and apply',
+                'LinkedIn-style networking, rich profiles with an "Open to work" badge, experience/education timelines, connections, an activity feed, and skill endorsements',
+                'Three role-based dashboards, student home feed, employer job stats & applicant tracking, and admin platform stats, user management, and job moderation',
                 'JWT authentication with bcrypt-hashed passwords and role-based access (student, employer, admin)',
                 'Hardened API with Helmet security headers, rate limiting, input validation, and CORS allow-listing'
             ],
@@ -458,7 +467,7 @@ document.addEventListener('DOMContentLoaded', () => {
             image: 'images/ecombook.png',
             description: 'An online bookstore where users can browse books by category, manage a shopping cart, and complete a checkout flow.',
             problem: 'Needed a practical e-commerce system to demonstrate end-to-end product catalog, cart state, and order handling.',
-            role: 'Full-stack developer — built the product listing UI, cart logic, API endpoints, and MongoDB data models.',
+            role: 'Full-stack developer, built the product listing UI, cart logic, API endpoints, and MongoDB data models.',
             challenge: 'Keeping cart state consistent across pages and structuring the product catalog for easy browsing and filtering.',
             outcome: 'Working bookstore application with category filters, cart management, and a complete checkout user flow.',
             points: [
@@ -473,13 +482,13 @@ document.addEventListener('DOMContentLoaded', () => {
         },
         aiassistant: {
             category: 'AI Assistant',
-            title: 'Nova — Personal AI Assistant',
+            title: 'Nova: Personal AI Assistant',
             image: 'images/ai-assistant.png',
-            description: 'A personal AI assistant I\u2019m building to help with coding, research, and everyday tasks — combining conversational chat, contextual memory, and a fast, distraction-free interface.',
+            description: 'A personal AI assistant I\u2019m building to help with coding, research, and everyday tasks, combining conversational chat, contextual memory, and a fast, distraction-free interface.',
             problem: 'Switching between separate tools for coding help, research, and notes breaks focus. I wanted one assistant that remembers context and adapts to how I actually work.',
-            role: 'Solo builder — designing the product, the chat UX, the prompt/orchestration layer, and the backend that connects to LLM and retrieval services.',
+            role: 'Solo builder, designing the product, the chat UX, the prompt/orchestration layer, and the backend that connects to LLM and retrieval services.',
             challenge: 'Giving the assistant useful long-term memory and accurate, grounded answers while keeping responses fast and the interface simple.',
-            outcome: 'An in-progress assistant with a working chat interface, conversation history, and a retrieval layer for context-aware answers — actively evolving toward a daily-driver tool.',
+            outcome: 'An in-progress assistant with a working chat interface, conversation history, and a retrieval layer for context-aware answers, actively evolving toward a daily-driver tool.',
             points: [
                 'Conversational chat with streaming responses and saved history',
                 'Contextual memory using a vector database for retrieval-augmented answers',
@@ -498,9 +507,9 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Site \u2192 Wireframe',
             image: 'images/figma-wireframe.png',
             description: 'A Figma plugin that converts any live website into a clean, low-fidelity wireframe in seconds, so designers can skip hours of manual setup and start iterating on layout and structure right away.',
-            problem: 'Recreating an existing site\u2019s structure as a wireframe is slow and repetitive — designers spend hours boxing out sections before they can even start improving the design.',
-            role: 'Solo developer — built the plugin UI, the page-parsing logic, and the wireframe-generation engine that maps real DOM structure to Figma layers.',
-            challenge: 'Translating messy, real-world web layouts into a tidy wireframe — detecting sections, swapping images for placeholders, and simplifying typography while preserving the original structure.',
+            problem: 'Recreating an existing site\u2019s structure as a wireframe is slow and repetitive, designers spend hours boxing out sections before they can even start improving the design.',
+            role: 'Solo developer, built the plugin UI, the page-parsing logic, and the wireframe-generation engine that maps real DOM structure to Figma layers.',
+            challenge: 'Translating messy, real-world web layouts into a tidy wireframe, detecting sections, swapping images for placeholders, and simplifying typography while preserving the original structure.',
             outcome: 'A working plugin that ingests a URL and outputs an editable, low-fidelity wireframe directly on the Figma canvas, dramatically cutting the time from reference site to first draft.',
             points: [
                 'Paste a URL and generate an editable wireframe on the Figma canvas',
@@ -523,7 +532,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Engineered an end-to-end, production-grade workforce productivity platform designed for modern remote and hybrid teams, enabling real-time activity tracking, interactive analytics, and seamless cross-role communication.',
             longDescription: 'Authored a lightweight, low-overhead Python background desktop client utilizing system-level hooks to securely monitor active application focus and track productivity metrics. Built a live web-dashboard streaming bidirectional telemetry data via Socket.io pipelines, and configured automated PowerShell build-release workflows to compile scripts into deployable enterprise executables (.exe) with pre-configured batch installers.',
             problem: 'Remote and hybrid teams need unified visibility into workforce productivity without heavy, intrusive tooling that slows down employee machines.',
-            role: 'Full-Stack & Desktop Systems Engineer — built the Python desktop telemetry client, the React/Node.js live dashboard, and PowerShell release automation for enterprise .exe deployment.',
+            role: 'Full-Stack & Desktop Systems Engineer, built the Python desktop telemetry client, the React/Node.js live dashboard, and PowerShell release automation for enterprise .exe deployment.',
             challenge: 'Streaming real-time desktop activity data with minimal system overhead while packaging the stack into installable enterprise executables with reliable cross-role communication.',
             outcome: 'A production-grade suite with a low-overhead desktop client, Socket.io-powered live dashboard, and automated PowerShell build pipelines delivering deployable enterprise installers.',
             points: [
@@ -547,10 +556,10 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'Kaionex Finance Tracker',
             subtitle: 'Full-Stack Engineer',
             image: 'images/finance-tracker-cover.svg',
-            description: 'A dark-themed, Supabase-backed full-stack finance management system for Kaionex — tracking sales, purchases, and expenses across companies and departments, with budgets, P&L reports, audit logs, and Recharts analytics.',
+            description: 'A dark-themed, Supabase-backed full-stack finance management system for Kaionex, tracking sales, purchases, and expenses across companies and departments, with budgets, P&L reports, audit logs, and Recharts analytics.',
             longDescription: 'Built a multi-company finance platform on React + Vite + Tailwind with a Supabase PostgreSQL backend. Companies own multiple departments; admins manage company profiles, budgets, categories, and approvals while company/branch users enter transactions scoped to their departments. Includes table-based auth with bcrypt hashing, overview filters, budget alerts, CSV import/export, recurring entries, and a sensitive-events security log.',
-            problem: 'The company needed a unified way to track department-level sales, purchases, and expenses — with monthly budgets, role-based visibility, and exportable reports — without relying on fragile hosted auth flows.',
-            role: 'Full-Stack Engineer — designed the Supabase schema (departments, transactions, budgets, company profiles, audit/sensitive events), built the React + Vite + Tailwind dashboard with Recharts, and implemented table-based login with bcrypt, company scoping, and admin tooling.',
+            problem: 'The company needed a unified way to track department-level sales, purchases, and expenses, with monthly budgets, role-based visibility, and exportable reports, without relying on fragile hosted auth flows.',
+            role: 'Full-Stack Engineer, designed the Supabase schema (departments, transactions, budgets, company profiles, audit/sensitive events), built the React + Vite + Tailwind dashboard with Recharts, and implemented table-based login with bcrypt, company scoping, and admin tooling.',
             challenge: 'Supporting multi-company \u2192 multi-department data scoping, reliable login without Supabase Auth timeouts, budget alerts and reporting, plus admin features (impersonation, approvals, audit) while keeping the UI fast and usable for daily finance entry.',
             outcome: 'A production finance tracker with role-based dashboards, department budgets and alerts, CSV/print reporting, transaction approval workflow, recurring entries, audit & sensitive-event logs, light/dark theme, and Vercel-ready deployment against Supabase.',
             points: [
@@ -558,7 +567,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 'Transaction ledger for sales, purchases, and expenses with filters, CSV bulk import/export, and print reports',
                 'Monthly department budgets with 80%/100% spend alerts, revenue KPI targets, and overview analytics (Recharts)',
                 'Table-based auth with bcrypt-hashed passwords, sessionStorage sessions, login rate limiting, and forgot-password tokens',
-                'Admin tooling — company detail pages, activate/deactivate, password reset, impersonate (“Login as”), category library, approvals',
+                'Admin tooling, company detail pages, activate/deactivate, password reset, impersonate (“Login as”), category library, approvals',
                 'Audit log + Sensitive Events Log (login/delete attempts, device info); P&L summary reports; PWA manifest; keyboard shortcut N for new entry'
             ],
             tech: ['React', 'Vite', 'Tailwind CSS', 'Recharts', 'Supabase', 'PostgreSQL'],
@@ -579,7 +588,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Engineered a modern, production-grade white-label Progressive Web App (PWA) client portal that enables companies to securely collaborate with clients, manage assets, and handle workflows within isolated corporate environments.',
             longDescription: 'Architected database isolation logic using Supabase Row-Level Security (RLS) and SQL triggers to ensure strict corporate workspace isolation (one organization per company signup). Leveraged Next.js App Router for server-side rendering, dynamic routing, and optimized data-fetching to ensure instantaneous page loads. Integrated an encrypted Asset Vault utilizing cloud storage buckets with time-limited signed URLs to protect sensitive user files.',
             problem: 'B2B client portals must keep each organization\u2019s data strictly isolated while still delivering fast, white-label experiences and secure file handling.',
-            role: 'SaaS Architecture & Full-Stack Engineer — designed multi-tenant isolation, built the Next.js PWA, and integrated encrypted asset storage with signed URL access.',
+            role: 'SaaS Architecture & Full-Stack Engineer, designed multi-tenant isolation, built the Next.js PWA, and integrated encrypted asset storage with signed URL access.',
             challenge: 'Enforcing per-organization data isolation at the database layer while maintaining instant SSR page loads and securing the asset vault for sensitive client files.',
             outcome: 'A white-label PWA with Supabase RLS workspace isolation, Next.js App Router performance, and an encrypted Asset Vault backed by time-limited signed URLs.',
             points: [
@@ -603,7 +612,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Designed and developed the official responsive web platform for Thooddakkaaran (Pvt) Ltd, showcasing large-scale agricultural initiatives, agrotech services, and localized corporate branding solutions.',
             longDescription: 'Formulated a high-fidelity, responsive user interface utilizing modern design systems to establish a strong, clean visual identity matching corporate guidelines. Implemented automated image and heavy asset optimization pipelines to handle high-resolution visual stories efficiently while performing comprehensive cross-browser and mobile performance tuning.',
             problem: 'Thooddakkaaran needed an official digital presence that communicates large-scale agricultural initiatives with a polished, localized corporate identity.',
-            role: 'UI/UX Designer & Frontend Developer — owned visual design, responsive frontend implementation, and performance optimization for the corporate platform.',
+            role: 'UI/UX Designer & Frontend Developer, owned visual design, responsive frontend implementation, and performance optimization for the corporate platform.',
             challenge: 'Delivering a high-fidelity brand experience with heavy visual storytelling assets while keeping load times fast across browsers and mobile devices.',
             outcome: 'A responsive corporate platform with optimized media pipelines, cross-browser tuning, and a clean visual identity aligned to Thooddakkaaran\u2019s brand guidelines.',
             points: [
@@ -630,7 +639,7 @@ document.addEventListener('DOMContentLoaded', () => {
             description: 'Contributed to the core frontend engineering, modern architectural components, and performance optimizations for Techloom.ai, a high-performance digital experience platform built for global corporate branding and full-stack web solutions.',
             longDescription: 'Built and updated responsive, reusable UI components, optimizing the platform\u2019s layout to achieve an exceptional core web vital footprint (<2.0s average Largest Contentful Paint). Translated high-fidelity UI/UX design wireframes into clean frontend interfaces, assisted in structuring flexible schemas for Headless CMS architectures, and managed GitHub version control workflows to preserve visual hierarchy.',
             problem: 'Techloom.ai needed a fast, scalable frontend platform that could support global corporate branding while maintaining exceptional Core Web Vitals.',
-            role: 'Frontend Engineer & UI/UX Designer — built reusable UI components, translated wireframes into production interfaces, and optimized layout performance.',
+            role: 'Frontend Engineer & UI/UX Designer, built reusable UI components, translated wireframes into production interfaces, and optimized layout performance.',
             challenge: 'Hitting sub-2.0s LCP targets while integrating Headless CMS flexibility and preserving visual hierarchy across a growing component library.',
             outcome: 'A high-performance platform frontend with reusable components, Headless CMS-ready schemas, and an average LCP under 2.0 seconds.',
             points: [
@@ -704,7 +713,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     modalCorpDetails.innerHTML = [
                         project.collaborator ? `<strong>${project.collaborator}</strong>` : '',
                         project.companyDetails || ''
-                    ].filter(Boolean).join(' — ');
+                    ].filter(Boolean).join(', ');
                 } else {
                     modalCorpBadge.hidden = true;
                     modalCorpDetails.hidden = true;

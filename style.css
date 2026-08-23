@@ -570,28 +570,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 .journey-timeline-wrap {
     position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 0.65rem;
-}
-.journey-scroll-btn {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    color: var(--text-primary);
-    cursor: pointer;
-    z-index: 3;
-    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
-}
-.journey-scroll-btn:hover {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-    transform: scale(1.06);
 }
 .journey-timeline-scroll {
     position: relative;
@@ -839,18 +817,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
     50% { transform: scale(1.12); opacity: 0.75; }
 }
 @media (max-width: 900px) {
-    .journey-timeline-wrap {
-        grid-template-columns: 1fr;
-    }
-    .journey-scroll-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        z-index: 4;
-    }
-    .journey-scroll-btn--prev { left: 0.25rem; }
-    .journey-scroll-btn--next { right: 0.25rem; }
-    .journey-scroll-btn:hover { transform: translateY(-50%) scale(1.06); }
     .journey-item { flex-basis: 220px; }
 }
 @media (max-width: 600px) {
@@ -897,36 +863,9 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 .affiliations-slider {
     position: relative;
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: 0.65rem;
     max-width: 1100px;
     margin: 0 auto;
     padding: 0 0.75rem;
-}
-.affiliations-nav {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: grid;
-    place-items: center;
-    flex-shrink: 0;
-    border: 1px solid var(--glass-border);
-    background: var(--glass-bg);
-    color: var(--text-primary);
-    cursor: pointer;
-    z-index: 2;
-    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease, background 0.25s ease;
-}
-.affiliations-nav:hover {
-    border-color: var(--accent-primary);
-    color: var(--accent-primary);
-    transform: scale(1.06);
-}
-.affiliations-nav:focus-visible {
-    outline: 2px solid var(--accent-primary);
-    outline-offset: 2px;
 }
 .affiliations-marquee {
     position: relative;
@@ -1002,17 +941,8 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
 }
 @media (max-width: 700px) {
     .affiliations-slider {
-        grid-template-columns: 1fr;
-        gap: 0.75rem;
+        padding: 0 0.5rem;
     }
-    .affiliations-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-70%);
-    }
-    .affiliations-nav--prev { left: 0.35rem; }
-    .affiliations-nav--next { right: 0.35rem; }
-    .affiliations-nav:hover { transform: translateY(-70%) scale(1.06); }
 }
 @media (prefers-reduced-motion: reduce) {
     .affiliations-track {
@@ -1033,9 +963,6 @@ header { position: fixed; top: 20px; left: 50%; transform: translateX(-50%); wid
         flex-wrap: wrap;
         justify-content: center;
         width: 100%;
-    }
-    .affiliations-nav {
-        display: none;
     }
 }
 

@@ -70,7 +70,7 @@
                     <div class="blog-post-content">
                         <p>
                             One of the most technically diverse projects I've worked on at Techloom.ai is a full workforce management
-                            suite — combining a Python desktop agent, a React/Node.js web dashboard, and enterprise packaging
+                            suite, combining a Python desktop agent, a React/Node.js web dashboard, and enterprise packaging
                             workflows. The goal: give remote and hybrid teams real-time visibility into productivity without
                             building heavy software that slows down employee machines.
                         </p>
@@ -80,7 +80,7 @@
                             The system splits cleanly into three layers. A lightweight Python background client uses system-level
                             hooks to track active application focus and productivity metrics. A Node.js API stores telemetry in
                             MongoDB and exposes REST endpoints for dashboards, chat, leave requests, and admin controls. The React
-                            frontend streams live updates through Socket.io so managers see activity as it happens — not after a
+                            frontend streams live updates through Socket.io so managers see activity as it happens, not after a
                             nightly batch job.
                         </p>
 
@@ -96,7 +96,7 @@
                         <p>
                             Bidirectional Socket.io pipelines were the right fit for live dashboards. When an employee clocks in,
                             takes a break, or switches focus, the dashboard reflects it within seconds. The tricky part was
-                            balancing event frequency — too many emits and the server gets noisy; too few and the dashboard
+                            balancing event frequency, too many emits and the server gets noisy; too few and the dashboard
                             feels stale. I settled on batched updates for activity logs and immediate emits for state changes
                             like shift start/end.
                         </p>
@@ -111,7 +111,7 @@
                         <h2>What I learned</h2>
                         <ul>
                             <li>Cross-stack thinking: desktop Python, web React, and DevOps scripting in one product</li>
-                            <li>Privacy-by-design for monitoring tools — employees need transparency about what's tracked</li>
+                            <li>Privacy-by-design for monitoring tools, employees need transparency about what's tracked</li>
                             <li>Real-time systems need clear event contracts between agent, API, and dashboard</li>
                             <li>Enterprise delivery is as much about packaging and deployment as it is about code quality</li>
                         </ul>

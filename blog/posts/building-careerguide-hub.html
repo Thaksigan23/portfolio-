@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>How I Built CareerGuide Hub | Sivaruban Thaksigan</title>
-    <meta name="description" content="A breakdown of building CareerGuide Hub — a full-stack career platform with React, Node.js, Express, and Supabase, featuring an AI CV Analyzer, a job board, and a LinkedIn-style network." />
+    <meta name="description" content="A breakdown of building CareerGuide Hub, a full-stack career platform with React, Node.js, Express, and Supabase, featuring an AI CV Analyzer, a job board, and a LinkedIn-style network." />
     <link rel="stylesheet" href="../../style.css?v=premium-v35-light-theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
@@ -71,13 +71,13 @@
                         <p>
                             CareerGuide Hub started as a university project but grew into a full-stack career platform. Students build
                             professional profiles and find matching jobs, employers post jobs and review applicants, and admins moderate
-                            the platform — blending a job board, an AI-style CV/skill matcher, and a LinkedIn-style network in a modern
+                            the platform, blending a job board, an AI-style CV/skill matcher, and a LinkedIn-style network in a modern
                             "Aurora Glow" UI. It's deployed live on Vercel.
                         </p>
 
                         <h2>The problem</h2>
                         <p>
-                            Students often know what they're studying but not which careers align with their strengths — and they lack a
+                            Students often know what they're studying but not which careers align with their strengths, and they lack a
                             single place to match with jobs, network professionally, and get feedback on their CV. I wanted one system that
                             tied profiles, job matching, and networking together for students, employers, and admins alike.
                         </p>
@@ -85,13 +85,13 @@
                         <h2>The AI CV Analyzer</h2>
                         <p>
                             The standout feature is the <strong>AI CV Analyzer</strong>. A student uploads a CV/résumé and instantly gets a
-                            skill-based analysis, a match score, and personalized job suggestions — with saved history so they can track
+                            skill-based analysis, a match score, and personalized job suggestions, with saved history so they can track
                             progress over time. It's the feature I'm most proud of because it turns a static document into actionable matches.
                         </p>
 
                         <figure class="blog-figure">
                             <img src="../../images/careerguidance/cg3.png" alt="AI CV Analyzer page showing a parsed CV and a 100% top job match" loading="lazy">
-                            <figcaption>AI CV Analyzer — upload a CV and get scored job matches instantly.</figcaption>
+                            <figcaption>AI CV Analyzer, upload a CV and get scored job matches instantly.</figcaption>
                         </figure>
 
                         <h2>Tech stack</h2>
@@ -111,14 +111,14 @@
                         <h2>Key challenges</h2>
                         <p>
                             The hardest part was bringing a job board, AI-style skill matching, and a full LinkedIn-style social layer
-                            (connections, feed, endorsements) into one performant app — with secure, role-based access and three distinct
+                            (connections, feed, endorsements) into one performant app, with secure, role-based access and three distinct
                             dashboards that still share a single, consistent experience. I solved matching with a scoring algorithm on the
                             backend that ranks jobs by match percentage, then visualized it with a gauge and bar charts on the home feed.
                         </p>
 
                         <figure class="blog-figure">
                             <img src="../../images/careerguidance/cg1.png" alt="Employer hiring dashboard showing posted jobs and applicant stats" loading="lazy">
-                            <figcaption>Employer dashboard — job stats and applicant tracking at a glance.</figcaption>
+                            <figcaption>Employer dashboard, job stats and applicant tracking at a glance.</figcaption>
                         </figure>
 
                         <h2>What I learned</h2>

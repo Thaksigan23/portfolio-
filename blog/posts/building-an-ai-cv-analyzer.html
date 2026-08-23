@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Building an AI-Style CV Analyzer | Sivaruban Thaksigan</title>
-    <meta name="description" content="How I built the AI CV Analyzer in CareerGuide Hub—parsing résumés, scoring skills against jobs, and turning a static document into ranked matches." />
+    <meta name="description" content="How I built the AI CV Analyzer in CareerGuide Hub, parsing résumés, scoring skills against jobs, and turning a static document into ranked matches." />
     <link rel="stylesheet" href="../../style.css?v=premium-v35-light-theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
@@ -71,13 +71,13 @@
                         <p>
                             The feature I'm most proud of in <strong>CareerGuide Hub</strong> is the AI CV Analyzer. A student uploads a
                             résumé and instantly gets a skill-based analysis, a match score, and a ranked list of jobs that fit them. This
-                            post walks through how I approached it—and the trade-offs I made to keep it fast and reliable.
+                            post walks through how I approached it, and the trade-offs I made to keep it fast and reliable.
                         </p>
 
                         <h2>The goal</h2>
                         <p>
                             A CV is a static document. I wanted to turn it into something actionable: extract the skills, compare them to
-                            live job postings, and surface the best matches with a clear percentage—so a student knows exactly where they
+                            live job postings, and surface the best matches with a clear percentage, so a student knows exactly where they
                             stand and what to improve.
                         </p>
 
@@ -94,13 +94,13 @@
                         <p>
                             I deliberately kept the matching logic explainable. Instead of an opaque model, the score reflects concrete
                             overlap between CV skills and job requirements. That means a student can see <em>why</em> a job is a 100% match
-                            versus a 40% one—and what skill would move the needle. For a career tool, trust and clarity matter more than
+                            versus a 40% one, and what skill would move the needle. For a career tool, trust and clarity matter more than
                             sophistication for its own sake.
                         </p>
 
                         <h2>Challenges</h2>
                         <p>
-                            Messy input was the hard part. Résumés come in wildly different formats, so the parser had to be forgiving—handling
+                            Messy input was the hard part. Résumés come in wildly different formats, so the parser had to be forgiving, handling
                             inconsistent spacing, synonyms (e.g. "JS" vs "JavaScript"), and noise. I solved this with a normalization step and a
                             synonym map before scoring, which dramatically improved match accuracy.
                         </p>

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Optimizing Core Web Vitals at Techloom.ai | Sivaruban Thaksigan</title>
-    <meta name="description" content="Frontend performance lessons from building Techloom.ai — reusable components, layout optimization, and hitting sub-2.0s LCP targets." />
+    <meta name="description" content="Frontend performance lessons from building Techloom.ai, reusable components, layout optimization, and hitting sub-2.0s LCP targets." />
     <link rel="stylesheet" href="../../style.css?v=premium-v35-light-theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
@@ -77,7 +77,7 @@
 
                         <h2>Starting with the layout</h2>
                         <p>
-                            Performance optimization isn't a final polish step — it starts in the layout. I rebuilt page
+                            Performance optimization isn't a final polish step, it starts in the layout. I rebuilt page
                             sections using responsive, reusable UI components so we weren't duplicating heavy markup across
                             routes. Fewer one-off layouts means smaller bundles, more predictable rendering, and easier
                             lazy-loading decisions.
@@ -85,7 +85,7 @@
 
                         <h2>Component-level wins</h2>
                         <ul>
-                            <li><strong>Hero sections:</strong> Prioritized the LCP element — usually the headline or hero image — with explicit dimensions to prevent layout shift</li>
+                            <li><strong>Hero sections:</strong> Prioritized the LCP element, usually the headline or hero image, with explicit dimensions to prevent layout shift</li>
                             <li><strong>Images:</strong> Used modern formats and size-appropriate sources so mobile doesn't download desktop assets</li>
                             <li><strong>Fonts:</strong> Limited weight variants and used <code>font-display: swap</code> to avoid invisible text during load</li>
                             <li><strong>Below-the-fold content:</strong> Deferred non-critical sections so the first paint stays fast</li>
@@ -103,13 +103,13 @@
                         <p>
                             A big part of my role is translating high-fidelity UI/UX wireframes into production interfaces
                             without losing visual hierarchy. That means matching spacing, typography, and component states
-                            precisely — but also pushing back when a design choice hurts performance. A heavy animation on
+                            precisely, but also pushing back when a design choice hurts performance. A heavy animation on
                             the hero might look great in Figma and still cost 400ms of LCP.
                         </p>
 
                         <h2>Measuring what matters</h2>
                         <p>
-                            I tracked Core Web Vitals in real conditions — not just localhost. Mobile throttling, slow 4G,
+                            I tracked Core Web Vitals in real conditions, not just localhost. Mobile throttling, slow 4G,
                             and cold cache loads reveal problems that dev machines hide. The goal isn't a perfect Lighthouse
                             score; it's consistent sub-2.0s LCP for real users landing on the homepage from social or search.
                         </p>

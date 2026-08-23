@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Multi-Tenant SaaS with Supabase RLS | Sivaruban Thaksigan</title>
-    <meta name="description" content="Architecting Orbit Client Portal — a white-label PWA with Supabase Row-Level Security for strict corporate workspace isolation." />
+    <meta name="description" content="Architecting Orbit Client Portal, a white-label PWA with Supabase Row-Level Security for strict corporate workspace isolation." />
     <link rel="stylesheet" href="../../style.css?v=premium-v35-light-theme">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;900&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap">
@@ -69,7 +69,7 @@
 
                     <div class="blog-post-content">
                         <p>
-                            When building Orbit Client Portal — a white-label Progressive Web App for B2B client collaboration —
+                            When building Orbit Client Portal, a white-label Progressive Web App for B2B client collaboration , 
                             the non-negotiable requirement was data isolation. Each company that signs up gets its own workspace.
                             Users from Company A must never see Company B's assets, messages, or workflows. Application-level
                             filtering alone isn't enough; the database itself has to enforce boundaries.
@@ -93,7 +93,7 @@
                         <h2>Next.js App Router on top</h2>
                         <p>
                             The frontend uses Next.js App Router for server-side rendering, dynamic routing, and optimized
-                            data-fetching. SSR matters here because client portals need to feel instant — a slow first paint
+                            data-fetching. SSR matters here because client portals need to feel instant, a slow first paint
                             undermines trust in a product meant for professional collaboration. Server components fetch
                             tenant-scoped data through Supabase's server client, and the RLS policies apply regardless of
                             whether the query runs on the server or client.
